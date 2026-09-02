@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #030712;
+  --background: #05050a;
   --foreground: #f8fafc;
 }
 
@@ -14,11 +14,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Cosmic Background Grid */
+/* Custom Cosmic Background Grid with Cyber Pink / Cyan Hints */
 .cosmic-grid {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(236, 72, 153, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
 }
 
@@ -32,7 +32,21 @@ body {
   opacity: 0.35;
 }
 
-/* Metallic Gold Typography Effect (Matching the Poster) */
+/* Metallic & Neon Cyber Typography Effects */
+.text-pink-glow {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F472B6 40%, #FF007F 80%, #BE185D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255, 0, 127, 0.45);
+}
+
+.text-cyber-glow {
+  background: linear-gradient(135deg, #00F0FF 0%, #F472B6 50%, #FF007F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
+}
+
 .text-gold-metallic {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF2A3 30%, #FBBF24 70%, #D97706 100%);
   -webkit-background-clip: text;
@@ -47,28 +61,28 @@ body {
   text-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
 }
 
-/* Glassmorphism Card with Glowing Cyan Border */
+/* Glassmorphism Card with Cyber Pink / Cyan Accents */
 .glass-card {
-  background: linear-gradient(135deg, rgba(13, 27, 66, 0.7) 0%, rgba(6, 14, 38, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(22, 10, 38, 0.75) 0%, rgba(10, 6, 20, 0.85) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.22);
+  border: 1px solid rgba(236, 72, 153, 0.2);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 240, 255, 0.5);
-  box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 0, 127, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(255, 0, 127, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
 }
 
-.glass-card-gold {
-  background: linear-gradient(135deg, rgba(30, 27, 75, 0.7) 0%, rgba(17, 24, 39, 0.85) 100%);
+.glass-card-pink {
+  background: linear-gradient(135deg, rgba(38, 10, 42, 0.8) 0%, rgba(14, 6, 22, 0.9) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(255, 0, 127, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(255, 0, 127, 0.25);
 }
 
 /* Custom Scrollbar */
@@ -76,14 +90,14 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #05050a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #271038;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
+  background: #ff007f;
 }
 
 /* Floating animation utilities */

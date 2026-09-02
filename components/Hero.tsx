@@ -45,15 +45,15 @@ export default function Hero() {
       
       {/* Radial Lights */}
       <div 
-        className="cosmic-glow bg-cyan-500/20 top-10 -left-40 animate-pulse-slow" 
+        className="cosmic-glow bg-pink-500/20 top-10 -left-40 animate-pulse-slow" 
         style={{ width: "650px", height: "650px" }}
       />
       <div 
-        className="cosmic-glow bg-blue-600/25 top-1/3 -right-40" 
+        className="cosmic-glow bg-cyan-500/20 top-1/3 -right-40" 
         style={{ width: "700px", height: "700px" }}
       />
       <div 
-        className="cosmic-glow bg-amber-500/10 -bottom-20 left-1/3" 
+        className="cosmic-glow bg-purple-600/20 -bottom-20 left-1/3" 
         style={{ width: "500px", height: "500px" }}
       />
 
@@ -64,46 +64,46 @@ export default function Hero() {
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-950/80 to-blue-950/80 border border-cyan-400/30 text-cyan-300 text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-900/30 w-fit mx-auto lg:mx-0 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-pink-950/80 via-purple-950/80 to-cyan-950/80 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-semibold shadow-lg shadow-pink-900/30 w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Full-Stack Software House & Web Developer Studio</span>
             </div>
 
-            {/* Main Headline with Metallic Gold & Cyan Accents */}
+            {/* Main Headline with Cyber Pink & Neon Cyan Glow */}
             <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-white">
               Jasa Pembuatan <br className="hidden sm:inline" />
-              <span className="text-gold-metallic block sm:inline">Website & Aplikasi</span>{" "}
+              <span className="text-pink-glow block sm:inline">Website & Aplikasi</span>{" "}
               <span className="text-cyan-glow">Profesional</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-medium mx-auto lg:mx-0">
               Wujudkan Website & Aplikasi Impian Anda Bersama{" "}
-              <strong className="text-white font-bold underline decoration-cyan-400 decoration-2 underline-offset-4">
+              <strong className="text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">
                 RIDEV (Rivia Developer)
               </strong>! 
               Saatnya Anda fokus melayani klien dan bisnis, biarkan tim developer ahli kami yang menangani transformasi digital dan kehadiran online Anda.
             </p>
 
-            {/* Inclusions Box ("Yang Didapat") - Matching Reference Poster */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rivia-deep/90 to-rivia-navy/90 border border-cyan-500/30 backdrop-blur-xl shadow-xl shadow-black/40 text-left">
-              <div className="flex items-center justify-between mb-3 border-b border-cyan-500/20 pb-2">
-                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            {/* Inclusions Box ("Yang Didapat") - Matching Reference */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rivia-deep/90 to-rivia-navy/90 border border-pink-500/30 backdrop-blur-xl shadow-xl shadow-black/40 text-left">
+              <div className="flex items-center justify-between mb-3 border-b border-pink-500/20 pb-2">
+                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-cyan-400" />
                   Keuntungan & Fasilitas Lengkap:
                 </span>
-                <span className="text-[11px] font-semibold text-cyan-300 bg-cyan-950/80 px-2.5 py-0.5 rounded-full border border-cyan-500/40">
+                <span className="text-[11px] font-semibold text-pink-300 bg-pink-950/80 px-2.5 py-0.5 rounded-full border border-pink-500/40">
                   Included Free
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {perks.map((perk, index) => (
                   <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-200">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
                     <span>{perk}</span>
                   </div>
                 ))}
@@ -116,7 +116,7 @@ export default function Hero() {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-extrabold text-base bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-slate-950 hover:opacity-95 shadow-xl shadow-emerald-500/25 hover:shadow-cyan-400/40 transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-extrabold text-base bg-gradient-to-r from-pink-500 via-rose-500 to-amber-400 text-slate-950 hover:opacity-95 shadow-xl shadow-pink-500/30 hover:shadow-pink-400/50 transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 group"
               >
                 <div className="w-6 h-6 rounded-full bg-slate-950/20 flex items-center justify-center">
                   <span className="text-lg">💬</span>
@@ -127,7 +127,7 @@ export default function Hero() {
 
               <a
                 href="#kalkulator"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-rivia-deep/80 hover:bg-rivia-deep border border-cyan-500/40 text-cyan-300 hover:text-white shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-rivia-deep/80 hover:bg-rivia-deep border border-pink-500/40 text-pink-300 hover:text-white shadow-lg hover:shadow-pink-500/25 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <span>✨ Hitung Estimasi Biaya</span>
               </a>
