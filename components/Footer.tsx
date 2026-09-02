@@ -29,15 +29,17 @@ export default function Footer() {
           {/* Col 1: Brand & Bio (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-700 p-0.5 shadow-lg">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-amber-300">
-                  R
-                </div>
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-pink-500/20 border border-pink-500/30 bg-slate-950 p-0.5 flex items-center justify-center">
+                <img
+                  src="/logo.png"
+                  alt="RIDEV Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1">
                   <span className="font-heading font-black text-lg text-white">RI</span>
-                  <span className="font-heading font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-300">DEV</span>
+                  <span className="font-heading font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-amber-300">DEV</span>
                 </div>
                 <span className="text-[8px] uppercase tracking-[0.18em] text-cyan-400 font-bold -mt-1">
                   Rivia Developer • Studio

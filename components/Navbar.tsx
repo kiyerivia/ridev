@@ -38,22 +38,21 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo with Crystal R Emblem */}
+        {/* Brand Logo with Custom Uploaded Emblem */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-600 to-indigo-900 p-0.5 shadow-lg shadow-cyan-500/30 group-hover:shadow-cyan-400/60 transition-all duration-300">
-            <div className="w-full h-full bg-rivia-dark rounded-[10px] flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-amber-300 tracking-tighter">
-                R
-              </span>
-            </div>
+          <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-lg shadow-pink-500/20 group-hover:shadow-pink-500/40 transition-all duration-300 border border-pink-500/30 bg-slate-950/90 p-0.5 flex items-center justify-center">
+            <img
+              src="/logo.png"
+              alt="RIDEV Logo"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+            />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
               <span className="font-heading font-black text-xl tracking-wider text-white group-hover:text-cyan-300 transition-colors">
                 RI
               </span>
-              <span className="font-heading font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-300">
+              <span className="font-heading font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-amber-300">
                 DEV
               </span>
             </div>
