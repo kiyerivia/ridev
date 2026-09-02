@@ -449,8 +449,14 @@ export default function Portfolio() {
             </div>
 
             {/* Modal Body: Device Frame with REAL INTERACTIVE UI SIMULATION */}
-            <div className="p-4 sm:p-6 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-950/90 space-y-5">
+            <div className="p-3 sm:p-5 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-950/90 space-y-4">
               
+              {/* Scroll Guidance Banner */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400/40 text-cyan-300 text-xs font-semibold shadow-lg animate-pulse">
+                <span>🖱️</span>
+                <span>Scroll ke bawah di dalam layar mockup untuk mencoba simulasi & melihat seluruh isi website!</span>
+              </div>
+
               <div
                 className={`transition-all duration-300 rounded-2xl border-4 border-slate-800 shadow-2xl overflow-hidden bg-slate-900 flex flex-col ${
                   previewDevice === "desktop"
@@ -461,7 +467,7 @@ export default function Portfolio() {
                 }`}
               >
                 {/* Browser address bar */}
-                <div className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0">
+                <div className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 sticky top-0 z-20">
                   <div className="flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
@@ -474,6 +480,9 @@ export default function Portfolio() {
                     🔒 SSL Active
                   </span>
                 </div>
+
+                {/* Internal Scrollable Screen Container */}
+                <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6 bg-slate-950 space-y-6 text-left">
 
                 {/* ------------------------------------------------------------- */}
                 {/* 1. HEALTHCARE INTERACTIVE SIMULATOR                           */}
@@ -1020,6 +1029,7 @@ export default function Portfolio() {
                   </div>
                 )}
 
+                </div>
               </div>
 
               {/* Bottom Project Description & Direct Quote Action */}
