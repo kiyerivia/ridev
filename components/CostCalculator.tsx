@@ -32,111 +32,111 @@ interface FeatureAddon {
   description: string;
 }
 
+const PROJECT_TYPES: ProjectOption[] = [
+  {
+    id: "landing-page",
+    name: "Landing Page / Minisite",
+    basePrice: 499000,
+    icon: "⚡",
+    defaultPages: 1,
+    description: "1 Halaman Fokus Konversi Penjualan & Iklan",
+  },
+  {
+    id: "company-profile",
+    name: "Company Profile Bisnis",
+    basePrice: 1250000,
+    icon: "🏢",
+    defaultPages: 5,
+    description: "Website Kredibilitas Perusahaan & Portofolio",
+  },
+  {
+    id: "ecommerce",
+    name: "Toko Online / E-Commerce",
+    basePrice: 2490000,
+    icon: "🛍️",
+    defaultPages: 8,
+    description: "Katalog Produk, Keranjang & Manajemen Stok",
+  },
+  {
+    id: "lms-education",
+    name: "LMS / Portal Pendidikan",
+    basePrice: 2890000,
+    icon: "🎓",
+    defaultPages: 10,
+    description: "Kursus Online, Video Materi & Ujian/Kuis",
+  },
+  {
+    id: "custom-app",
+    name: "Custom Web App / Sistem Bisnis",
+    basePrice: 4500000,
+    icon: "⚙️",
+    defaultPages: 12,
+    description: "Sistem Informasi Manajemen, ERP/CRM & Database",
+  },
+  {
+    id: "mobile-app",
+    name: "Aplikasi Mobile (Android/iOS)",
+    basePrice: 6500000,
+    icon: "📱",
+    defaultPages: 15,
+    description: "Aplikasi Smartphone Modern Siap Play Store",
+  },
+];
+
+const ADDONS: FeatureAddon[] = [
+  {
+    id: "auth-users",
+    name: "Sistem Akun & Login User (Supabase Auth)",
+    price: 450000,
+    category: "Fitur & Sistem",
+    description: "Registrasi member, lupa password, & profil pengguna.",
+  },
+  {
+    id: "cms-admin",
+    name: "Dashboard Admin / CMS Mandiri",
+    price: 550000,
+    category: "Fitur & Sistem",
+    description: "Panel untuk edit teks, upload gambar & artikel tanpa koding.",
+  },
+  {
+    id: "payment-gateway",
+    name: "Payment Gateway Otomatis (QRIS, VA, E-Wallet)",
+    price: 600000,
+    category: "Integrasi & Payment",
+    description: "Terima pembayaran instan tanpa cek mutasi manual.",
+  },
+  {
+    id: "rajaongkir-sync",
+    name: "Hitung Ongkir Ekspedisi Otomatis (JNE, J&T, SiCepat)",
+    price: 350000,
+    category: "Integrasi & Payment",
+    description: "Kalkulasi tarif kurir real-time ke seluruh Indonesia.",
+  },
+  {
+    id: "seo-booster",
+    name: "SEO On-Page Booster & Google Index Express",
+    price: 350000,
+    category: "Marketing & SEO",
+    description: "Optimasi meta tags, sitemap XML, dan schema markup Google.",
+  },
+  {
+    id: "multi-language",
+    name: "Fitur Multi-Bahasa (Indonesia & English)",
+    price: 400000,
+    category: "Fitur & Sistem",
+    description: "Pilihan switcher bahasa untuk target pasar global.",
+  },
+  {
+    id: "maintenance-vip",
+    name: "Maintenance & Backup Prioritas 1 Tahun",
+    price: 500000,
+    category: "Maintenance",
+    description: "Monitoring performa, backup berkala, dan revisi konten kecil.",
+  },
+];
+
 export default function CostCalculator() {
-  const projectTypes: ProjectOption[] = [
-    {
-      id: "landing-page",
-      name: "Landing Page / Minisite",
-      basePrice: 499000,
-      icon: "⚡",
-      defaultPages: 1,
-      description: "1 Halaman Fokus Konversi Penjualan & Iklan",
-    },
-    {
-      id: "company-profile",
-      name: "Company Profile Bisnis",
-      basePrice: 1250000,
-      icon: "🏢",
-      defaultPages: 5,
-      description: "Website Kredibilitas Perusahaan & Portofolio",
-    },
-    {
-      id: "ecommerce",
-      name: "Toko Online / E-Commerce",
-      basePrice: 2490000,
-      icon: "🛍️",
-      defaultPages: 8,
-      description: "Katalog Produk, Keranjang & Manajemen Stok",
-    },
-    {
-      id: "lms-education",
-      name: "LMS / Portal Pendidikan",
-      basePrice: 2890000,
-      icon: "🎓",
-      defaultPages: 10,
-      description: "Kursus Online, Video Materi & Ujian/Kuis",
-    },
-    {
-      id: "custom-app",
-      name: "Custom Web App / Sistem Bisnis",
-      basePrice: 4500000,
-      icon: "⚙️",
-      defaultPages: 12,
-      description: "Sistem Informasi Manajemen, ERP/CRM & Database",
-    },
-    {
-      id: "mobile-app",
-      name: "Aplikasi Mobile (Android/iOS)",
-      basePrice: 6500000,
-      icon: "📱",
-      defaultPages: 15,
-      description: "Aplikasi Smartphone Modern Siap Play Store",
-    },
-  ];
-
-  const addons: FeatureAddon[] = [
-    {
-      id: "auth-users",
-      name: "Sistem Akun & Login User (Supabase Auth)",
-      price: 450000,
-      category: "Fitur & Sistem",
-      description: "Registrasi member, lupa password, & profil pengguna.",
-    },
-    {
-      id: "cms-admin",
-      name: "Dashboard Admin / CMS Mandiri",
-      price: 550000,
-      category: "Fitur & Sistem",
-      description: "Panel untuk edit teks, upload gambar & artikel tanpa koding.",
-    },
-    {
-      id: "payment-gateway",
-      name: "Payment Gateway Otomatis (QRIS, VA, E-Wallet)",
-      price: 600000,
-      category: "Integrasi & Payment",
-      description: "Terima pembayaran instan tanpa cek mutasi manual.",
-    },
-    {
-      id: "rajaongkir-sync",
-      name: "Hitung Ongkir Ekspedisi Otomatis (JNE, J&T, SiCepat)",
-      price: 350000,
-      category: "Integrasi & Payment",
-      description: "Kalkulasi tarif kurir real-time ke seluruh Indonesia.",
-    },
-    {
-      id: "seo-booster",
-      name: "SEO On-Page Booster & Google Index Express",
-      price: 350000,
-      category: "Marketing & SEO",
-      description: "Optimasi meta tags, sitemap XML, dan schema markup Google.",
-    },
-    {
-      id: "multi-language",
-      name: "Fitur Multi-Bahasa (Indonesia & English)",
-      price: 400000,
-      category: "Fitur & Sistem",
-      description: "Pilihan switcher bahasa untuk target pasar global.",
-    },
-    {
-      id: "maintenance-vip",
-      name: "Maintenance & Backup Prioritas 1 Tahun",
-      price: 500000,
-      category: "Maintenance",
-      description: "Monitoring performa, backup berkala, dan revisi konten kecil.",
-    },
-  ];
-
-  const [selectedProject, setSelectedProject] = useState<ProjectOption>(projectTypes[1]); // Company profile default
+  const [selectedProject, setSelectedProject] = useState<ProjectOption>(PROJECT_TYPES[1]); // Company profile default
   const [pagesCount, setPagesCount] = useState<number>(5);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([
     "seo-booster",
@@ -169,7 +169,7 @@ export default function CostCalculator() {
 
     // Add selected features
     selectedAddons.forEach((addonId) => {
-      const found = addons.find((a) => a.id === addonId);
+      const found = ADDONS.find((a) => a.id === addonId);
       if (found) total += found.price;
     });
 
@@ -183,7 +183,7 @@ export default function CostCalculator() {
 
   const selectedFeatureNames = useMemo(() => {
     return selectedAddons
-      .map((id) => addons.find((a) => a.id === id)?.name)
+      .map((id) => ADDONS.find((a) => a.id === id)?.name)
       .filter(Boolean) as string[];
   }, [selectedAddons]);
 
@@ -262,7 +262,7 @@ export default function CostCalculator() {
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {projectTypes.map((project) => {
+                {PROJECT_TYPES.map((project) => {
                   const isSelected = selectedProject.id === project.id;
                   return (
                     <button
@@ -336,7 +336,7 @@ export default function CostCalculator() {
               </label>
 
               <div className="space-y-3">
-                {addons.map((addon) => {
+                {ADDONS.map((addon) => {
                   const isChecked = selectedAddons.includes(addon.id);
                   return (
                     <div

@@ -42,7 +42,7 @@ export default function Testimonials() {
                 </div>
 
                 <p className="text-sm text-slate-200 leading-relaxed italic">
-                  "{testi.review_text}"
+                  &ldquo;{testi.review_text}&rdquo;
                 </p>
               </div>
 

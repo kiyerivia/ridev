@@ -197,7 +197,7 @@ export default function Portfolio() {
             <span className="text-gold-metallic">Klien RIDEV (Rivia Developer)</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
-            Bukan sekadar gambar statis! Klik <strong>"Coba Live Mockup Interaktif"</strong> pada setiap proyek di bawah untuk mencoba fitur dan simulasi aplikasi web nyata yang kami kembangkan.
+            Bukan sekadar gambar statis! Klik <strong>&ldquo;Coba Live Mockup Interaktif&rdquo;</strong> pada setiap proyek di bawah untuk mencoba fitur dan simulasi aplikasi web nyata yang kami kembangkan.
           </p>
         </div>
 

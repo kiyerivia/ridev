@@ -36,6 +36,7 @@ body {
 .text-pink-glow {
   background: linear-gradient(180deg, #FFFFFF 0%, #F472B6 40%, #FF007F 80%, #BE185D 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 25px rgba(255, 0, 127, 0.45);
 }
@@ -43,6 +44,7 @@ body {
 .text-cyber-glow {
   background: linear-gradient(135deg, #00F0FF 0%, #F472B6 50%, #FF007F 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
 }
@@ -50,6 +52,7 @@ body {
 .text-gold-metallic {
   background: linear-gradient(180deg, #FFFFFF 0%, #FFF2A3 30%, #FBBF24 70%, #D97706 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
 }
@@ -57,6 +60,7 @@ body {
 .text-cyan-glow {
   background: linear-gradient(180deg, #FFFFFF 0%, #67E8F9 50%, #00F0FF 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
 }

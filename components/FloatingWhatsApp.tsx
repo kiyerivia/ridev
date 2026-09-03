@@ -74,7 +74,7 @@ export default function FloatingWhatsApp() {
                   onClick={() => setCustomText(msg)}
                   className="w-full text-left text-xs bg-slate-900/60 hover:bg-cyan-950/60 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 px-3 py-2 rounded-xl transition-colors truncate"
                 >
-                  "{msg}"
+                  &ldquo;{msg}&rdquo;
                 </button>
               ))}
             </div>
