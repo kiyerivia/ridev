@@ -226,23 +226,23 @@ export default function CostCalculator() {
   };
 
   return (
-    <section id="kalkulator" className="py-24 relative overflow-hidden bg-rivia-dark">
+    <section id="kalkulator" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0d0918]/60 to-transparent">
       {/* Glow Backdrop */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-b from-cyan-500/10 via-blue-600/10 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-b from-pink-600/15 via-rose-600/10 to-transparent blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-950/80 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <Calculator className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <Calculator className="w-3.5 h-3.5 text-pink-400" />
             <span>Interactive Cost Calculator</span>
           </div>
           <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
             Hitung Estimasi Biaya <br />
-            <span className="text-gold-metallic">Proyek Anda Secara Transparan</span>
+            <span className="text-pink-glow">Proyek Anda Secara Transparan</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4">
+          <p className="text-slate-300 text-sm sm:text-base mt-4 font-normal">
             Pilih jenis proyek dan fitur yang Anda inginkan. Dapatkan perkiraan biaya instan tanpa biaya tersembunyi!
           </p>
         </div>
@@ -253,9 +253,9 @@ export default function CostCalculator() {
           <div className="lg:col-span-7 space-y-8">
             
             {/* Step 1: Select Project Type */}
-            <div className="glass-card rounded-2xl p-6 border border-cyan-500/30">
-              <label className="text-sm font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black">
+            <div className="glass-card rounded-2xl p-6 border border-pink-500/30 shadow-2xl holo-corners">
+              <label className="text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-2 mb-4">
+                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
                   1
                 </span>
                 Pilih Jenis Website / Aplikasi:
@@ -271,14 +271,14 @@ export default function CostCalculator() {
                       onClick={() => handleProjectTypeChange(project)}
                       className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between ${
                         isSelected
-                          ? "bg-gradient-to-br from-cyan-950 to-blue-950 border-cyan-400 shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400"
-                          : "bg-slate-900/60 border-slate-800 hover:border-cyan-500/40 hover:bg-slate-800/60"
+                          ? "bg-[#200d28]/90 border-2 border-pink-500 shadow-[0_0_20px_rgba(255,0,127,0.3)]"
+                          : "bg-[#0c0814]/80 border-slate-800 hover:border-pink-500/50 hover:bg-[#160c22] shadow-sm"
                       }`}
                     >
                       <div className="flex items-start justify-between">
                         <span className="text-2xl mb-2">{project.icon}</span>
                         {isSelected && (
-                          <span className="w-5 h-5 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center text-xs">
+                          <span className="w-5 h-5 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs shadow-sm">
                             <Check className="w-3.5 h-3.5 stroke-[3]" />
                           </span>
                         )}
@@ -286,7 +286,7 @@ export default function CostCalculator() {
                       <div>
                         <h4 className="font-heading font-bold text-sm text-white">{project.name}</h4>
                         <p className="text-[11px] text-slate-400 mt-1 leading-snug">{project.description}</p>
-                        <span className="text-xs font-extrabold text-cyan-300 mt-2 block">
+                        <span className="text-xs font-extrabold text-pink-400 mt-2 block">
                           Mulai {formatIDR(project.basePrice)}
                         </span>
                       </div>
@@ -297,15 +297,15 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 2: Number of Pages Slider */}
-            <div className="glass-card rounded-2xl p-6 border border-cyan-500/30">
+            <div className="glass-card rounded-2xl p-6 border border-pink-500/30 shadow-2xl holo-corners">
               <div className="flex items-center justify-between mb-4">
-                <label className="text-sm font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black">
+                <label className="text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
                     2
                   </span>
                   Estimasi Jumlah Halaman / Menu:
                 </label>
-                <span className="text-base font-extrabold text-cyan-300 bg-cyan-950 px-3 py-1 rounded-lg border border-cyan-500/40">
+                <span className="text-base font-extrabold text-pink-300 bg-pink-950/70 px-3 py-1 rounded-lg border border-pink-500/40">
                   {pagesCount} Halaman
                 </span>
               </div>
@@ -316,9 +316,9 @@ export default function CostCalculator() {
                 max="25"
                 value={pagesCount}
                 onChange={(e) => setPagesCount(Number(e.target.value))}
-                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-pink-500"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 mt-2">
+              <div className="flex justify-between text-[11px] text-slate-400 mt-2 font-medium">
                 <span>1 Halaman (Minisite)</span>
                 <span>5 Halaman (Standar)</span>
                 <span>10+ Halaman (Komprehensif)</span>
@@ -327,15 +327,15 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 3: Add-on Features Checklist */}
-            <div className="glass-card rounded-2xl p-6 border border-cyan-500/30">
-              <label className="text-sm font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black">
+            <div className="glass-card rounded-2xl p-6 border border-pink-500/30 shadow-2xl holo-corners">
+              <label className="text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-2 mb-4">
+                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
                   3
                 </span>
                 Pilih Fitur Tambahan & Integrasi:
               </label>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {ADDONS.map((addon) => {
                   const isChecked = selectedAddons.includes(addon.id);
                   return (
@@ -344,26 +344,26 @@ export default function CostCalculator() {
                       onClick={() => toggleAddon(addon.id)}
                       className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between gap-4 ${
                         isChecked
-                          ? "bg-cyan-950/40 border-cyan-400/70 text-white"
-                          : "bg-slate-900/40 border-slate-800/80 text-slate-300 hover:border-slate-700"
+                          ? "bg-[#200d28]/80 border-pink-500/80 text-white shadow-sm"
+                          : "bg-[#0c0814]/80 border-slate-800 text-slate-300 hover:border-pink-500/40"
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <div
                           className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
                             isChecked
-                              ? "bg-cyan-400 border-cyan-400 text-slate-950"
-                              : "border-slate-600 bg-slate-800"
+                              ? "bg-pink-500 border-pink-500 text-white shadow-sm"
+                              : "border-slate-700 bg-slate-900"
                           }`}
                         >
                           {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
-                          <span className="text-xs sm:text-sm font-bold block">{addon.name}</span>
+                          <span className="text-xs sm:text-sm font-bold block text-white">{addon.name}</span>
                           <span className="text-[11px] text-slate-400 block">{addon.description}</span>
                         </div>
                       </div>
-                      <span className="text-xs font-extrabold text-amber-300 shrink-0">
+                      <span className="text-xs font-extrabold text-pink-400 shrink-0">
                         +{formatIDR(addon.price)}
                       </span>
                     </div>
@@ -373,9 +373,9 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 4: Delivery Timeline Speed */}
-            <div className="glass-card rounded-2xl p-6 border border-cyan-500/30">
-              <label className="text-sm font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-xs font-black">
+            <div className="glass-card rounded-2xl p-6 border border-pink-500/30 shadow-2xl holo-corners">
+              <label className="text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-2 mb-4">
+                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
                   4
                 </span>
                 Kecepatan Pengerjaan:
@@ -387,12 +387,12 @@ export default function CostCalculator() {
                   onClick={() => setDeliverySpeed("normal")}
                   className={`p-3.5 rounded-xl border text-left transition-all ${
                     deliverySpeed === "normal"
-                      ? "bg-cyan-950/60 border-cyan-400 text-white"
-                      : "bg-slate-900/40 border-slate-800 text-slate-400"
+                      ? "bg-[#200d28] border-2 border-pink-500 text-white shadow-sm"
+                      : "bg-[#0c0814]/80 border-slate-800 text-slate-400"
                   }`}
                 >
-                  <span className="text-xs font-extrabold text-cyan-300 block">Standar Pengerjaan</span>
-                  <span className="text-xs text-slate-300 block mt-0.5">7 - 14 Hari Kerja (Termasuk QC & Revisi)</span>
+                  <span className="text-xs font-extrabold text-pink-400 block">Standar Pengerjaan</span>
+                  <span className="text-xs text-slate-200 block mt-0.5 font-medium">7 - 14 Hari Kerja (Termasuk QC & Revisi)</span>
                   <span className="text-[11px] text-emerald-400 font-bold block mt-1">Normal Rate</span>
                 </button>
 
@@ -401,14 +401,14 @@ export default function CostCalculator() {
                   onClick={() => setDeliverySpeed("express")}
                   className={`p-3.5 rounded-xl border text-left transition-all ${
                     deliverySpeed === "express"
-                      ? "bg-amber-950/60 border-amber-400 text-white"
-                      : "bg-slate-900/40 border-slate-800 text-slate-400"
+                      ? "bg-[#281c0d] border-2 border-amber-500 text-white shadow-sm"
+                      : "bg-[#0c0814]/80 border-slate-800 text-slate-400"
                   }`}
                 >
-                  <span className="text-xs font-extrabold text-amber-300 flex items-center gap-1">
+                  <span className="text-xs font-extrabold text-amber-400 flex items-center gap-1">
                     ⚡ Prioritas Express (+25%)
                   </span>
-                  <span className="text-xs text-slate-300 block mt-0.5">3 - 5 Hari Kerja (Dedicated Developer)</span>
+                  <span className="text-xs text-slate-200 block mt-0.5 font-medium">3 - 5 Hari Kerja (Dedicated Developer)</span>
                   <span className="text-[11px] text-amber-400 font-bold block mt-1">Layanan Kilat</span>
                 </button>
               </div>
@@ -418,16 +418,16 @@ export default function CostCalculator() {
 
           {/* Right Column: Dynamic Price Summary Card (Sticky 5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24">
-            <div className="glass-card-gold rounded-3xl p-6 sm:p-7 border border-amber-400/50 shadow-2xl relative overflow-hidden">
+            <div className="glass-card-pink rounded-3xl p-6 sm:p-7 border border-pink-500/50 shadow-2xl relative overflow-hidden holo-corners">
               
               {/* Card Aura Header */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-pink-600/30 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="flex items-center justify-between pb-4 border-b border-amber-500/20">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-amber-400">
+              <div className="flex items-center justify-between pb-4 border-b border-pink-500/20">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-pink-400">
                   Ringkasan Estimasi
                 </span>
-                <span className="text-[10px] font-bold bg-amber-400/20 text-amber-300 px-2.5 py-1 rounded-full border border-amber-400/40">
+                <span className="text-[10px] font-bold bg-pink-950/70 text-pink-300 px-2.5 py-1 rounded-full border border-pink-500/40">
                   Live Calculator
                 </span>
               </div>
@@ -435,7 +435,7 @@ export default function CostCalculator() {
               {/* Price Display */}
               <div className="py-6 text-center">
                 <span className="text-xs text-slate-300 block font-medium">Perkiraan Biaya Total:</span>
-                <div className="font-heading font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 mt-1 tracking-tight">
+                <div className="font-heading font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-400 to-red-400 mt-1 tracking-tight">
                   {formatIDR(calculatedTotal)}
                 </div>
                 <span className="text-[11px] text-slate-400 block mt-1">
@@ -444,7 +444,7 @@ export default function CostCalculator() {
               </div>
 
               {/* Breakdown List */}
-              <div className="space-y-3 py-4 border-y border-amber-500/20 text-xs">
+              <div className="space-y-3 py-4 border-y border-pink-500/20 text-xs">
                 <div className="flex justify-between text-slate-300">
                   <span>Jenis Proyek:</span>
                   <strong className="text-white text-right">{selectedProject.name}</strong>
@@ -455,7 +455,7 @@ export default function CostCalculator() {
                 </div>
                 <div className="flex justify-between text-slate-300">
                   <span>Kecepatan:</span>
-                  <strong className={deliverySpeed === "express" ? "text-amber-400" : "text-cyan-400"}>
+                  <strong className={deliverySpeed === "express" ? "text-amber-400" : "text-pink-400"}>
                     {deliverySpeed === "express" ? "Express (3-5 Hari)" : "Standar (7-14 Hari)"}
                   </strong>
                 </div>
@@ -464,7 +464,7 @@ export default function CostCalculator() {
                   <div className="max-h-28 overflow-y-auto space-y-1 pr-1">
                     {selectedFeatureNames.map((name, i) => (
                       <div key={i} className="flex items-center gap-1.5 text-slate-200 text-[11px]">
-                        <Check className="w-3 h-3 text-cyan-400 shrink-0" />
+                        <Check className="w-3 h-3 text-pink-400 shrink-0" />
                         <span className="truncate">{name}</span>
                       </div>
                     ))}
@@ -473,9 +473,9 @@ export default function CostCalculator() {
               </div>
 
               {/* Inclusions Reminder */}
-              <div className="mt-4 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-300 space-y-1.5">
-                <div className="flex items-center gap-1.5 text-cyan-300 font-bold">
-                  <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <div className="mt-4 p-3 rounded-xl bg-[#130a1c] border border-pink-500/30 text-[11px] text-slate-300 space-y-1.5 shadow-sm">
+                <div className="flex items-center gap-1.5 text-pink-400 font-bold">
+                  <ShieldCheck className="w-4 h-4 text-pink-400" />
                   <span>Sudah Termasuk:</span>
                 </div>
                 <p>• Domain & Hosting 1 Tahun Full</p>
@@ -491,7 +491,7 @@ export default function CostCalculator() {
                     placeholder="Nama Anda (opsional)"
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0f0a18] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 shadow-sm"
                   />
                 </div>
                 <div>
@@ -500,21 +500,21 @@ export default function CostCalculator() {
                     placeholder="Nomor WhatsApp (opsional)"
                     value={clientPhone}
                     onChange={(e) => setClientPhone(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0f0a18] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 shadow-sm"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 text-slate-950 hover:opacity-95 shadow-xl shadow-emerald-500/30 transition-all duration-300 flex items-center justify-center gap-2 group active:scale-95"
+                  className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_25px_rgba(255,0,127,0.5)] transition-all duration-300 flex items-center justify-center gap-2 group active:scale-95"
                 >
-                  <Send className="w-4 h-4 text-slate-950 group-hover:translate-x-0.5 transition-transform" />
+                  <Send className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
                   <span>Pesan Paket Ini via WhatsApp</span>
                 </button>
               </form>
 
-              <span className="text-[10px] text-center text-slate-400 block mt-3">
-                ⚡ Otomatis terhubung ke CS RIDEV (Rivia Developer): <strong>+62 8222-68-000-63</strong>
+              <span className="text-[10px] text-center text-slate-400 block mt-3 font-medium">
+                ⚡ Otomatis terhubung ke CS RIDEV (Rivia Developer): <strong className="text-white">+62 8222-68-000-63</strong>
               </span>
 
             </div>

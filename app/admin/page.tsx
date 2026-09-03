@@ -145,26 +145,26 @@ export default function AdminDashboard() {
   // Render Login Lock Screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-rivia-dark text-slate-100 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-[#07070a] text-slate-100 flex items-center justify-center p-4 relative overflow-hidden cyber-laser-grid">
         {/* Glow backdrop */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-pink-500/20 via-purple-600/20 to-cyan-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-pink-600/20 via-rose-600/15 to-red-600/20 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="max-w-md w-full glass-card rounded-3xl p-8 sm:p-10 border border-cyan-500/40 shadow-2xl relative z-10 text-center">
+        <div className="max-w-md w-full glass-card rounded-3xl p-8 sm:p-10 border border-pink-500/40 shadow-2xl relative z-10 text-center holo-corners">
           
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-cyan-500/20 border border-cyan-400/40 flex items-center justify-center mx-auto mb-6 text-cyan-300 shadow-lg shadow-cyan-500/20">
-            <Lock className="w-8 h-8 text-cyan-400" />
+          <div className="w-16 h-16 rounded-2xl bg-pink-950/60 border border-pink-500/40 flex items-center justify-center mx-auto mb-6 text-pink-400 shadow-[0_0_20px_rgba(255,0,127,0.3)]">
+            <Lock className="w-8 h-8 text-pink-400" />
           </div>
 
           <h2 className="font-heading font-black text-2xl text-white tracking-tight">
             RIDEV Admin Portal
           </h2>
-          <p className="text-xs text-slate-400 mt-1 mb-8">
+          <p className="text-xs text-slate-400 mt-1 mb-8 font-normal">
             Halaman ini terproteksi & hanya dapat diakses oleh Administrator RIDEV.
           </p>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="relative text-left">
-              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-pink-400 block mb-2">
                 Masukkan PIN / Sandi Admin:
               </label>
               <div className="relative">
@@ -177,16 +177,16 @@ export default function AdminDashboard() {
                     if (pinError) setPinError(false);
                   }}
                   autoFocus
-                  className={`w-full px-4 py-3.5 pr-11 rounded-xl bg-slate-900/90 border text-sm text-white placeholder:text-slate-600 focus:outline-none transition-all ${
+                  className={`w-full px-4 py-3.5 pr-11 rounded-xl bg-[#0f0a18] border text-sm text-white placeholder:text-slate-500 focus:outline-none transition-all shadow-sm ${
                     pinError
                       ? "border-rose-500 ring-2 ring-rose-500/30"
-                      : "border-slate-700 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+                      : "border-slate-700 focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20"
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPin(!showPin)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
                 >
                   {showPin ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -194,26 +194,26 @@ export default function AdminDashboard() {
             </div>
 
             {pinError && (
-              <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs text-left animate-shake">
+              <div className="p-3 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs text-left">
                 ⚠️ PIN salah! Silakan coba lagi atau gunakan PIN bawaan: <code>ridev2026</code>
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-cyan-400 via-pink-500 to-amber-400 text-slate-950 hover:opacity-95 shadow-xl shadow-cyan-500/25 transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_25px_rgba(255,0,127,0.5)] transition-all active:scale-95 flex items-center justify-center gap-2"
             >
-              <KeyRound className="w-4 h-4 text-slate-950" />
+              <KeyRound className="w-4 h-4 text-white" />
               <span>Buka Panel Kelola</span>
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
-            <Link href="/" className="hover:text-cyan-300 transition-colors flex items-center gap-1">
+          <div className="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+            <Link href="/" className="hover:text-pink-400 transition-colors flex items-center gap-1 font-normal">
               <ArrowLeft className="w-3 h-3" />
               <span>Kembali ke Web Publik</span>
             </Link>
-            <span>Default PIN: <strong className="text-slate-400">ridev2026</strong></span>
+            <span>Default PIN: <strong className="text-white">ridev2026</strong></span>
           </div>
 
         </div>
@@ -223,15 +223,15 @@ export default function AdminDashboard() {
 
   // Render Full Admin Dashboard once unlocked
   return (
-    <div className="min-h-screen bg-rivia-dark text-slate-100 p-4 sm:p-8">
+    <div className="min-h-screen bg-[#07070a] text-slate-100 p-4 sm:p-8 cyber-laser-grid">
       <div className="max-w-7xl mx-auto space-y-6">
         
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-cyan-500/20">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-pink-500/20">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-cyan-400 hover:text-white transition-colors"
+              className="p-2.5 rounded-xl bg-[#0f0a1a] border border-pink-500/30 hover:border-pink-500 text-slate-300 hover:text-white transition-colors shadow-sm"
               title="Kembali ke Web"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -244,14 +244,14 @@ export default function AdminDashboard() {
                 <span
                   className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
                     isSupabaseConfigured
-                      ? "bg-emerald-950 text-emerald-300 border-emerald-500/40"
-                      : "bg-amber-950 text-amber-300 border-amber-500/40"
+                      ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/40"
+                      : "bg-amber-950/80 text-amber-300 border-amber-500/40"
                   }`}
                 >
                   {isSupabaseConfigured ? "🟢 Supabase Connected" : "🟡 Local Storage Mode"}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-400 font-normal">
                 Pusat data konsultasi, permintaan penawaran harga, dan pesanan masuk dari website.
               </p>
             </div>
@@ -260,7 +260,7 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-2.5 self-end sm:self-auto">
             <button
               onClick={() => setChangePinModalOpen(true)}
-              className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              className="px-3.5 py-2 rounded-xl bg-[#0f0a1a] border border-slate-700 hover:border-pink-500 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
               title="Ganti PIN Keamanan"
             >
               <Key className="w-3.5 h-3.5 text-amber-400" />
@@ -270,7 +270,7 @@ export default function AdminDashboard() {
             <button
               onClick={loadData}
               disabled={loading}
-              className="px-3.5 py-2 rounded-xl bg-slate-900 border border-cyan-500/30 hover:bg-cyan-950 text-cyan-300 text-xs font-bold flex items-center gap-1.5 transition-colors disabled:opacity-50"
+              className="px-3.5 py-2 rounded-xl bg-pink-950/60 border border-pink-500/40 hover:bg-pink-900 text-pink-300 text-xs font-bold flex items-center gap-1.5 transition-colors disabled:opacity-50 shadow-sm"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
               <span>Refresh</span>
@@ -278,7 +278,7 @@ export default function AdminDashboard() {
 
             <button
               onClick={handleLogout}
-              className="px-3.5 py-2 rounded-xl bg-rose-950/60 border border-rose-500/40 hover:bg-rose-900 text-rose-300 text-xs font-bold flex items-center gap-1.5 transition-colors"
+              className="px-3.5 py-2 rounded-xl bg-rose-950/60 border border-rose-500/40 hover:bg-rose-900 text-rose-300 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
               title="Kunci Panel Admin"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -289,17 +289,17 @@ export default function AdminDashboard() {
 
         {/* Change PIN Modal Popup */}
         {changePinModalOpen && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="glass-card max-w-sm w-full rounded-2xl p-6 border border-cyan-400/50 shadow-2xl relative">
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="glass-card max-w-sm w-full rounded-2xl p-6 border border-pink-500/40 shadow-2xl relative holo-corners bg-[#0d0918]">
               <h3 className="font-heading font-bold text-lg text-white mb-1">
                 Ganti PIN Admin
               </h3>
-              <p className="text-xs text-slate-400 mb-4">
+              <p className="text-xs text-slate-400 mb-4 font-normal">
                 Atur PIN baru agar hanya Anda yang dapat membuka dashboard ini.
               </p>
 
               {pinSuccessMsg ? (
-                <div className="p-3 rounded-xl bg-emerald-950 border border-emerald-500 text-emerald-300 text-xs font-bold">
+                <div className="p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
                   ✓ {pinSuccessMsg}
                 </div>
               ) : (
@@ -314,7 +314,7 @@ export default function AdminDashboard() {
                       value={newPinInput}
                       onChange={(e) => setNewPinInput(e.target.value)}
                       required
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-400"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#090610] border border-slate-700 text-xs text-white focus:outline-none focus:border-pink-500 shadow-sm"
                     />
                   </div>
 
@@ -328,7 +328,7 @@ export default function AdminDashboard() {
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs"
+                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#ff007f] to-[#ff0038] text-white font-bold text-xs shadow-md"
                     >
                       Simpan PIN
                     </button>
@@ -341,7 +341,7 @@ export default function AdminDashboard() {
 
         {/* Supabase Config Tip Banner if not configured */}
         {!isSupabaseConfigured && (
-          <div className="p-4 rounded-2xl bg-amber-950/40 border border-amber-500/30 text-xs text-amber-200 flex items-start gap-3">
+          <div className="p-4 rounded-2xl bg-amber-950/60 border border-amber-500/40 text-xs text-amber-200 flex items-start gap-3 shadow-lg">
             <Database className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
             <div>
               <strong className="text-white block font-bold">
@@ -356,26 +356,26 @@ export default function AdminDashboard() {
 
         {/* Stats Row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="glass-card p-4 rounded-xl border border-slate-800">
+          <div className="glass-card p-4 rounded-xl border border-pink-500/20 shadow-lg">
             <span className="text-xs text-slate-400 font-bold block uppercase tracking-wider">Total Leads</span>
             <div className="text-2xl font-black text-white mt-1">{totalLeads}</div>
           </div>
-          <div className="glass-card p-4 rounded-xl border border-cyan-500/30">
-            <span className="text-xs text-cyan-400 font-bold block uppercase tracking-wider">Belum Dihubungi</span>
-            <div className="text-2xl font-black text-cyan-300 mt-1">{newLeads}</div>
+          <div className="glass-card p-4 rounded-xl border border-pink-500/40 shadow-lg">
+            <span className="text-xs text-pink-400 font-bold block uppercase tracking-wider">Belum Dihubungi</span>
+            <div className="text-2xl font-black text-pink-400 mt-1">{newLeads}</div>
           </div>
-          <div className="glass-card p-4 rounded-xl border border-amber-500/30">
+          <div className="glass-card p-4 rounded-xl border border-amber-500/40 shadow-lg">
             <span className="text-xs text-amber-400 font-bold block uppercase tracking-wider">Dalam Pengerjaan</span>
-            <div className="text-2xl font-black text-amber-300 mt-1">{inProgressLeads}</div>
+            <div className="text-2xl font-black text-amber-400 mt-1">{inProgressLeads}</div>
           </div>
-          <div className="glass-card p-4 rounded-xl border border-emerald-500/30">
+          <div className="glass-card p-4 rounded-xl border border-emerald-500/40 shadow-lg">
             <span className="text-xs text-emerald-400 font-bold block uppercase tracking-wider">Selesai / Deal</span>
-            <div className="text-2xl font-black text-emerald-300 mt-1">{completedLeads}</div>
+            <div className="text-2xl font-black text-emerald-400 mt-1">{completedLeads}</div>
           </div>
         </div>
 
         {/* Search & Filter Bar */}
-        <div className="glass-card p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="glass-card p-4 rounded-2xl border border-pink-500/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
           <div className="relative w-full sm:w-72">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -383,17 +383,17 @@ export default function AdminDashboard() {
               placeholder="Cari nama / nomor / proyek..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-cyan-400"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#090610] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 shadow-sm"
             />
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
             <Filter className="w-4 h-4 text-slate-400" />
-            <span className="text-xs text-slate-400">Status:</span>
+            <span className="text-xs text-slate-300 font-medium">Status:</span>
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-400"
+              className="px-3 py-2 rounded-xl bg-[#090610] border border-slate-700 text-xs text-white focus:outline-none focus:border-pink-500 shadow-sm"
             >
               <option value="all">Semua Status</option>
               <option value="new">Baru (New)</option>
@@ -405,17 +405,17 @@ export default function AdminDashboard() {
         </div>
 
         {/* Leads Table / List */}
-        <div className="glass-card rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div className="glass-card rounded-2xl border border-pink-500/30 overflow-hidden shadow-2xl">
           {filteredLeads.length === 0 ? (
             <div className="text-center py-16 text-slate-400 space-y-3">
               <Users className="w-12 h-12 text-slate-600 mx-auto" />
-              <p className="text-sm font-semibold">Belum ada leads yang cocok dengan pencarian.</p>
+              <p className="text-sm font-semibold text-slate-300">Belum ada leads yang cocok dengan pencarian.</p>
               <p className="text-xs text-slate-500">Coba isi form konsultasi atau kalkulator di halaman depan untuk melakukan simulasi.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-900/90 text-slate-400 border-b border-slate-800 font-bold uppercase tracking-wider text-[10px]">
+                <thead className="bg-[#090610] text-slate-300 border-b border-slate-800 font-bold uppercase tracking-wider text-[10px]">
                   <tr>
                     <th className="p-4">Tanggal</th>
                     <th className="p-4">Nama & Kontak</th>
@@ -425,15 +425,15 @@ export default function AdminDashboard() {
                     <th className="p-4 text-right">Aksi Follow-Up</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-800 bg-[#0c0816]">
                   {filteredLeads.map((lead, idx) => {
                     const waFollowupLink = createWhatsAppLink(
                       `Halo ${lead.name}, terima kasih telah menghubungi *RIDEV (Rivia Developer)*. Saya ingin menindaklanjuti konsultasi proyek *${lead.project_type}* yang Anda ajukan.`
                     );
 
                     return (
-                      <tr key={lead.id || idx} className="hover:bg-slate-900/40 transition-colors">
-                        <td className="p-4 text-slate-400 whitespace-nowrap">
+                      <tr key={lead.id || idx} className="hover:bg-pink-950/20 transition-colors">
+                        <td className="p-4 text-slate-400 whitespace-nowrap font-normal">
                           {lead.created_at
                             ? new Date(lead.created_at).toLocaleDateString("id-ID", {
                                 day: "numeric",
@@ -447,7 +447,7 @@ export default function AdminDashboard() {
 
                         <td className="p-4">
                           <div className="font-bold text-white text-sm">{lead.name}</div>
-                          <div className="flex items-center gap-1.5 text-cyan-300 mt-0.5">
+                          <div className="flex items-center gap-1.5 text-pink-400 mt-0.5 font-medium">
                             <Phone className="w-3 h-3 text-emerald-400" />
                             <span>{lead.phone_or_wa}</span>
                           </div>
@@ -462,12 +462,12 @@ export default function AdminDashboard() {
                         <td className="p-4">
                           <span className="font-bold text-slate-200 block">{lead.project_type}</span>
                           {lead.estimated_budget && (
-                            <span className="text-[11px] text-amber-300 font-semibold block mt-0.5">
+                            <span className="text-[11px] text-amber-400 font-semibold block mt-0.5">
                               Budget: {lead.estimated_budget}
                             </span>
                           )}
                           {lead.package_selected && (
-                            <span className="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300 inline-block mt-1">
+                            <span className="text-[10px] bg-pink-950/70 border border-pink-500/40 px-2 py-0.5 rounded text-pink-300 inline-block mt-1 font-medium">
                               Paket: {lead.package_selected}
                             </span>
                           )}
@@ -476,7 +476,7 @@ export default function AdminDashboard() {
                         <td className="p-4 max-w-xs">
                           <p className="text-slate-300 line-clamp-2">{lead.notes || "-"}</p>
                           {lead.selected_features && lead.selected_features.length > 0 && (
-                            <div className="text-[10px] text-cyan-400 mt-1">
+                            <div className="text-[10px] text-pink-400 mt-1 font-semibold">
                               Fitur: {lead.selected_features.join(", ")}
                             </div>
                           )}
@@ -488,18 +488,18 @@ export default function AdminDashboard() {
                             onChange={(e) => handleUpdateStatus(lead.id, e.target.value)}
                             className={`px-2.5 py-1 rounded-lg text-xs font-bold border ${
                               lead.status === "completed"
-                                ? "bg-emerald-950 text-emerald-300 border-emerald-500/40"
+                                ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/40"
                                 : lead.status === "in_progress"
-                                ? "bg-amber-950 text-amber-300 border-amber-500/40"
+                                ? "bg-amber-950/80 text-amber-300 border-amber-500/40"
                                 : lead.status === "contacted"
-                                ? "bg-blue-950 text-blue-300 border-blue-500/40"
-                                : "bg-rose-950 text-rose-300 border-rose-500/40"
+                                ? "bg-blue-950/80 text-blue-300 border-blue-500/40"
+                                : "bg-rose-950/80 text-rose-300 border-rose-500/40"
                             }`}
                           >
-                            <option value="new">Baru (New)</option>
-                            <option value="contacted">Sudah Dihubungi</option>
-                            <option value="in_progress">Dalam Proses</option>
-                            <option value="completed">Deal / Selesai</option>
+                            <option value="new" className="bg-[#090610] text-white">Baru (New)</option>
+                            <option value="contacted" className="bg-[#090610] text-white">Sudah Dihubungi</option>
+                            <option value="in_progress" className="bg-[#090610] text-white">Dalam Proses</option>
+                            <option value="completed" className="bg-[#090610] text-white">Deal / Selesai</option>
                           </select>
                         </td>
 
@@ -508,7 +508,7 @@ export default function AdminDashboard() {
                             href={waFollowupLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-colors shadow-md"
                           >
                             <Phone className="w-3 h-3" />
                             <span>Chat WA</span>

@@ -179,24 +179,24 @@ export default function Portfolio() {
     new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(num);
 
   return (
-    <section id="portofolio" className="py-24 relative overflow-hidden bg-rivia-dark">
+    <section id="portofolio" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0d0818]/60 to-transparent">
       {/* Background Decorators */}
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-80 h-80 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <Briefcase className="w-3.5 h-3.5 text-pink-400" />
             <span>Interactive Portfolio & Live Simulator</span>
           </div>
           <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
             Karya & Hasil Proyek <br />
-            <span className="text-gold-metallic">Klien RIDEV (Rivia Developer)</span>
+            <span className="text-pink-glow">Klien RIDEV (Rivia Developer)</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal">
             Bukan sekadar gambar statis! Klik <strong>&ldquo;Coba Live Mockup Interaktif&rdquo;</strong> pada setiap proyek di bawah untuk mencoba fitur dan simulasi aplikasi web nyata yang kami kembangkan.
           </p>
         </div>
@@ -209,8 +209,8 @@ export default function Portfolio() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 selectedCategory === cat
-                  ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/25 font-bold"
-                  : "bg-slate-900/80 text-slate-300 border border-slate-800 hover:border-cyan-500/40 hover:text-white"
+                  ? "bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_15px_rgba(255,0,127,0.4)] font-bold"
+                  : "bg-[#0e0918] text-slate-300 border border-slate-800 hover:border-pink-500/40 hover:text-white shadow-sm"
               }`}
             >
               {cat}
@@ -223,39 +223,39 @@ export default function Portfolio() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-400/60 flex flex-col justify-between group transition-all duration-300"
+              className="glass-card rounded-2xl overflow-hidden border border-pink-500/30 hover:border-pink-500/60 flex flex-col justify-between group transition-all duration-300 shadow-2xl holo-corners"
             >
               {/* Realistic UI Mockup Card Preview */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-slate-950 border-b border-slate-800/80 flex flex-col">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0918] border-b border-slate-800 flex flex-col">
                 
                 {/* Browser window top bar */}
-                <div className="bg-slate-900 px-3 py-2 border-b border-slate-800 flex items-center justify-between shrink-0">
+                <div className="bg-[#090610] px-3 py-2 border-b border-slate-800 flex items-center justify-between shrink-0">
                   <div className="flex gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-rose-500/80" />
-                    <div className="w-2 h-2 rounded-full bg-amber-500/80" />
-                    <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
+                    <div className="w-2 h-2 rounded-full bg-rose-500" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500" />
+                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
                   </div>
-                  <span className="text-[10px] font-mono text-cyan-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
+                  <span className="text-[10px] font-mono text-cyan-300 bg-[#050308] px-2 py-0.5 rounded border border-slate-800">
                     https://{project.id}.ridev.app
                   </span>
                   <span className="text-[9px] text-emerald-400 font-bold">🟢 Live Ready</span>
                 </div>
 
                 {/* Simulated UI Screen Rendering */}
-                <div className="p-3 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 flex-1 overflow-hidden relative text-left">
+                <div className="p-3 bg-gradient-to-br from-[#0c0816] via-[#100b1d] to-[#07050b] flex-1 overflow-hidden relative text-left">
                   
                   {project.id === "healthcare" && (
                     <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-cyan-950/40 p-2 rounded-lg border border-cyan-500/30">
+                      <div className="flex items-center justify-between bg-cyan-950/60 p-2 rounded-lg border border-cyan-500/40">
                         <span className="font-bold text-cyan-300">🏥 MedikaCare Antrean Online</span>
-                        <span className="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded font-bold">Buka 24 Jam</span>
+                        <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded font-bold border border-emerald-500/40">Buka 24 Jam</span>
                       </div>
-                      <div className="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
                         <div>
                           <strong className="text-white block">dr. Hendra K., Sp.A</strong>
                           <span className="text-[9px] text-slate-400">Jadwal: 10:00 WIB</span>
                         </div>
-                        <span className="text-[10px] text-cyan-400 bg-cyan-950 px-2 py-1 rounded border border-cyan-500/40 font-bold">
+                        <span className="text-[10px] text-pink-300 bg-pink-950/70 px-2 py-1 rounded border border-pink-500/40 font-bold">
                           Reservasi
                         </span>
                       </div>
@@ -264,18 +264,18 @@ export default function Portfolio() {
 
                   {project.id === "travel" && (
                     <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-emerald-950/40 p-2 rounded-lg border border-emerald-500/30">
+                      <div className="flex items-center justify-between bg-emerald-950/60 p-2 rounded-lg border border-emerald-500/40">
                         <span className="font-bold text-emerald-300">🌴 Nusantara Escapes</span>
-                        <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">Promo 2026</span>
+                        <span className="text-[9px] bg-amber-950 text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-500/40">Promo 2026</span>
                       </div>
                       <div className="grid grid-cols-2 gap-1.5">
-                        <div className="p-1.5 rounded bg-slate-900 border border-slate-800">
+                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
                           <span className="text-[9px] text-slate-400 block">Labuan Bajo</span>
-                          <strong className="text-amber-300 text-[10px]">Rp 3.200.000</strong>
+                          <strong className="text-amber-400 text-[10px]">Rp 3.200.000</strong>
                         </div>
-                        <div className="p-1.5 rounded bg-slate-900 border border-slate-800">
+                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
                           <span className="text-[9px] text-slate-400 block">Raja Ampat</span>
-                          <strong className="text-amber-300 text-[10px]">Rp 4.500.000</strong>
+                          <strong className="text-amber-400 text-[10px]">Rp 4.500.000</strong>
                         </div>
                       </div>
                     </div>
@@ -283,16 +283,16 @@ export default function Portfolio() {
 
                   {project.id === "ecommerce" && (
                     <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-amber-950/40 p-2 rounded-lg border border-amber-500/30">
+                      <div className="flex items-center justify-between bg-amber-950/60 p-2 rounded-lg border border-amber-500/40">
                         <span className="font-bold text-amber-300">🛍️ AuraStyle Official Store</span>
-                        <span className="text-[9px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded font-bold">🛒 Keranjang (1)</span>
+                        <span className="text-[9px] bg-pink-950 text-pink-300 px-1.5 py-0.5 rounded font-bold border border-pink-500/40">🛒 Keranjang (1)</span>
                       </div>
-                      <div className="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
                         <div>
                           <strong className="text-white block">Cyber Sapphire Hoodie</strong>
                           <span className="text-[10px] text-amber-400 font-bold">Rp 349.000</span>
                         </div>
-                        <span className="text-[10px] bg-amber-500 text-slate-950 px-2 py-1 rounded font-extrabold">
+                        <span className="text-[10px] bg-gradient-to-r from-pink-500 to-rose-600 text-white px-2 py-1 rounded font-extrabold shadow-sm">
                           + Beli
                         </span>
                       </div>
@@ -301,16 +301,16 @@ export default function Portfolio() {
 
                   {project.id === "lms" && (
                     <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-purple-950/40 p-2 rounded-lg border border-purple-500/30">
+                      <div className="flex items-center justify-between bg-purple-950/60 p-2 rounded-lg border border-purple-500/40">
                         <span className="font-bold text-purple-300">🎓 Cendekia Academy E-Learning</span>
                         <span className="text-[9px] text-emerald-400 font-bold">Progres: 75%</span>
                       </div>
-                      <div className="p-2 rounded bg-slate-900 border border-slate-800 flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center gap-2 shadow-sm">
+                        <div className="w-5 h-5 rounded-full bg-purple-900/60 border border-purple-500/40 flex items-center justify-center text-purple-400">
                           <Play className="w-3 h-3 fill-purple-400" />
                         </div>
                         <div>
-                          <span className="text-[10px] text-white block">Bab 1: Next.js 14 App Router</span>
+                          <span className="text-[10px] text-white font-bold block">Bab 1: Next.js 14 App Router</span>
                           <span className="text-[9px] text-slate-400">Durasi: 18 Menit • Video HD</span>
                         </div>
                       </div>
@@ -319,29 +319,29 @@ export default function Portfolio() {
 
                   {project.id === "erp" && (
                     <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-blue-950/40 p-2 rounded-lg border border-blue-500/30">
+                      <div className="flex items-center justify-between bg-blue-950/60 p-2 rounded-lg border border-blue-500/40">
                         <span className="font-bold text-blue-300">📊 Nexus ERP Dashboard</span>
-                        <span className="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded">Omset: +18%</span>
+                        <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/40">Omset: +18%</span>
                       </div>
                       <div className="grid grid-cols-2 gap-1.5">
-                        <div className="p-1.5 rounded bg-slate-900 border border-slate-800">
+                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
                           <span className="text-[8px] text-slate-400 block">Pesanan Hari Ini</span>
                           <strong className="text-white text-[10px]">1,248 Order</strong>
                         </div>
-                        <div className="p-1.5 rounded bg-slate-900 border border-slate-800">
+                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
                           <span className="text-[8px] text-slate-400 block">Stok Gudang</span>
-                          <strong className="text-cyan-300 text-[10px]">98.2% Optimal</strong>
+                          <strong className="text-pink-400 text-[10px]">98.2% Optimal</strong>
                         </div>
                       </div>
                     </div>
                   )}
 
                   {/* Hover Overlay with Live Demo Trigger */}
-                  <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 backdrop-blur-sm transition-all duration-300 flex flex-col items-center justify-center p-4">
-                    <span className="text-xs font-bold text-cyan-300 mb-2">⚡ Interactive Live Simulator</span>
+                  <div className="absolute inset-0 bg-[#07070a]/90 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center p-4">
+                    <span className="text-xs font-bold text-pink-400 mb-2">⚡ Interactive Live Simulator</span>
                     <button
                       onClick={() => setActiveAppId(project.id)}
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-black flex items-center gap-1.5 shadow-lg shadow-cyan-500/40 hover:brightness-110 active:scale-95 transition-all"
+                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white text-xs font-black flex items-center gap-1.5 shadow-[0_0_20px_rgba(255,0,127,0.5)] hover:brightness-110 active:scale-95 transition-all"
                     >
                       <Eye className="w-4 h-4" />
                       <span>Buka Mockup Interaktif</span>
@@ -354,16 +354,16 @@ export default function Portfolio() {
               {/* Card Body */}
               <div className="p-6 flex flex-col justify-between flex-1">
                 <div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1.5">
-                    <span>Klien: <strong className="text-slate-200">{project.client}</strong></span>
-                    <span>Tahun: <strong className="text-cyan-300">{project.year}</strong></span>
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1.5 font-medium">
+                    <span>Klien: <strong className="text-white">{project.client}</strong></span>
+                    <span>Tahun: <strong className="text-pink-400">{project.year}</strong></span>
                   </div>
 
-                  <h3 className="font-heading font-bold text-lg text-white group-hover:text-cyan-200 transition-colors leading-snug">
+                  <h3 className="font-heading font-bold text-lg text-white group-hover:text-pink-400 transition-colors leading-snug">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                  <p className="text-xs text-slate-300 mt-2 leading-relaxed font-normal">
                     {project.subtitle}
                   </p>
                 </div>
@@ -374,7 +374,7 @@ export default function Portfolio() {
                     {project.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[10px] font-semibold bg-slate-900 text-cyan-300 px-2 py-0.5 rounded border border-slate-700/60"
+                        className="text-[10px] font-semibold bg-pink-950/60 text-pink-300 px-2 py-0.5 rounded border border-pink-500/40"
                       >
                         {tech}
                       </span>
@@ -383,7 +383,7 @@ export default function Portfolio() {
 
                   <button
                     onClick={() => setActiveAppId(project.id)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-cyan-950/70 hover:bg-cyan-900 text-cyan-300 text-xs font-bold text-center border border-cyan-500/40 flex items-center justify-center gap-1.5 transition-colors"
+                    className="w-full py-2.5 px-3 rounded-xl bg-[#140b20] hover:bg-pink-500/20 text-pink-300 hover:text-white text-xs font-bold text-center border border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                   >
                     <span>⚡ Coba Simulator Aplikasi Ini</span>
                   </button>
@@ -399,40 +399,40 @@ export default function Portfolio() {
       {/* INTERACTIVE FULL-FUNCTIONAL APP SIMULATOR MODAL               */}
       {/* ============================================================= */}
       {activeAppId && activeProjectData && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
-          <div className="bg-rivia-navy border border-cyan-500/50 rounded-3xl max-w-5xl w-full max-h-[95vh] overflow-hidden flex flex-col shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
+          <div className="bg-white border border-pink-500/30 rounded-3xl max-w-5xl w-full max-h-[95vh] overflow-hidden flex flex-col shadow-2xl">
             
             {/* Modal Top Bar */}
-            <div className="p-4 sm:p-5 border-b border-cyan-500/20 flex items-center justify-between bg-rivia-deep/90">
+            <div className="p-4 sm:p-5 border-b border-pink-500/15 flex items-center justify-between bg-slate-50">
               <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider bg-slate-900 px-2.5 py-1 rounded-md border border-cyan-500/30">
+                <span className="text-xs font-bold text-pink-600 uppercase tracking-wider bg-pink-50 px-2.5 py-1 rounded-md border border-pink-200">
                   {activeProjectData.category}
                 </span>
-                <h3 className="font-heading font-extrabold text-sm sm:text-base text-white truncate max-w-xs sm:max-w-md">
+                <h3 className="font-heading font-extrabold text-sm sm:text-base text-slate-900 truncate max-w-xs sm:max-w-md">
                   {activeProjectData.title}
                 </h3>
               </div>
 
               {/* Device Selector Controls */}
               <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center bg-slate-900 rounded-xl p-1 border border-slate-700">
+                <div className="hidden sm:flex items-center bg-white rounded-xl p-1 border border-slate-200 shadow-sm">
                   <button
                     onClick={() => setPreviewDevice("desktop")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "desktop" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "desktop" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
                   >
                     <Monitor className="w-4 h-4" />
                     <span className="hidden md:inline">Desktop</span>
                   </button>
                   <button
                     onClick={() => setPreviewDevice("tablet")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "tablet" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "tablet" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
                   >
                     <Tablet className="w-4 h-4" />
                     <span className="hidden md:inline">Tablet</span>
                   </button>
                   <button
                     onClick={() => setPreviewDevice("mobile")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "mobile" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "mobile" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
                   >
                     <Smartphone className="w-4 h-4" />
                     <span className="hidden md:inline">Mobile</span>
@@ -441,7 +441,7 @@ export default function Portfolio() {
 
                 <button
                   onClick={() => setActiveAppId(null)}
-                  className="p-2 rounded-full bg-slate-800 hover:bg-rose-500 hover:text-white text-slate-400 text-sm font-bold transition-colors"
+                  className="p-2 rounded-full bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-500 text-sm font-bold transition-colors"
                 >
                   ✕
                 </button>
@@ -449,16 +449,16 @@ export default function Portfolio() {
             </div>
 
             {/* Modal Body: Device Frame with REAL INTERACTIVE UI SIMULATION */}
-            <div className="p-3 sm:p-5 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-950/90 space-y-4">
+            <div className="p-3 sm:p-5 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-100/90 space-y-4">
               
               {/* Scroll Guidance Banner */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400/40 text-cyan-300 text-xs font-semibold shadow-lg animate-pulse">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-pink-600 text-xs font-semibold shadow-sm animate-pulse">
                 <span>🖱️</span>
                 <span>Scroll ke bawah di dalam layar mockup untuk mencoba simulasi & melihat seluruh isi website!</span>
               </div>
 
               <div
-                className={`transition-all duration-300 rounded-2xl border-4 border-slate-800 shadow-2xl overflow-hidden bg-slate-900 flex flex-col ${
+                className={`transition-all duration-300 rounded-2xl border-4 border-slate-300 shadow-2xl overflow-hidden bg-white flex flex-col ${
                   previewDevice === "desktop"
                     ? "w-full max-w-4xl"
                     : previewDevice === "tablet"
@@ -467,22 +467,22 @@ export default function Portfolio() {
                 }`}
               >
                 {/* Browser address bar */}
-                <div className="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 sticky top-0 z-20">
+                <div className="bg-slate-100 border-b border-slate-200 px-3 py-2 flex items-center justify-between shrink-0 sticky top-0 z-20">
                   <div className="flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                   </div>
-                  <span className="text-[11px] font-mono text-cyan-400 truncate max-w-[280px]">
+                  <span className="text-[11px] font-mono text-slate-700 truncate max-w-[280px]">
                     https://{activeAppId}.ridev.app/demo
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                  <span className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
                     🔒 SSL Active
                   </span>
                 </div>
 
                 {/* Internal Scrollable Screen Container */}
-                <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6 bg-slate-950 space-y-6 text-left">
+                <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6 bg-slate-900 space-y-6 text-left">
 
                 {/* ------------------------------------------------------------- */}
                 {/* 1. HEALTHCARE INTERACTIVE SIMULATOR                           */}

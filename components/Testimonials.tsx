@@ -6,20 +6,20 @@ import { DEFAULT_TESTIMONIALS } from "@/lib/supabase";
 
 export default function Testimonials() {
   return (
-    <section id="testimoni" className="py-24 relative overflow-hidden bg-rivia-navy/50">
+    <section id="testimoni" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0d0918]/60 to-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-400/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <MessageSquareHeart className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <MessageSquareHeart className="w-3.5 h-3.5 text-pink-400" />
             <span>Kepuasan Klien Prioritas Kami</span>
           </div>
           <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
             Apa Kata Klien Tentang <br />
-            <span className="text-gold-metallic">Layanan RIDEV (Rivia Developer)?</span>
+            <span className="text-pink-glow">Layanan RIDEV (Rivia Developer)?</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4">
+          <p className="text-slate-300 text-sm sm:text-base mt-4 font-normal">
             Kepercayaan ratusan pemilik bisnis, instansi, dan UMKM adalah bukti nyata kualitas pengerjaan dan komitmen kami.
           </p>
         </div>
@@ -29,9 +29,9 @@ export default function Testimonials() {
           {DEFAULT_TESTIMONIALS.map((testi) => (
             <div
               key={testi.id}
-              className="glass-card rounded-2xl p-7 border border-slate-800 hover:border-cyan-400/60 flex flex-col justify-between relative group transition-all duration-300"
+              className="glass-card rounded-2xl p-7 border border-pink-500/30 hover:border-pink-500/60 flex flex-col justify-between relative group transition-all duration-300 shadow-2xl holo-corners"
             >
-              <Quote className="w-10 h-10 text-cyan-500/20 group-hover:text-amber-400/30 transition-colors absolute top-5 right-5" />
+              <Quote className="w-10 h-10 text-pink-500/15 group-hover:text-pink-500/30 transition-colors absolute top-5 right-5" />
 
               <div>
                 {/* Rating Stars */}
@@ -41,27 +41,27 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-sm text-slate-200 leading-relaxed italic">
+                <p className="text-sm text-slate-200 leading-relaxed italic font-normal">
                   &ldquo;{testi.review_text}&rdquo;
                 </p>
               </div>
 
               {/* Client Info */}
-              <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center gap-3.5">
+              <div className="mt-6 pt-5 border-t border-slate-800 flex items-center gap-3.5">
                 <img
                   src={testi.avatar_url}
                   alt={testi.client_name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-cyan-400/40"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-pink-500/50 shadow-[0_0_10px_rgba(255,0,127,0.3)]"
                 />
                 <div>
                   <h4 className="font-heading font-bold text-sm text-white flex items-center gap-1.5">
                     <span>{testi.client_name}</span>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-pink-400" />
                   </h4>
                   <p className="text-xs text-slate-400">
                     {testi.client_role}, {testi.company}
                   </p>
-                  <span className="text-[10px] text-cyan-300/80 font-medium block mt-0.5">
+                  <span className="text-[10px] text-pink-400 font-semibold block mt-0.5">
                     Proyek: {testi.project_name}
                   </span>
                 </div>
@@ -71,12 +71,12 @@ export default function Testimonials() {
         </div>
 
         {/* FAQ Section Integrated */}
-        <div id="faq" className="mt-24 pt-16 border-t border-cyan-500/20 max-w-4xl mx-auto">
+        <div id="faq" className="mt-24 pt-16 border-t border-pink-500/20 max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-white">
               Pertanyaan yang Sering Diajukan (FAQ)
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 font-normal">
               Jawaban cepat seputar proses, biaya, dan garansi pembuatan website di RIDEV (Rivia Developer).
             </p>
           </div>
@@ -106,15 +106,15 @@ export default function Testimonials() {
             ].map((faq, i) => (
               <details
                 key={i}
-                className="glass-card rounded-xl p-4 sm:p-5 border border-slate-800 group open:border-cyan-500/50 transition-colors"
+                className="glass-card rounded-xl p-4 sm:p-5 border border-pink-500/25 group open:border-pink-500/60 transition-colors shadow-lg"
               >
                 <summary className="font-heading font-bold text-sm sm:text-base text-white cursor-pointer flex items-center justify-between list-none">
                   <span>{faq.q}</span>
-                  <span className="text-cyan-400 text-lg transition-transform group-open:rotate-45">
+                  <span className="text-pink-400 text-lg transition-transform group-open:rotate-45 font-bold">
                     +
                   </span>
                 </summary>
-                <p className="text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-slate-800 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-slate-800 leading-relaxed font-normal">
                   {faq.a}
                 </p>
               </details>

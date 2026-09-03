@@ -55,10 +55,10 @@ export default function RootLayout({
   return (
     <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable} ${outfit.variable}`}>
       <head>
-        <meta name="theme-color" content="#030712" />
+        <meta name="theme-color" content="#07070a" />
       </head>
       <body
-        className="font-sans bg-rivia-dark text-slate-100 min-h-screen antialiased selection:bg-cyan-400 selection:text-slate-950"
+        className="font-sans bg-[#07070a] text-slate-100 min-h-screen antialiased selection:bg-pink-500 selection:text-white"
       >
         {children}
       </body>

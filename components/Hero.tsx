@@ -40,21 +40,26 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Background Cosmic Grid and Ambient Glowing Orbs */}
-      <div className="absolute inset-0 cosmic-grid pointer-events-none opacity-60" />
+      {/* Background Cyber Laser Sanctuary Elements */}
+      <div className="absolute inset-0 cyber-floor-grid pointer-events-none opacity-40" />
       
-      {/* Radial Lights */}
+      {/* Central Cyber Sanctuary Laser Beams */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-[450px] bg-gradient-to-b from-pink-500 via-rose-500 to-transparent shadow-[0_0_30px_#ff007f,0_0_60px_#ff0038] pointer-events-none opacity-80" />
+      <div className="absolute top-10 left-1/4 w-[1px] h-[350px] bg-gradient-to-b from-pink-500/40 to-transparent pointer-events-none" />
+      <div className="absolute top-10 right-1/4 w-[1px] h-[350px] bg-gradient-to-b from-pink-500/40 to-transparent pointer-events-none" />
+
+      {/* Radial Laser Lights */}
       <div 
-        className="cosmic-glow bg-pink-500/20 top-10 -left-40 animate-pulse-slow" 
+        className="laser-ambient-glow bg-red-600/20 top-0 left-1/2 -translate-x-1/2" 
+        style={{ width: "800px", height: "500px" }}
+      />
+      <div 
+        className="laser-ambient-glow bg-pink-600/20 top-1/4 -left-40 animate-pulse-slow" 
         style={{ width: "650px", height: "650px" }}
       />
       <div 
-        className="cosmic-glow bg-cyan-500/20 top-1/3 -right-40" 
+        className="laser-ambient-glow bg-rose-600/20 top-1/3 -right-40" 
         style={{ width: "700px", height: "700px" }}
-      />
-      <div 
-        className="cosmic-glow bg-purple-600/20 -bottom-20 left-1/3" 
-        style={{ width: "500px", height: "500px" }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -63,25 +68,25 @@ export default function Hero() {
           {/* Left Column: Copywriting, Perks, and Conversion CTA */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
-            {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-pink-950/80 via-purple-950/80 to-cyan-950/80 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-semibold shadow-lg shadow-pink-900/30 w-fit mx-auto lg:mx-0 backdrop-blur-md">
+            {/* Top Sci-Fi Hologram Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0e0918]/90 border border-pink-500/40 text-pink-400 text-xs sm:text-sm font-semibold shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Full-Stack Software House & Web Developer Studio</span>
+              <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+              <span className="tracking-wide text-slate-200">Full-Stack Software House & Web Developer Studio</span>
             </div>
 
-            {/* Main Headline with Cyber Pink & Neon Cyan Glow */}
+            {/* Main Headline with Sci-Fi Hologram Glow */}
             <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-white">
               Jasa Pembuatan <br className="hidden sm:inline" />
               <span className="text-pink-glow block sm:inline">Website & Aplikasi</span>{" "}
-              <span className="text-cyan-glow">Profesional</span>
+              <span className="text-crimson-glow">Profesional</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-medium mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
               Wujudkan Website & Aplikasi Impian Anda Bersama{" "}
               <strong className="text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">
                 RIDEV (Rivia Developer)
@@ -89,20 +94,20 @@ export default function Hero() {
               Saatnya Anda fokus melayani klien dan bisnis, biarkan tim developer ahli kami yang menangani transformasi digital dan kehadiran online Anda.
             </p>
 
-            {/* Inclusions Box ("Yang Didapat") - Matching Reference */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rivia-deep/90 to-rivia-navy/90 border border-pink-500/30 backdrop-blur-xl shadow-xl shadow-black/40 text-left">
+            {/* Inclusions Box ("Yang Didapat") - Dark Laser Glass Console */}
+            <div className="p-4 sm:p-5 rounded-2xl glass-card border border-pink-500/30 shadow-2xl text-left holo-corners">
               <div className="flex items-center justify-between mb-3 border-b border-pink-500/20 pb-2">
                 <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-cyan-400" />
+                  <Zap className="w-4 h-4 text-pink-400" />
                   Keuntungan & Fasilitas Lengkap:
                 </span>
-                <span className="text-[11px] font-semibold text-pink-300 bg-pink-950/80 px-2.5 py-0.5 rounded-full border border-pink-500/40">
+                <span className="text-[11px] font-bold text-pink-300 bg-pink-950/70 px-2.5 py-0.5 rounded-full border border-pink-500/40">
                   Included Free
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {perks.map((perk, index) => (
-                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-200">
+                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-200 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
                     <span>{perk}</span>
                   </div>
@@ -116,9 +121,9 @@ export default function Hero() {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-extrabold text-base bg-gradient-to-r from-pink-500 via-rose-500 to-amber-400 text-slate-950 hover:opacity-95 shadow-xl shadow-pink-500/30 hover:shadow-pink-400/50 transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-extrabold text-base bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_30px_rgba(255,0,127,0.5)] transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 group"
               >
-                <div className="w-6 h-6 rounded-full bg-slate-950/20 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="text-lg">💬</span>
                 </div>
                 <span>Konsultasi WhatsApp Sekarang</span>
@@ -127,20 +132,20 @@ export default function Hero() {
 
               <a
                 href="#kalkulator"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-rivia-deep/80 hover:bg-rivia-deep border border-pink-500/40 text-pink-300 hover:text-white shadow-lg hover:shadow-pink-500/25 transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-[#0f0a1a] hover:bg-pink-500/20 border border-pink-500/50 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <span>✨ Hitung Estimasi Biaya</span>
               </a>
             </div>
 
             {/* Quick Contacts Callout */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 pt-1">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 pt-1 font-medium">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>WhatsApp: <strong className="text-white">+62 8222-68-000-63</strong></span>
+                <span>WhatsApp: <strong className="text-white font-bold">+62 8222-68-000-63</strong></span>
               </div>
               <div className="flex items-center gap-2">
-                <span>✉️ Email: <strong className="text-white">kiyerivia@gmail.com</strong></span>
+                <span>✉️ Email: <strong className="text-pink-400 font-bold">kiyerivia@gmail.com</strong></span>
               </div>
             </div>
           </div>
@@ -150,19 +155,19 @@ export default function Hero() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
               {/* Central Glowing Shield Aura */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/30 rounded-3xl blur-2xl transform rotate-3 scale-95" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/30 via-rose-600/20 to-red-600/30 rounded-3xl blur-3xl transform rotate-3 scale-95 pointer-events-none" />
 
               {/* Main Showcase Card 1: Healthcare & Clinic Demo */}
-              <div className="relative glass-card rounded-2xl p-4 sm:p-5 border border-cyan-400/40 shadow-2xl animate-float">
-                <div className="flex items-center justify-between pb-3 border-b border-cyan-500/20">
+              <div className="relative glass-card rounded-2xl p-4 sm:p-5 border border-pink-500/40 shadow-2xl animate-float holo-corners">
+                <div className="flex items-center justify-between pb-3 border-b border-pink-500/20">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                     </div>
-                    <span className="text-[11px] font-mono text-cyan-400/90 ml-2 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
-                      https://medikacare.rivia.app
+                    <span className="text-[11px] font-mono text-cyan-300 ml-2 bg-[#050508] px-2 py-0.5 rounded border border-slate-800">
+                      https://medikacare.ridev.app
                     </span>
                   </div>
                   <span className="text-[10px] uppercase font-bold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40">
@@ -170,14 +175,14 @@ export default function Hero() {
                   </span>
                 </div>
 
-                <div className="mt-3 relative rounded-xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-700/60 group">
+                <div className="mt-3 relative rounded-xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-800 group shadow-inner">
                   <img
                     src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80"
                     alt="Healthcare Web App Showcase"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-rivia-dark/95 via-rivia-dark/30 to-transparent flex flex-col justify-end p-4">
-                    <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
+                    <span className="text-[10px] font-bold text-cyan-300 uppercase tracking-widest">
                       Healthcare & Booking Portal
                     </span>
                     <h3 className="font-heading font-extrabold text-white text-base">
@@ -194,7 +199,7 @@ export default function Hero() {
                   {["Next.js 14", "Tailwind CSS", "Supabase DB", "Online Payment"].map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-semibold bg-cyan-950/60 text-cyan-300 px-2 py-0.5 rounded-md border border-cyan-500/30"
+                      className="text-[10px] font-semibold bg-pink-950/60 text-pink-300 px-2 py-0.5 rounded-md border border-pink-500/40"
                     >
                       {tag}
                     </span>
@@ -203,19 +208,19 @@ export default function Hero() {
               </div>
 
               {/* Floating Mini Card 2: E-Commerce & Toko Online */}
-              <div className="absolute -bottom-8 -left-4 sm:-left-8 glass-card p-3.5 rounded-xl border border-amber-400/40 shadow-xl max-w-[220px] sm:max-w-[250px] animate-float-delayed hidden sm:block">
+              <div className="absolute -bottom-8 -left-4 sm:-left-8 glass-card p-3.5 rounded-xl border border-amber-500/40 shadow-2xl max-w-[220px] sm:max-w-[250px] animate-float-delayed hidden sm:block">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-bold text-lg shadow-md shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-lg shadow-sm shrink-0">
                     🛍️
                   </div>
                   <div>
-                    <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider block">
+                    <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider block">
                       Toko Online
                     </span>
                     <h4 className="text-xs font-bold text-white leading-tight">
                       AuraStyle Fashion
                     </h4>
-                    <span className="text-[10px] text-emerald-400 font-medium">
+                    <span className="text-[10px] text-emerald-400 font-semibold">
                       +200% Konversi Sales
                     </span>
                   </div>
@@ -223,16 +228,16 @@ export default function Hero() {
               </div>
 
               {/* Floating Mini Card 3: Speed & SEO Score Badge */}
-              <div className="absolute -top-6 -right-4 sm:-right-6 glass-card p-3 rounded-xl border border-cyan-400/40 shadow-xl animate-float">
+              <div className="absolute -top-6 -right-4 sm:-right-6 glass-card p-3 rounded-xl border border-emerald-500/40 shadow-2xl animate-float">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-extrabold text-xs">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 font-extrabold text-xs">
                     99+
                   </div>
                   <div className="text-left">
-                    <span className="text-[10px] font-bold text-slate-300 block">
+                    <span className="text-[10px] font-bold text-white block">
                       Google PageSpeed
                     </span>
-                    <span className="text-[9px] text-cyan-300 font-medium">
+                    <span className="text-[9px] text-emerald-400 font-semibold">
                       ⚡ Super Fast Loading
                     </span>
                   </div>
@@ -243,24 +248,24 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 4 Trust Value Badges (Bottom Trust Bar) - Matching Reference Poster */}
-        <div className="mt-16 pt-10 border-t border-cyan-500/20">
+        {/* 4 Trust Value Badges (Bottom Trust Bar) */}
+        <div className="mt-16 pt-10 border-t border-pink-500/20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {valueBadges.map((badge, idx) => {
               const Icon = badge.icon;
               return (
                 <div
                   key={idx}
-                  className="glass-card p-4 rounded-xl border border-cyan-500/20 flex items-center gap-3.5 group hover:border-amber-400/50 transition-all duration-300"
+                  className="glass-card p-4 rounded-xl border border-pink-500/20 flex items-center gap-3.5 group hover:border-pink-500/50 transition-all duration-300 shadow-lg"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/30 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:text-amber-300 group-hover:border-amber-400/50 transition-colors shrink-0">
+                  <div className="w-11 h-11 rounded-lg bg-pink-950/60 border border-pink-500/40 flex items-center justify-center text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-500 group-hover:text-white transition-all shrink-0 shadow-md">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="text-left">
-                    <h4 className="font-heading font-bold text-sm text-white group-hover:text-cyan-200 transition-colors">
+                    <h4 className="font-heading font-bold text-sm text-white group-hover:text-pink-400 transition-colors">
                       {badge.label}
                     </h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-slate-400 mt-0.5 font-normal">
                       {badge.desc}
                     </p>
                   </div>
