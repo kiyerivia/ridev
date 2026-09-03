@@ -119,12 +119,6 @@ export default function Footer() {
                   FAQ Tanya Jawab
                 </a>
               </li>
-              <li>
-                <Link href="/admin" className="text-amber-400 hover:underline flex items-center gap-1 font-semibold">
-                  <Code2 className="w-3.5 h-3.5" />
-                  Admin Inbox
-                </Link>
-              </li>
             </ul>
           </div>
 
