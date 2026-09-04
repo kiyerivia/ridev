@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageSquare, X, Send, PhoneCall } from "lucide-react";
+import { MessageSquare, X, Send, ChevronLeft, Sparkles, CheckCheck } from "lucide-react";
 import { createWhatsAppLink, getGeneralConsultationMessage } from "@/lib/whatsapp";
 
 export default function FloatingWhatsApp() {
@@ -17,111 +17,140 @@ export default function FloatingWhatsApp() {
   };
 
   const quickMessages = [
-    "Halo, mau tanya harga pembuatan website.",
-    "Halo, mau konsultasi pembuatan aplikasi mobile.",
+    "Halo RIDEV, mau tanya paket harga website.",
+    "Halo, mau konsultasi pembuatan sistem & aplikasi.",
     "Halo, saya butuh website landing page cepat.",
   ];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      {/* Quick Chat Popup Card */}
+    <div className="fixed right-0 bottom-20 sm:bottom-24 z-50 select-none">
+      {/* 🌟 Peeking Button State (Mengintip dari Sisi Kanan) */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="group relative flex items-center gap-2.5 py-3 px-3.5 sm:px-4 rounded-l-2xl bg-gradient-to-l from-[#ff0038] via-[#ff0055] to-[#ff007f] text-white shadow-[-6px_4px_25px_rgba(255,0,127,0.55)] border-y-2 border-l-2 border-r-0 border-pink-400/60 hover:-translate-x-2 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md"
+          aria-label="Buka Chat Konsultasi WhatsApp"
+        >
+          {/* Glowing Ping Aura */}
+          <span className="animate-ping absolute inset-0 rounded-l-2xl bg-pink-400 opacity-25"></span>
+
+          {/* Left Indicator Chevron */}
+          <ChevronLeft className="w-4 h-4 text-pink-200 group-hover:-translate-x-1 transition-transform shrink-0" />
+
+          {/* Chat Icon & Online Indicator */}
+          <div className="relative shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 shadow-inner group-hover:scale-105 transition-transform">
+              <MessageSquare className="w-5 h-5 text-white fill-white" />
+            </div>
+            <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#ff0055] absolute -top-1 -right-1 animate-pulse" />
+          </div>
+
+          {/* Peeking Label (Hidden on ultra-narrow screens, visible on normal) */}
+          <div className="flex flex-col text-left pr-1">
+            <span className="text-[10px] font-black uppercase tracking-wider text-pink-200 flex items-center gap-1 leading-none mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Konsultasi
+            </span>
+            <span className="font-heading font-black text-xs sm:text-sm text-white tracking-wide leading-none">
+              Chat CS
+            </span>
+          </div>
+        </button>
+      )}
+
+      {/* 🌟 Expanded Chat Box (Muncul Saat Tombol Diklik) */}
       {open && (
-        <div className="mb-3 w-80 sm:w-96 rounded-3xl bg-[#0d0918] border border-pink-500/40 shadow-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-300 holo-corners">
+        <div className="mr-4 sm:mr-6 mb-2 w-[calc(100vw-2rem)] sm:w-96 rounded-3xl bg-[#0e091a]/98 backdrop-blur-2xl border-2 border-pink-500/50 shadow-[-10px_15px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(255,0,127,0.3)] overflow-hidden animate-in slide-in-from-right-8 duration-300 holo-corners">
           
-          {/* Header */}
+          {/* Chat Header */}
           <div className="bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] p-4 text-white flex items-center justify-between shadow-md">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-lg">
+                <div className="w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center font-bold text-lg shadow-inner">
                   💬
                 </div>
-                <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0d0918] absolute bottom-0 right-0 animate-ping" />
-                <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0d0918] absolute bottom-0 right-0" />
+                <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0e091a] absolute bottom-0 right-0 animate-ping" />
+                <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0e091a] absolute bottom-0 right-0" />
               </div>
               <div>
                 <h4 className="font-heading font-extrabold text-sm text-white">CS RIDEV (Rivia Developer)</h4>
                 <span className="text-[11px] text-pink-100 flex items-center gap-1 font-medium">
-                  Online • Siap Membantu Anda
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Online • Siap Membantu 24/7
                 </span>
               </div>
             </div>
+            
+            {/* Close / Minimize Button */}
             <button
               onClick={() => setOpen(false)}
-              className="p-1.5 rounded-full hover:bg-black/20 text-white transition-colors"
+              className="p-1.5 rounded-full hover:bg-black/25 text-white/90 hover:text-white transition-colors"
+              title="Tutup / Sembunyikan Chat"
+              aria-label="Tutup Chat"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Chat Body */}
-          <div className="p-4 bg-[#090610] space-y-3">
-            <div className="bg-[#140b20] border border-slate-800 rounded-2xl rounded-tl-sm p-3.5 text-xs text-slate-200 leading-relaxed max-w-[85%] shadow-sm">
+          {/* Chat Messages Body */}
+          <div className="p-4 bg-[#090610] space-y-3.5">
+            {/* Incoming Greeting Bubble */}
+            <div className="bg-[#140c22] border border-pink-500/20 rounded-2xl rounded-tl-sm p-3.5 text-xs text-slate-200 leading-relaxed max-w-[90%] shadow-md">
+              <div className="flex items-center gap-1.5 text-pink-400 font-bold text-[10px] uppercase mb-1">
+                <Sparkles className="w-3 h-3" />
+                <span>Customer Support</span>
+              </div>
               <p>
-                Halo! Ada yang bisa kami bantu seputar pembuatan website atau aplikasi untuk bisnis Anda? 👋
+                Halo! Senang bertemu Anda. Ada yang bisa kami bantu seputar pembuatan website atau aplikasi untuk bisnis Anda? 👋
               </p>
-              <span className="text-[9px] text-slate-400 block text-right mt-1">Sekarang</span>
+              <span className="text-[9px] text-slate-400 flex items-center justify-end gap-1 mt-1.5">
+                Baru saja <CheckCheck className="w-3 h-3 text-pink-400" />
+              </span>
             </div>
 
-            {/* Quick Suggestions */}
+            {/* Quick Messages Options */}
             <div className="space-y-1.5 pt-1">
               <span className="text-[10px] uppercase font-bold text-pink-400 tracking-wider block">
-                Pilih pesan cepat:
+                Pilih topik cepat:
               </span>
               {quickMessages.map((msg, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setCustomText(msg)}
-                  className="w-full text-left text-xs bg-[#140b20] hover:bg-pink-500/20 border border-slate-800 hover:border-pink-500/40 text-slate-300 hover:text-white px-3 py-2 rounded-xl transition-colors truncate shadow-sm font-normal"
+                  className="w-full text-left text-xs bg-[#140c22] hover:bg-pink-500/20 border border-slate-800 hover:border-pink-500/40 text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition-all truncate shadow-sm font-normal active:scale-[0.98]"
                 >
                   &ldquo;{msg}&rdquo;
                 </button>
               ))}
             </div>
 
-            {/* Form input */}
+            {/* Form Input to WhatsApp */}
             <form onSubmit={handleSendMessage} className="pt-2 flex items-center gap-2">
               <input
                 type="text"
-                placeholder="Tulis pesan Anda..."
+                placeholder="Ketik pertanyaan Anda..."
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#140b20] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 shadow-sm"
+                autoFocus
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#140c22] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 shadow-sm"
               />
               <button
                 type="submit"
-                className="p-2.5 rounded-xl bg-gradient-to-r from-[#ff007f] to-[#ff0038] text-white font-bold transition-all hover:brightness-110 shadow-[0_0_15px_rgba(255,0,127,0.4)] shrink-0"
-                title="Kirim ke WhatsApp"
+                className="p-2.5 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white font-bold transition-all hover:brightness-110 active:scale-95 shadow-[0_0_15px_rgba(255,0,127,0.4)] shrink-0 flex items-center justify-center"
+                title="Kirim Pesan ke WhatsApp"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
           </div>
 
-          <div className="bg-[#0c0814] px-4 py-2 text-center text-[10px] text-slate-400 border-t border-slate-800 font-normal">
-            WhatsApp Resmi: <strong className="text-white">+62 8222-68-000-63</strong>
+          {/* Footer Sub-info */}
+          <div className="bg-[#0b0614] px-4 py-2 text-center text-[10px] text-slate-400 border-t border-slate-800/80 font-normal">
+            WhatsApp Resmi RIDEV: <strong className="text-white">+62 8222-68-000-63</strong>
           </div>
         </div>
       )}
-
-      {/* Floating Toggle Button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="relative group p-4 rounded-full bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_25px_rgba(255,0,127,0.6)] hover:scale-105 active:scale-95 transition-all duration-300"
-        aria-label="Chat WhatsApp"
-      >
-        <span className="animate-ping absolute inset-0 rounded-full bg-pink-400 opacity-40"></span>
-        <div className="relative flex items-center justify-center">
-          {open ? <X className="w-7 h-7" /> : <MessageSquare className="w-7 h-7 fill-white" />}
-        </div>
-        
-        {/* Floating Tooltip Pill */}
-        {!open && (
-          <span className="hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full bg-[#0f0a1a] border border-pink-500/40 text-pink-300 text-xs font-bold whitespace-nowrap shadow-xl">
-            💬 Konsultasi 24 Jam
-          </span>
-        )}
-      </button>
     </div>
   );
 }
