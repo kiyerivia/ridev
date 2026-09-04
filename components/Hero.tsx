@@ -14,7 +14,8 @@ import {
   Smartphone,
   Globe2,
   TrendingUp,
-  BadgePercent
+  BadgePercent,
+  MapPin
 } from "lucide-react";
 import { createWhatsAppLink, getGeneralConsultationMessage } from "@/lib/whatsapp";
 
@@ -24,18 +25,22 @@ export default function Hero() {
   );
 
   const perks = [
-    "Tampilan Responsive (Mobile, Tablet, Desktop)",
-    "Profesional UI/UX Design Elegan & Modern",
-    "SEO Friendly (Mudah Masuk Halaman 1 Google)",
-    "Garansi & Maintenance Full 1 Tahun",
-    "Tutorial & Panduan Kelola Website Lengkap",
+    "Gratis Domain (.com / .id) & Cloud Hosting High Speed",
+    "Sertifikat Keamanan SSL HTTPS & Anti-Malware",
+    "Tampilan 100% Responsif (Mobile, Tablet, Desktop)",
+    "Optimasi SEO On-Page (Mudah Ditemukan di Google)",
+    "Garansi Maintenance Purna Jual & Panduan Lengkap",
   ];
 
   const valueBadges = [
-    { icon: Award, label: "Kualitas Terbaik", desc: "Clean Code & Fast Loading" },
-    { icon: BadgePercent, label: "Harga Terjangkau", desc: "Mulai Rp 499rb" },
-    { icon: Headphones, label: "Support Profesional", desc: "Fast Response 24/7" },
-    { icon: ShieldCheck, label: "100% Kepuasan Terjamin", desc: "Garansi Revisi" },
+    { icon: Award, label: "Kualitas Premium", desc: "Clean Code & Fast Loading < 1s" },
+    { icon: BadgePercent, label: "Harga Transparan", desc: "Paket Lengkap Mulai Rp 699rb" },
+    { icon: Headphones, label: "Support Profesional", desc: "Fast Response 24/7 WhatsApp" },
+    { icon: ShieldCheck, label: "Garansi Kepuasan", desc: "Revisi & Maintenance Terjamin" },
+  ];
+
+  const cities = [
+    "Jakarta", "Surabaya", "Bandung", "Bali", "Medan", "Semarang", "Makassar", "Yogyakarta", "Seluruh Indonesia"
   ];
 
   return (
@@ -75,34 +80,48 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
               <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-              <span className="tracking-wide text-slate-200">Full-Stack Software House & Web Developer Studio</span>
+              <span className="tracking-wide text-slate-200">Jasa Pembuatan Website & Aplikasi Profesional</span>
             </div>
 
-            {/* Main Headline with Sci-Fi Hologram Glow */}
+            {/* Main Headline (ATM EDA Credibility Hook) */}
             <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-white">
-              Jasa Pembuatan <br className="hidden sm:inline" />
-              <span className="text-pink-glow block sm:inline">Website & Aplikasi</span>{" "}
-              <span className="text-crimson-glow">Profesional</span>
+              Website Profesional untuk Meningkatkan{" "}
+              <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
-              Wujudkan Website & Aplikasi Impian Anda Bersama{" "}
-              <strong className="text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">
-                RIDEV (Rivia Developer)
-              </strong>! 
-              Saatnya Anda fokus melayani klien dan bisnis, biarkan tim developer ahli kami yang menangani transformasi digital dan kehadiran online Anda.
+              Hadir dengan desain modern, fitur lengkap, keamanan tinggi, dan harga terjangkau. 
+              Saatnya bisnis Anda tampil terpercaya di mata klien bersama <strong className="text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">RIDEV (Rivia Developer)</strong>!
             </p>
+
+            {/* Target Area Coverage Badges (ATM EDA City Targeting) */}
+            <div className="flex items-center gap-2 flex-wrap justify-center lg:justify-start pt-1">
+              <div className="flex items-center gap-1 text-[11px] font-bold text-pink-400 uppercase tracking-wider bg-pink-950/60 px-2.5 py-1 rounded-md border border-pink-500/40">
+                <MapPin className="w-3 h-3 text-pink-400" />
+                <span>Melayani Area:</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 justify-center lg:justify-start">
+                {cities.map((city, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[11px] text-slate-300 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             {/* Inclusions Box ("Yang Didapat") - Dark Laser Glass Console */}
             <div className="p-4 sm:p-5 rounded-2xl glass-card border border-pink-500/30 shadow-2xl text-left holo-corners">
               <div className="flex items-center justify-between mb-3 border-b border-pink-500/20 pb-2">
                 <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-pink-400" />
-                  Keuntungan & Fasilitas Lengkap:
+                  Fasilitas Lengkap Termasuk (All-in-One):
                 </span>
                 <span className="text-[11px] font-bold text-pink-300 bg-pink-950/70 px-2.5 py-0.5 rounded-full border border-pink-500/40">
-                  Included Free
+                  Siap Pakai
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -131,10 +150,10 @@ export default function Hero() {
               </a>
 
               <a
-                href="#kalkulator"
+                href="#harga"
                 className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-[#0f0a1a] hover:bg-pink-500/20 border border-pink-500/50 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <span>✨ Hitung Estimasi Biaya</span>
+                <span>📦 Lihat Paket & Harga</span>
               </a>
             </div>
 

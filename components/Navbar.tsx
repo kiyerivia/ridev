@@ -18,9 +18,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Layanan", href: "#layanan" },
-    { name: "Kalkulator Biaya", href: "#kalkulator" },
+    { name: "Fasilitas", href: "#fasilitas" },
     { name: "Paket Harga", href: "#harga" },
+    { name: "Kalkulator", href: "#kalkulator" },
+    { name: "Layanan", href: "#layanan" },
     { name: "Portofolio", href: "#portofolio" },
     { name: "Alur Kerja", href: "#alur-kerja" },
     { name: "Testimoni", href: "#testimoni" },
@@ -69,7 +70,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="px-3.5 py-1.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-pink-500/20 rounded-full transition-all duration-200"
+              className="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-pink-500/20 rounded-full transition-all duration-200"
             >
               {link.name}
             </Link>

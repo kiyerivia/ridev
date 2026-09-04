@@ -3,12 +3,14 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import FeaturePackage from "@/components/FeaturePackage";
 import Services from "@/components/Services";
 import CostCalculator from "@/components/CostCalculator";
 import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
 import Workflow from "@/components/Workflow";
 import Testimonials from "@/components/Testimonials";
+import ClosingTrustBanner from "@/components/ClosingTrustBanner";
 import ConsultationForm from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
 import LiveSalesNotification from "@/components/LiveSalesNotification";
@@ -29,17 +31,20 @@ export default function Home() {
       {/* Sticky Header */}
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section (ATM EDA Credibility & Nationwide Coverage) */}
       <Hero />
 
-      {/* Services Showcase */}
-      <Services />
+      {/* 6 Core Value Deliverables / Our Feature Package (ATM EDA) */}
+      <FeaturePackage />
+
+      {/* Transparent 4-Tier Pricing Packages with Renewal Fee & Expandable Specs (ATM EDA) */}
+      <Pricing />
 
       {/* Interactive Project Cost Calculator */}
       <CostCalculator />
 
-      {/* Transparent Pricing Packages */}
-      <Pricing />
+      {/* Services Showcase */}
+      <Services />
 
       {/* Case Studies & Portfolio */}
       <Portfolio />
@@ -49,6 +54,9 @@ export default function Home() {
 
       {/* Client Reviews & FAQ */}
       <Testimonials />
+
+      {/* Closing Trust & Action Banner (ATM EDA) */}
+      <ClosingTrustBanner />
 
       {/* Lead Generation & Contact Form */}
       <ConsultationForm />

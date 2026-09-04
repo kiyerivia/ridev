@@ -11,7 +11,8 @@ import {
   ShieldCheck, 
   Heart, 
   ExternalLink,
-  Code2
+  Code2,
+  CheckCircle2
 } from "lucide-react";
 import { createWhatsAppLink, getGeneralConsultationMessage } from "@/lib/whatsapp";
 
@@ -19,6 +20,10 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const cities = [
+    "Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Makassar", "Bali", "Yogyakarta", "Tangerang", "Bekasi", "Depok", "Palembang"
+  ];
 
   return (
     <footer className="bg-[#050308] border-t-2 border-pink-500/30 pt-16 pb-12 relative overflow-hidden text-slate-400 text-xs">
@@ -51,15 +56,15 @@ export default function Footer() {
             </Link>
 
             <p className="text-slate-300 leading-relaxed text-xs">
-              Software House & Jasa Pembuatan Website Profesional. Kami berkomitmen menghadirkan produk digital berkualitas tinggi, estetik, bergaransi, dan siap mendongkrak omset bisnis Anda.
+              Software House & Jasa Pembuatan Website Profesional. Menghadirkan solusi website dan aplikasi berstandar tinggi, aman, mobile friendly, dan terbukti meningkatkan kredibilitas serta omset bisnis Anda.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <span className="px-3 py-1 rounded-full bg-pink-950/60 border border-pink-500/40 text-pink-300 text-[10px] font-bold">
-                ✓ Bergaransi 1 Tahun
+                ✓ Garansi Full Support
               </span>
               <span className="px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/40 text-amber-300 text-[10px] font-bold">
-                ✓ Full Support 24/7
+                ✓ Free Domain & SSL
               </span>
             </div>
           </div>
@@ -67,24 +72,24 @@ export default function Footer() {
           {/* Col 2: Services Navigation (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="font-heading font-bold text-sm text-pink-400 uppercase tracking-wider">
-              Layanan Utama
+              Pilihan Paket Website
             </h4>
             <ul className="space-y-2">
               {[
-                "Landing Page Ads & Minisite",
-                "Company Profile Bisnis & UMKM",
-                "Toko Online / E-Commerce",
-                "Portal Pendidikan & LMS",
-                "Portofolio & Personal Branding",
-                "Custom Web App & Sistem ERP",
-                "Aplikasi Mobile (Android & iOS)",
+                { name: "Paket Silver (Rp 699rb)", desc: "Starter & Landing Page" },
+                { name: "Paket Gold (Rp 1.59jt) ⭐", desc: "UMKM & Company Profile" },
+                { name: "Paket Diamond (Rp 2.49jt)", desc: "Toko Online & E-Commerce" },
+                { name: "Paket Platinum (Custom)", desc: "Enterprise & Custom Web App" },
+                { name: "Feature Package Lengkap", desc: "6 Pilar Fasilitas Utama" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
-                    href="#layanan"
-                    className="hover:text-pink-400 transition-colors flex items-center gap-1.5 text-slate-300"
+                    href="#harga"
+                    className="hover:text-pink-400 transition-colors flex items-center justify-between text-slate-300 group"
                   >
-                    <span className="text-pink-500">›</span> {item}
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-pink-500">›</span> {item.name}
+                    </span>
                   </a>
                 </li>
               ))}
@@ -98,13 +103,18 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="#kalkulator" className="hover:text-pink-400 transition-colors text-slate-300">
-                  Kalkulator Biaya
+                <a href="#fasilitas" className="hover:text-pink-400 transition-colors text-slate-300">
+                  Fasilitas Lengkap
                 </a>
               </li>
               <li>
                 <a href="#harga" className="hover:text-pink-400 transition-colors text-slate-300">
                   Paket & Harga
+                </a>
+              </li>
+              <li>
+                <a href="#kalkulator" className="hover:text-pink-400 transition-colors text-slate-300">
+                  Kalkulator Biaya
                 </a>
               </li>
               <li>
@@ -163,6 +173,18 @@ export default function Footer() {
             </div>
           </div>
 
+        </div>
+
+        {/* Coverage Cities List (ATM EDA SEO targeting) */}
+        <div className="py-6 border-b border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
+          <span className="font-bold text-slate-300">Jasa Pembuatan Website Area:</span>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-3 gap-y-1 text-slate-400">
+            {cities.map((city, idx) => (
+              <span key={idx} className="hover:text-pink-400 transition-colors">
+                Website {city} {idx < cities.length - 1 ? "•" : ""}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom Bar: Copyright & Scroll to Top */}
