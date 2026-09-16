@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Volume2, VolumeX, Volume1, Play, Pause, Music, X, ChevronDown, Sparkles } from "lucide-react";
 
 declare global {
@@ -12,42 +12,52 @@ declare global {
 
 export default function BackgroundMusic() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(50); // Default 50%
   const [isMuted, setIsMuted] = useState<boolean>(false);
-  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
   const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const YOUTUBE_VIDEO_ID = "T2hVthpcWK8"; // Lagu Backsound Genshin Yang Nyaman
 
-  // Initialize YouTube Player API
+  // Safe playback trigger
+  const startPlayback = useCallback(() => {
+    if (playerRef.current && typeof playerRef.current.playVideo === "function") {
+      try {
+        playerRef.current.unMute();
+        playerRef.current.setVolume(volume || 50);
+        playerRef.current.playVideo();
+        setIsPlaying(true);
+      } catch (err) {
+        // Fallback postMessage to iframe
+        if (iframeRef.current && iframeRef.current.contentWindow) {
+          iframeRef.current.contentWindow.postMessage(
+            JSON.stringify({ event: "command", func: "playVideo", args: "" }),
+            "*"
+          );
+          iframeRef.current.contentWindow.postMessage(
+            JSON.stringify({ event: "command", func: "setVolume", args: [50] }),
+            "*"
+          );
+        }
+      }
+    }
+  }, [volume]);
+
+  // Initialize YouTube Iframe API
   useEffect(() => {
     const initPlayer = () => {
       if (window.YT && window.YT.Player) {
         playerRef.current = new window.YT.Player("youtube-bgm-player", {
-          videoId: YOUTUBE_VIDEO_ID,
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            disablekb: 1,
-            fs: 0,
-            loop: 1,
-            playlist: YOUTUBE_VIDEO_ID,
-            modestbranding: 1,
-            rel: 0,
-            showinfo: 0,
-            iv_load_policy: 3,
-            playsinline: 1,
-          },
           events: {
             onReady: (event: any) => {
-              event.target.setVolume(50); // 50% volume by default
               try {
+                event.target.unMute();
+                event.target.setVolume(50);
                 event.target.playVideo();
                 setIsPlaying(true);
-              } catch (err) {
-                console.log("Autoplay waiting for user interaction");
+              } catch (e) {
+                console.log("Autoplay waiting for initial gesture");
               }
             },
             onStateChange: (event: any) => {
@@ -56,7 +66,7 @@ export default function BackgroundMusic() {
               } else if (event.data === window.YT.PlayerState.PAUSED) {
                 setIsPlaying(false);
               } else if (event.data === window.YT.PlayerState.ENDED) {
-                event.target.playVideo();
+                event.target.playVideo(); // continuous loop
               }
             },
           },
@@ -64,7 +74,7 @@ export default function BackgroundMusic() {
       }
     };
 
-    if (!window.YT) {
+    if (!window.YT || !window.YT.Player) {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
       const firstScriptTag = document.getElementsByTagName("script")[0];
@@ -73,48 +83,62 @@ export default function BackgroundMusic() {
     } else {
       initPlayer();
     }
-
-    return () => {
-      if (playerRef.current && playerRef.current.destroy) {
-        try {
-          playerRef.current.destroy();
-        } catch (e) {
-          // ignore cleanup error
-        }
-      }
-    };
   }, []);
 
-  // Handle browser autoplay policy by starting on first user gesture if blocked
+  // Multi-tier autoplay listeners: start audio on page load or on first cursor move/scroll/click
   useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (!hasInteracted && playerRef.current && typeof playerRef.current.playVideo === "function") {
-        setHasInteracted(true);
-        try {
-          playerRef.current.setVolume(volume);
-          playerRef.current.playVideo();
-          setIsPlaying(true);
-        } catch (e) {
-          // ignore
-        }
-      }
+    let triggered = false;
+    const triggerAudio = () => {
+      if (triggered) return;
+      triggered = true;
+      startPlayback();
+      window.removeEventListener("pointerdown", triggerAudio);
+      window.removeEventListener("click", triggerAudio);
+      window.removeEventListener("touchstart", triggerAudio);
+      window.removeEventListener("scroll", triggerAudio);
+      window.removeEventListener("mousemove", triggerAudio);
+      window.removeEventListener("keydown", triggerAudio);
     };
 
-    window.addEventListener("click", handleFirstInteraction, { once: true });
-    window.addEventListener("touchstart", handleFirstInteraction, { once: true });
-    window.addEventListener("keydown", handleFirstInteraction, { once: true });
+    window.addEventListener("pointerdown", triggerAudio, { passive: true });
+    window.addEventListener("click", triggerAudio, { passive: true });
+    window.addEventListener("touchstart", triggerAudio, { passive: true });
+    window.addEventListener("scroll", triggerAudio, { passive: true });
+    window.addEventListener("mousemove", triggerAudio, { passive: true, once: true });
+    window.addEventListener("keydown", triggerAudio, { passive: true });
+
+    // Automatic triggers on mount
+    const t1 = setTimeout(() => startPlayback(), 500);
+    const t2 = setTimeout(() => startPlayback(), 1500);
+    const t3 = setTimeout(() => startPlayback(), 3000);
 
     return () => {
-      window.removeEventListener("click", handleFirstInteraction);
-      window.removeEventListener("touchstart", handleFirstInteraction);
-      window.removeEventListener("keydown", handleFirstInteraction);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener("pointerdown", triggerAudio);
+      window.removeEventListener("click", triggerAudio);
+      window.removeEventListener("touchstart", triggerAudio);
+      window.removeEventListener("scroll", triggerAudio);
+      window.removeEventListener("mousemove", triggerAudio);
+      window.removeEventListener("keydown", triggerAudio);
     };
-  }, [hasInteracted, volume]);
+  }, [startPlayback]);
 
   // Toggle Play / Pause
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!playerRef.current || typeof playerRef.current.playVideo !== "function") return;
+    if (!playerRef.current || typeof playerRef.current.playVideo !== "function") {
+      // Direct postMessage fallback
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: isPlaying ? "pauseVideo" : "playVideo", args: "" }),
+          "*"
+        );
+      }
+      setIsPlaying(!isPlaying);
+      return;
+    }
 
     if (isPlaying) {
       playerRef.current.pauseVideo();
@@ -137,6 +161,11 @@ export default function BackgroundMusic() {
         playerRef.current.unMute();
         setIsMuted(false);
       }
+    } else if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({ event: "command", func: "setVolume", args: [newVol] }),
+        "*"
+      );
     }
   };
 
@@ -158,16 +187,25 @@ export default function BackgroundMusic() {
 
   return (
     <>
-      {/* Hidden YouTube Iframe Container */}
-      <div className="fixed -top-96 -left-96 w-1 h-1 opacity-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div id="youtube-bgm-player" />
+      {/* Hidden YouTube Iframe with Explicit Autoplay Permissions */}
+      <div 
+        className="fixed bottom-0 left-0 w-12 h-12 opacity-[0.001] pointer-events-none -z-50 overflow-hidden" 
+        aria-hidden="true"
+      >
+        <iframe
+          id="youtube-bgm-player"
+          ref={iframeRef}
+          width="100%"
+          height="100%"
+          src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&playsinline=1&rel=0`}
+          title="Background Music"
+          allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          tabIndex={-1}
+        />
       </div>
 
       {/* Floating BGM Widget Container */}
-      <div 
-        ref={containerRef}
-        className="fixed left-4 sm:left-6 bottom-5 sm:bottom-6 z-50 select-none"
-      >
+      <div className="fixed left-4 sm:left-6 bottom-5 sm:bottom-6 z-50 select-none">
         {/* 🌟 Compact Collapsed Floating Trigger */}
         {!isOpen ? (
           <button
@@ -209,7 +247,7 @@ export default function BackgroundMusic() {
             {/* Quick Play/Pause on icon click */}
             <div 
               onClick={togglePlay}
-              className="w-6 h-6 rounded-lg bg-pink-100 dark:bg-pink-950/80 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-500 text-pink-600 dark:text-pink-300 flex items-center justify-center transition-colors ml-0.5"
+              className="w-6 h-6 rounded-lg bg-pink-100 dark:bg-pink-950/80 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-500 text-pink-600 dark:text-pink-300 flex items-center justify-center transition-colors ml-0.5 cursor-pointer"
               title={isPlaying ? "Jeda Musik" : "Putar Musik"}
             >
               {isPlaying ? <Pause className="w-3 h-3 fill-current" /> : <Play className="w-3 h-3 fill-current ml-0.5" />}
