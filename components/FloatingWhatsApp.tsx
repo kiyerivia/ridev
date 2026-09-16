@@ -23,38 +23,35 @@ export default function FloatingWhatsApp() {
   ];
 
   return (
-    <div className="hidden md:block fixed right-0 bottom-20 sm:bottom-24 z-50 select-none">
-      {/* 🌟 Peeking Button State (Mengintip dari Sisi Kanan) */}
+    <div className="fixed right-0 bottom-24 sm:bottom-28 z-50 select-none">
+      {/* 🌟 Vertical Peeking Button State (Mengintip Vertikal Minimalis & Eye-Catching dari Sisi Kanan) */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="group relative flex items-center gap-2.5 py-3 px-3.5 sm:px-4 rounded-l-2xl bg-gradient-to-l from-[#ff0038] via-[#ff0055] to-[#ff007f] text-white shadow-[-6px_4px_25px_rgba(255,0,127,0.55)] border-y-2 border-l-2 border-r-0 border-pink-400/60 hover:-translate-x-2 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md"
-          aria-label="Buka Chat Konsultasi WhatsApp"
+          className="group relative flex flex-col items-center justify-center py-3.5 px-2 sm:px-2.5 rounded-l-2xl bg-gradient-to-b from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[-5px_0_25px_rgba(255,0,127,0.6)] border-y border-l border-pink-400/60 hover:-translate-x-1.5 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md overflow-hidden"
+          aria-label="Buka Chat Konsultasi CS WhatsApp"
         >
           {/* Glowing Ping Aura */}
-          <span className="animate-ping absolute inset-0 rounded-l-2xl bg-pink-400 opacity-25"></span>
+          <span className="animate-ping absolute inset-0 rounded-l-2xl bg-pink-400 opacity-20 pointer-events-none"></span>
 
-          {/* Left Indicator Chevron */}
-          <ChevronLeft className="w-4 h-4 text-white group-hover:-translate-x-1 transition-transform shrink-0" />
+          {/* Top Indicator Chevron */}
+          <ChevronLeft className="w-3.5 h-3.5 text-pink-200 group-hover:-translate-x-0.5 transition-transform shrink-0 mb-1 opacity-80" />
 
-          {/* Chat Icon & Online Indicator */}
-          <div className="relative shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 shadow-inner group-hover:scale-105 transition-transform">
-              <MessageSquare className="w-5 h-5 text-white fill-white" />
+          {/* Chat Icon & Live Online Dot */}
+          <div className="relative shrink-0 mb-2">
+            <div className="w-8 h-8 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 shadow-inner group-hover:scale-110 transition-transform">
+              <MessageSquare className="w-4 h-4 text-white fill-white" />
             </div>
-            <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#ff0055] absolute -top-1 -right-1 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#ff0055] absolute -top-0.5 -right-0.5 animate-pulse" />
           </div>
 
-          {/* Peeking Label (Hidden on ultra-narrow screens, visible on normal) */}
-          <div className="flex flex-col text-left pr-1">
-            <span className="text-[10px] font-black uppercase tracking-wider text-white flex items-center gap-1 leading-none mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Konsultasi
-            </span>
-            <span className="font-heading font-black text-xs sm:text-sm text-white tracking-wide leading-none">
-              Chat CS
-            </span>
-          </div>
+          {/* Vertical Text "Chat CS" */}
+          <span
+            className="font-heading font-black text-[11px] sm:text-xs text-white tracking-widest uppercase select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] group-hover:text-pink-100 transition-colors py-1"
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+          >
+            Chat CS
+          </span>
         </button>
       )}
 

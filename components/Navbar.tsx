@@ -77,18 +77,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA Action */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-heading font-bold text-xs bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_20px_rgba(255,0,127,0.4)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:brightness-110 active:scale-95 transition-all duration-300"
-          >
-            <MessageSquare className="w-4 h-4 text-white" />
-            <span className="text-white">Konsultasi Gratis</span>
-          </a>
-        </div>
+
 
         {/* Mobile Actions: WA + Hamburger Toggle */}
         <div className="flex items-center gap-2 lg:hidden">
