@@ -20,6 +20,7 @@ import {
   Award,
   CheckCircle,
   XCircle,
+  X,
   TrendingUp,
   Package,
   ShieldCheck,
@@ -106,6 +107,25 @@ export default function Portfolio() {
   const filteredProjects = selectedCategory === "All"
     ? projects
     : projects.filter((p) => p.category.toLowerCase().includes(selectedCategory.toLowerCase()));
+
+  // Close modal on Escape key & manage body scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveAppId(null);
+      }
+    };
+    if (activeAppId) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeAppId]);
 
   // -------------------------------------------------------------
   // 1. HEALTHCARE SIMULATOR STATE
@@ -399,26 +419,33 @@ export default function Portfolio() {
       {/* INTERACTIVE FULL-FUNCTIONAL APP SIMULATOR MODAL               */}
       {/* ============================================================= */}
       {activeAppId && activeProjectData && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
-          <div className="bg-white border border-pink-500/30 rounded-3xl max-w-5xl w-full max-h-[95vh] overflow-hidden flex flex-col shadow-2xl">
+        <div 
+          onClick={() => setActiveAppId(null)}
+          className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white border border-pink-500/30 rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[95vh] sm:max-h-[92vh] overflow-hidden flex flex-col shadow-2xl relative"
+          >
             
-            {/* Modal Top Bar */}
-            <div className="p-4 sm:p-5 border-b border-pink-500/15 flex items-center justify-between bg-slate-50">
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-pink-600 uppercase tracking-wider bg-pink-50 px-2.5 py-1 rounded-md border border-pink-200">
+            {/* Modal Top Bar - Sticky & Mobile Responsive */}
+            <div className="p-3 sm:p-4 md:p-5 border-b border-pink-500/15 flex items-center justify-between gap-2 bg-slate-50 sticky top-0 z-30 shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                <span className="text-[10px] sm:text-xs font-bold text-pink-600 uppercase tracking-wider bg-pink-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-pink-200 shrink-0">
                   {activeProjectData.category}
                 </span>
-                <h3 className="font-heading font-extrabold text-sm sm:text-base text-slate-900 truncate max-w-xs sm:max-w-md">
+                <h3 className="font-heading font-extrabold text-xs sm:text-base text-slate-900 truncate">
                   {activeProjectData.title}
                 </h3>
               </div>
 
-              {/* Device Selector Controls */}
-              <div className="flex items-center gap-3">
+              {/* Device Selector Controls & Prominent Close Button */}
+              <div className="flex items-center gap-2 shrink-0">
                 <div className="hidden sm:flex items-center bg-white rounded-xl p-1 border border-slate-200 shadow-sm">
                   <button
                     onClick={() => setPreviewDevice("desktop")}
                     className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "desktop" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    title="Mode Desktop"
                   >
                     <Monitor className="w-4 h-4" />
                     <span className="hidden md:inline">Desktop</span>
@@ -426,6 +453,7 @@ export default function Portfolio() {
                   <button
                     onClick={() => setPreviewDevice("tablet")}
                     className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "tablet" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    title="Mode Tablet"
                   >
                     <Tablet className="w-4 h-4" />
                     <span className="hidden md:inline">Tablet</span>
@@ -433,17 +461,22 @@ export default function Portfolio() {
                   <button
                     onClick={() => setPreviewDevice("mobile")}
                     className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "mobile" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    title="Mode Mobile"
                   >
                     <Smartphone className="w-4 h-4" />
                     <span className="hidden md:inline">Mobile</span>
                   </button>
                 </div>
 
+                {/* Primary Close Button (Clear, prominent for Mobile & PC) */}
                 <button
                   onClick={() => setActiveAppId(null)}
-                  className="p-2 rounded-full bg-slate-100 hover:bg-rose-500 hover:text-white text-slate-500 text-sm font-bold transition-colors"
+                  className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white border border-rose-200 hover:border-rose-600 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all shadow-sm shrink-0 active:scale-95 group"
+                  aria-label="Tutup Simulator"
+                  title="Tutup Simulator (Esc)"
                 >
-                  ✕
+                  <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" />
+                  <span className="font-bold">Tutup</span>
                 </button>
               </div>
             </div>
@@ -468,12 +501,19 @@ export default function Portfolio() {
               >
                 {/* Browser address bar */}
                 <div className="bg-slate-100 border-b border-slate-200 px-3 py-2 flex items-center justify-between shrink-0 sticky top-0 z-20">
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5 items-center">
+                      <button 
+                        onClick={() => setActiveAppId(null)} 
+                        title="Tutup Simulator" 
+                        className="w-2.5 h-2.5 rounded-full bg-rose-500 hover:opacity-80 transition-opacity cursor-pointer" 
+                      />
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    </div>
+                    <span className="text-[10px] text-slate-400 hidden sm:inline font-mono">demo.app</span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-700 truncate max-w-[280px]">
+                  <span className="text-[11px] font-mono text-slate-700 truncate max-w-[180px] sm:max-w-[280px]">
                     https://{activeAppId}.ridev.app/demo
                   </span>
                   <span className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
@@ -1032,23 +1072,32 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Bottom Project Description & Direct Quote Action */}
+              {/* Bottom Project Description & Direct Quote Action + Close Button */}
               <div className="w-full max-w-4xl p-4 sm:p-5 rounded-2xl bg-slate-900/95 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-left">
+                <div className="text-left w-full sm:w-auto">
                   <span className="text-xs text-slate-400 block font-semibold">
                     Klien: <strong className="text-white">{activeProjectData.client}</strong> • Selesai: <strong className="text-cyan-300">{activeProjectData.year}</strong>
                   </span>
                   <p className="text-xs sm:text-sm text-slate-200 mt-0.5">{activeProjectData.subtitle}</p>
                 </div>
-                <a
-                  href={createWhatsAppLink(`Halo RIDEV (Rivia Developer), saya telah mencoba simulasi mockup interaktif *${activeProjectData.title}*. Saya ingin memesan website/aplikasi dengan sistem serupa untuk bisnis saya.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 text-xs font-black whitespace-nowrap shadow-xl hover:brightness-110 active:scale-95 transition-all flex items-center gap-2 shrink-0"
-                >
-                  <span>Pesan Desain & Fitur Serupa via WA</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto shrink-0">
+                  <button
+                    onClick={() => setActiveAppId(null)}
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-rose-950/60 text-slate-300 hover:text-rose-300 text-xs font-bold border border-slate-700 hover:border-rose-500/40 transition-all flex items-center justify-center gap-1.5 active:scale-95 cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                    <span>Tutup Simulator</span>
+                  </button>
+                  <a
+                    href={createWhatsAppLink(`Halo RIDEV (Rivia Developer), saya telah mencoba simulasi mockup interaktif *${activeProjectData.title}*. Saya ingin memesan website/aplikasi dengan sistem serupa untuk bisnis saya.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 text-xs font-black whitespace-nowrap shadow-xl hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-2"
+                  >
+                    <span>Pesan via WA</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
 
             </div>

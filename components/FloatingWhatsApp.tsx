@@ -23,7 +23,7 @@ export default function FloatingWhatsApp() {
   ];
 
   return (
-    <div className="fixed right-0 bottom-20 sm:bottom-24 z-50 select-none">
+    <div className="hidden md:block fixed right-0 bottom-20 sm:bottom-24 z-50 select-none">
       {/* 🌟 Peeking Button State (Mengintip dari Sisi Kanan) */}
       {!open && (
         <button

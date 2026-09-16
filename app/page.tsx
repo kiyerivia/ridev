@@ -13,7 +13,6 @@ import Testimonials from "@/components/Testimonials";
 import ClosingTrustBanner from "@/components/ClosingTrustBanner";
 import ConsultationForm from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
-import LiveSalesNotification from "@/components/LiveSalesNotification";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AnimatedCyberWallpaper from "@/components/AnimatedCyberWallpaper";
 
@@ -65,7 +64,6 @@ export default function Home() {
       <Footer />
 
       {/* Floating Widgets */}
-      <LiveSalesNotification />
       <FloatingWhatsApp />
     </main>
   );

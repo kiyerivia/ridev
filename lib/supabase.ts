@@ -63,7 +63,7 @@ export const DEFAULT_PORTFOLIO: PortfolioItem[] = [
     description:
       "Sistem pendaftaran pasien online, profil dokter spesialis, jadwal konsultasi terpadu, dan rekam medis elektronik.",
     tech_stack: ["Next.js 14", "Tailwind CSS", "Supabase Auth", "PostgreSQL"],
-    image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&auto=format&fit=crop&q=80",
+    image_url: "/Medika Care.png",
     live_demo_url: "https://medikacare-demo.vercel.app",
     client_name: "Klinik Utama Medika Sehat",
     completion_year: "2026",

@@ -196,8 +196,8 @@ export default function Hero() {
 
                 <div className="mt-3 relative rounded-xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-800 group shadow-inner">
                   <img
-                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80"
-                    alt="Healthcare Web App Showcase"
+                    src="/Medika Care.png"
+                    alt="Medika Care Web App Showcase"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
