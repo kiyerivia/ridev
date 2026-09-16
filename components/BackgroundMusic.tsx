@@ -5,8 +5,7 @@ import { Volume2, VolumeX, Volume1, Play, Pause, Music, X, ChevronDown, Sparkles
 
 declare global {
   interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
+    SC: any;
   }
 }
 
@@ -16,86 +15,77 @@ export default function BackgroundMusic() {
   const [volume, setVolume] = useState<number>(50); // Default 50%
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
-  const playerRef = useRef<any>(null);
+  const widgetRef = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const YOUTUBE_VIDEO_ID = "T2hVthpcWK8"; // Lagu Backsound Genshin Yang Nyaman
+
+  // SoundCloud Track URL from user
+  const SOUNDCLOUD_TRACK_URL = "https://soundcloud.com/kiyerivia/1-hour-of-relaxing-genshin";
+  const SOUNDCLOUD_EMBED_URL = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
+    SOUNDCLOUD_TRACK_URL
+  )}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
 
   // Safe playback trigger
   const startPlayback = useCallback(() => {
-    if (playerRef.current) {
+    if (widgetRef.current) {
       try {
-        if (typeof playerRef.current.unMute === "function") playerRef.current.unMute();
-        if (typeof playerRef.current.setVolume === "function") playerRef.current.setVolume(volume || 50);
-        if (typeof playerRef.current.playVideo === "function") playerRef.current.playVideo();
+        const targetVol = isMuted ? 0 : (volume || 50);
+        widgetRef.current.setVolume(targetVol);
+        widgetRef.current.play();
         setIsPlaying(true);
-        setIsMuted(false);
       } catch (err) {
         // ignore
       }
     }
-    // Fallback postMessage to iframe contentWindow
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      try {
-        iframeRef.current.contentWindow.postMessage(
-          JSON.stringify({ event: "command", func: "unMute", args: [] }),
-          "*"
-        );
-        iframeRef.current.contentWindow.postMessage(
-          JSON.stringify({ event: "command", func: "setVolume", args: [volume || 50] }),
-          "*"
-        );
-        iframeRef.current.contentWindow.postMessage(
-          JSON.stringify({ event: "command", func: "playVideo", args: [] }),
-          "*"
-        );
-      } catch (e) {
-        // ignore
-      }
-    }
-  }, [volume]);
+  }, [volume, isMuted]);
 
-  // Initialize YouTube Iframe API
+  // Load SoundCloud Widget API Script & Initialize Widget
   useEffect(() => {
-    const initPlayer = () => {
-      if (window.YT && window.YT.Player) {
-        playerRef.current = new window.YT.Player("youtube-bgm-player", {
-          events: {
-            onReady: (event: any) => {
-              try {
-                event.target.unMute();
-                event.target.setVolume(50);
-                event.target.playVideo();
-                setIsPlaying(true);
-              } catch (e) {
-                console.log("Autoplay waiting for initial gesture");
-              }
-            },
-            onStateChange: (event: any) => {
-              if (event.data === window.YT.PlayerState.PLAYING) {
-                setIsPlaying(true);
-              } else if (event.data === window.YT.PlayerState.PAUSED) {
-                setIsPlaying(false);
-              } else if (event.data === window.YT.PlayerState.ENDED) {
-                event.target.playVideo(); // continuous loop
-              }
-            },
-          },
-        });
+    const initSCWidget = () => {
+      if (window.SC && window.SC.Widget && iframeRef.current) {
+        try {
+          const widget = window.SC.Widget(iframeRef.current);
+          widgetRef.current = widget;
+
+          widget.bind(window.SC.Widget.Events.READY, () => {
+            // Set 50% volume and attempt autoplay
+            widget.setVolume(50);
+            widget.play();
+            setIsPlaying(true);
+          });
+
+          widget.bind(window.SC.Widget.Events.PLAY, () => {
+            setIsPlaying(true);
+          });
+
+          widget.bind(window.SC.Widget.Events.PAUSE, () => {
+            setIsPlaying(false);
+          });
+
+          widget.bind(window.SC.Widget.Events.FINISH, () => {
+            // Continuous loop
+            widget.seekTo(0);
+            widget.play();
+          });
+        } catch (e) {
+          console.log("SoundCloud Widget initialization error", e);
+        }
       }
     };
 
-    if (!window.YT || !window.YT.Player) {
+    if (!window.SC || !window.SC.Widget) {
       const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-      window.onYouTubeIframeAPIReady = initPlayer;
+      tag.src = "https://w.soundcloud.com/player/api.js";
+      tag.async = true;
+      tag.onload = () => {
+        initSCWidget();
+      };
+      document.head.appendChild(tag);
     } else {
-      initPlayer();
+      initSCWidget();
     }
   }, []);
 
-  // Multi-tier autoplay listeners: start audio on page load or on first cursor move/scroll/click
+  // Multi-tier autoplay gesture trigger to ensure audio plays when user interacts with page
   useEffect(() => {
     let triggered = false;
     const triggerAudio = () => {
@@ -117,15 +107,12 @@ export default function BackgroundMusic() {
     window.addEventListener("mousemove", triggerAudio, { passive: true, once: true });
     window.addEventListener("keydown", triggerAudio, { passive: true });
 
-    // Automatic triggers on mount
     const t1 = setTimeout(() => startPlayback(), 500);
     const t2 = setTimeout(() => startPlayback(), 1500);
-    const t3 = setTimeout(() => startPlayback(), 3000);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
       window.removeEventListener("pointerdown", triggerAudio);
       window.removeEventListener("click", triggerAudio);
       window.removeEventListener("touchstart", triggerAudio);
@@ -138,78 +125,69 @@ export default function BackgroundMusic() {
   // Toggle Play / Pause
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!playerRef.current || typeof playerRef.current.playVideo !== "function") {
-      // Direct postMessage fallback
-      if (iframeRef.current && iframeRef.current.contentWindow) {
-        iframeRef.current.contentWindow.postMessage(
-          JSON.stringify({ event: "command", func: isPlaying ? "pauseVideo" : "playVideo", args: "" }),
-          "*"
-        );
-      }
-      setIsPlaying(!isPlaying);
-      return;
-    }
+    if (!widgetRef.current) return;
 
-    if (isPlaying) {
-      playerRef.current.pauseVideo();
-      setIsPlaying(false);
-    } else {
-      playerRef.current.playVideo();
-      setIsPlaying(true);
+    try {
+      if (isPlaying) {
+        widgetRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        widgetRef.current.setVolume(isMuted ? 0 : (volume || 50));
+        widgetRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (err) {
+      setIsPlaying(!isPlaying);
     }
   };
 
-  // Handle Volume Change
+  // Handle Volume Change (0 to 100)
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVol = parseInt(e.target.value, 10);
     setVolume(newVol);
-    if (playerRef.current && typeof playerRef.current.setVolume === "function") {
-      playerRef.current.setVolume(newVol);
+    if (widgetRef.current && typeof widgetRef.current.setVolume === "function") {
+      widgetRef.current.setVolume(newVol);
       if (newVol === 0) {
         setIsMuted(true);
       } else if (isMuted) {
-        playerRef.current.unMute();
         setIsMuted(false);
       }
-    } else if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: "command", func: "setVolume", args: [newVol] }),
-        "*"
-      );
     }
   };
 
   // Toggle Mute
   const toggleMute = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!playerRef.current || typeof playerRef.current.mute !== "function") return;
+    if (!widgetRef.current) return;
 
     if (isMuted) {
-      playerRef.current.unMute();
-      playerRef.current.setVolume(volume > 0 ? volume : 50);
+      const restoreVol = volume > 0 ? volume : 50;
+      widgetRef.current.setVolume(restoreVol);
       if (volume === 0) setVolume(50);
       setIsMuted(false);
     } else {
-      playerRef.current.mute();
+      widgetRef.current.setVolume(0);
       setIsMuted(true);
     }
   };
 
   return (
     <>
-      {/* Hidden YouTube Iframe with Explicit Autoplay Permissions */}
+      {/* Hidden SoundCloud Iframe Embed with Explicit Autoplay & Audio Permissions */}
       <div 
         className="fixed bottom-0 left-0 w-12 h-12 opacity-[0.001] pointer-events-none -z-50 overflow-hidden" 
         aria-hidden="true"
       >
         <iframe
-          id="youtube-bgm-player"
+          id="sc-bgm-player"
           ref={iframeRef}
           width="100%"
           height="100%"
-          src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&playsinline=1&rel=0`}
-          title="Background Music"
-          allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          scrolling="no"
+          frameBorder="no"
+          allow="autoplay"
+          src={SOUNDCLOUD_EMBED_URL}
+          title="SoundCloud Background Music"
           tabIndex={-1}
         />
       </div>
@@ -222,7 +200,7 @@ export default function BackgroundMusic() {
             onClick={() => setIsOpen(true)}
             className="group relative flex items-center gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-white/90 dark:bg-[#120822]/90 backdrop-blur-xl border border-pink-400/50 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.3)] hover:border-pink-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
             aria-label="Buka Pengatur Volume BGM"
-            title="Buka Pengatur Volume Musik (Genshin Relaxing BGM)"
+            title="Buka Pengatur Volume Musik (SoundCloud BGM)"
           >
             {/* Holographic glowing border pulse when playing */}
             {isPlaying && (
@@ -275,10 +253,10 @@ export default function BackgroundMusic() {
                 </div>
                 <div className="flex flex-col truncate">
                   <span className="text-[10px] font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider">
-                    Backsound Studio
+                    SoundCloud BGM • kiyerivia
                   </span>
                   <span className="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">
-                    Genshin Relaxing BGM
+                    Relaxing Genshin Impact Music
                   </span>
                 </div>
               </div>
