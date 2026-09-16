@@ -11,18 +11,18 @@ declare global {
 
 export default function BackgroundMusic() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(50); // Default 50%
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
   const widgetRef = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // SoundCloud Track URL from user
-  const SOUNDCLOUD_TRACK_URL = "https://soundcloud.com/kiyerivia/1-hour-of-relaxing-genshin";
+  // SoundCloud Direct Track API URL for instant loading & autoplay
+  const SOUNDCLOUD_TRACK_API = "https://api.soundcloud.com/tracks/2401661328";
   const SOUNDCLOUD_EMBED_URL = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
-    SOUNDCLOUD_TRACK_URL
-  )}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
+    SOUNDCLOUD_TRACK_API
+  )}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&buying=false&sharing=false&download=false&show_artwork=false&show_playcount=false`;
 
   // Safe playback trigger
   const startPlayback = useCallback(() => {
@@ -31,47 +31,49 @@ export default function BackgroundMusic() {
         const targetVol = isMuted ? 0 : (volume || 50);
         widgetRef.current.setVolume(targetVol);
         widgetRef.current.play();
-        setIsPlaying(true);
       } catch (err) {
-        // ignore
+        console.log("Audio playback error:", err);
       }
     }
   }, [volume, isMuted]);
 
-  // Load SoundCloud Widget API Script & Initialize Widget
-  useEffect(() => {
-    const initSCWidget = () => {
-      if (window.SC && window.SC.Widget && iframeRef.current) {
-        try {
-          const widget = window.SC.Widget(iframeRef.current);
-          widgetRef.current = widget;
+  // Initialize SoundCloud Widget
+  const initSCWidget = useCallback(() => {
+    if (window.SC && window.SC.Widget && iframeRef.current) {
+      try {
+        const widget = window.SC.Widget(iframeRef.current);
+        widgetRef.current = widget;
 
-          widget.bind(window.SC.Widget.Events.READY, () => {
-            // Set 50% volume and attempt autoplay
-            widget.setVolume(50);
-            widget.play();
-            setIsPlaying(true);
-          });
+        widget.bind(window.SC.Widget.Events.READY, () => {
+          const targetVol = isMuted ? 0 : (volume || 50);
+          widget.setVolume(targetVol);
+          widget.play();
+        });
 
-          widget.bind(window.SC.Widget.Events.PLAY, () => {
-            setIsPlaying(true);
-          });
+        widget.bind(window.SC.Widget.Events.PLAY, () => {
+          setIsPlaying(true);
+        });
 
-          widget.bind(window.SC.Widget.Events.PAUSE, () => {
-            setIsPlaying(false);
-          });
+        widget.bind(window.SC.Widget.Events.PLAY_PROGRESS, () => {
+          setIsPlaying(true);
+        });
 
-          widget.bind(window.SC.Widget.Events.FINISH, () => {
-            // Continuous loop
-            widget.seekTo(0);
-            widget.play();
-          });
-        } catch (e) {
-          console.log("SoundCloud Widget initialization error", e);
-        }
+        widget.bind(window.SC.Widget.Events.PAUSE, () => {
+          setIsPlaying(false);
+        });
+
+        widget.bind(window.SC.Widget.Events.FINISH, () => {
+          widget.seekTo(0);
+          widget.play();
+        });
+      } catch (e) {
+        console.log("SoundCloud Widget initialization error:", e);
       }
-    };
+    }
+  }, [volume, isMuted]);
 
+  // Load SoundCloud Widget API Script
+  useEffect(() => {
     if (!window.SC || !window.SC.Widget) {
       const tag = document.createElement("script");
       tag.src = "https://w.soundcloud.com/player/api.js";
@@ -83,42 +85,47 @@ export default function BackgroundMusic() {
     } else {
       initSCWidget();
     }
-  }, []);
+  }, [initSCWidget]);
 
-  // Multi-tier autoplay gesture trigger to ensure audio plays when user interacts with page
+  // Multi-tier Autoplay Engine:
+  // 1. Tries automatic play upon load
+  // 2. Unlocks instantly on any user gesture (tap/click/scroll/touch) anywhere on page to bypass browser autoplay restrictions
   useEffect(() => {
     let triggered = false;
     const triggerAudio = () => {
       if (triggered) return;
       triggered = true;
       startPlayback();
-      window.removeEventListener("pointerdown", triggerAudio);
-      window.removeEventListener("click", triggerAudio);
-      window.removeEventListener("touchstart", triggerAudio);
-      window.removeEventListener("scroll", triggerAudio);
-      window.removeEventListener("mousemove", triggerAudio);
-      window.removeEventListener("keydown", triggerAudio);
+      document.removeEventListener("pointerdown", triggerAudio, true);
+      document.removeEventListener("click", triggerAudio, true);
+      document.removeEventListener("touchstart", triggerAudio, true);
+      document.removeEventListener("scroll", triggerAudio, true);
+      document.removeEventListener("keydown", triggerAudio, true);
     };
 
-    window.addEventListener("pointerdown", triggerAudio, { passive: true });
-    window.addEventListener("click", triggerAudio, { passive: true });
-    window.addEventListener("touchstart", triggerAudio, { passive: true });
-    window.addEventListener("scroll", triggerAudio, { passive: true });
-    window.addEventListener("mousemove", triggerAudio, { passive: true, once: true });
-    window.addEventListener("keydown", triggerAudio, { passive: true });
+    // Global capture listener to catch first interaction
+    document.addEventListener("pointerdown", triggerAudio, { capture: true, passive: true });
+    document.addEventListener("click", triggerAudio, { capture: true, passive: true });
+    document.addEventListener("touchstart", triggerAudio, { capture: true, passive: true });
+    document.addEventListener("scroll", triggerAudio, { capture: true, passive: true });
+    document.addEventListener("keydown", triggerAudio, { capture: true, passive: true });
 
-    const t1 = setTimeout(() => startPlayback(), 500);
-    const t2 = setTimeout(() => startPlayback(), 1500);
+    // Aggressive retries for environments where autoplay is pre-permitted
+    const t1 = setTimeout(() => startPlayback(), 300);
+    const t2 = setTimeout(() => startPlayback(), 800);
+    const t3 = setTimeout(() => startPlayback(), 1600);
+    const t4 = setTimeout(() => startPlayback(), 2800);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      window.removeEventListener("pointerdown", triggerAudio);
-      window.removeEventListener("click", triggerAudio);
-      window.removeEventListener("touchstart", triggerAudio);
-      window.removeEventListener("scroll", triggerAudio);
-      window.removeEventListener("mousemove", triggerAudio);
-      window.removeEventListener("keydown", triggerAudio);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      document.removeEventListener("pointerdown", triggerAudio, true);
+      document.removeEventListener("click", triggerAudio, true);
+      document.removeEventListener("touchstart", triggerAudio, true);
+      document.removeEventListener("scroll", triggerAudio, true);
+      document.removeEventListener("keydown", triggerAudio, true);
     };
   }, [startPlayback]);
 
@@ -173,9 +180,9 @@ export default function BackgroundMusic() {
 
   return (
     <>
-      {/* Hidden SoundCloud Iframe Embed with Explicit Autoplay & Audio Permissions */}
+      {/* SoundCloud Iframe Embed with Full Autoplay & Audio Media Permissions */}
       <div 
-        className="fixed bottom-0 left-0 w-12 h-12 opacity-[0.001] pointer-events-none -z-50 overflow-hidden" 
+        className="fixed -bottom-96 -left-96 w-80 h-40 opacity-0 pointer-events-none -z-50 overflow-hidden" 
         aria-hidden="true"
       >
         <iframe
@@ -185,8 +192,9 @@ export default function BackgroundMusic() {
           height="100%"
           scrolling="no"
           frameBorder="no"
-          allow="autoplay"
+          allow="autoplay; encrypted-media; fullscreen"
           src={SOUNDCLOUD_EMBED_URL}
+          onLoad={initSCWidget}
           title="SoundCloud Background Music"
           tabIndex={-1}
         />
@@ -197,7 +205,12 @@ export default function BackgroundMusic() {
         {/* 🌟 Compact Floating Equalizer Trigger (Only Equalizer Icon, opens details on click) */}
         {!isOpen ? (
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setIsOpen(true);
+              if (!isPlaying) {
+                startPlayback();
+              }
+            }}
             className="group relative w-12 h-12 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-xl border-2 border-pink-500/50 dark:border-pink-500/60 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.35)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:border-pink-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
             aria-label="Buka Pengatur Musik"
             title="Buka Pengatur Musik BGM"
