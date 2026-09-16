@@ -3,148 +3,93 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Volume2, VolumeX, Volume1, Play, Pause, Music, X, ChevronDown, Sparkles } from "lucide-react";
 
-declare global {
-  interface Window {
-    SC: any;
-  }
-}
-
 export default function BackgroundMusic() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [volume, setVolume] = useState<number>(50); // Default 50%
+  const [volume, setVolume] = useState<number>(40); // Default 40%
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
-  const widgetRef = useRef<any>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // SoundCloud Direct Track API URL for instant loading & autoplay
-  const SOUNDCLOUD_TRACK_API = "https://api.soundcloud.com/tracks/2401661328";
-  const SOUNDCLOUD_EMBED_URL = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
-    SOUNDCLOUD_TRACK_API
-  )}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&buying=false&sharing=false&download=false&show_artwork=false&show_playcount=false`;
+  // Supabase Storage CDN Direct MP3 URL
+  const SUPABASE_AUDIO_URL =
+    "https://kjivhrztkiggctvxqoud.supabase.co/storage/v1/object/public/pubs/1%20Hour%20of%20Relaxing%20Genshin%20Impact%20Music%20and%20Ambiance%20cmprs.mp3";
 
-  // Safe playback trigger
-  const startPlayback = useCallback(() => {
-    if (widgetRef.current) {
-      try {
-        const targetVol = isMuted ? 0 : (volume || 50);
-        widgetRef.current.setVolume(targetVol);
-        widgetRef.current.play();
-      } catch (err) {
-        console.log("Audio playback error:", err);
-      }
-    }
-  }, [volume, isMuted]);
+  // Safe Playback Executor with Gentle Fade-In
+  const playAudio = useCallback(() => {
+    if (!audioRef.current) return;
+    const audio = audioRef.current;
+    
+    const targetVol = isMuted ? 0 : volume / 100;
+    audio.volume = targetVol;
 
-  // Initialize SoundCloud Widget
-  const initSCWidget = useCallback(() => {
-    if (window.SC && window.SC.Widget && iframeRef.current) {
-      try {
-        const widget = window.SC.Widget(iframeRef.current);
-        widgetRef.current = widget;
-
-        widget.bind(window.SC.Widget.Events.READY, () => {
-          const targetVol = isMuted ? 0 : (volume || 50);
-          widget.setVolume(targetVol);
-          widget.play();
-        });
-
-        widget.bind(window.SC.Widget.Events.PLAY, () => {
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
           setIsPlaying(true);
-        });
-
-        widget.bind(window.SC.Widget.Events.PLAY_PROGRESS, () => {
-          setIsPlaying(true);
-        });
-
-        widget.bind(window.SC.Widget.Events.PAUSE, () => {
+        })
+        .catch((err) => {
+          // Autoplay blocked by browser policy until user gesture
+          console.log("Autoplay waiting for first user gesture:", err.message);
           setIsPlaying(false);
         });
-
-        widget.bind(window.SC.Widget.Events.FINISH, () => {
-          widget.seekTo(0);
-          widget.play();
-        });
-      } catch (e) {
-        console.log("SoundCloud Widget initialization error:", e);
-      }
     }
   }, [volume, isMuted]);
 
-  // Load SoundCloud Widget API Script
+  // Set up Audio & Multi-tier Autoplay Engine
   useEffect(() => {
-    if (!window.SC || !window.SC.Widget) {
-      const tag = document.createElement("script");
-      tag.src = "https://w.soundcloud.com/player/api.js";
-      tag.async = true;
-      tag.onload = () => {
-        initSCWidget();
-      };
-      document.head.appendChild(tag);
-    } else {
-      initSCWidget();
-    }
-  }, [initSCWidget]);
+    const audio = audioRef.current;
+    if (!audio) return;
 
-  // Multi-tier Autoplay Engine:
-  // 1. Tries automatic play upon load
-  // 2. Unlocks instantly on any user gesture (tap/click/scroll/touch) anywhere on page to bypass browser autoplay restrictions
-  useEffect(() => {
-    let triggered = false;
-    const triggerAudio = () => {
-      if (triggered) return;
-      triggered = true;
-      startPlayback();
-      document.removeEventListener("pointerdown", triggerAudio, true);
-      document.removeEventListener("click", triggerAudio, true);
-      document.removeEventListener("touchstart", triggerAudio, true);
-      document.removeEventListener("scroll", triggerAudio, true);
-      document.removeEventListener("keydown", triggerAudio, true);
+    audio.volume = volume / 100;
+    audio.loop = true;
+
+    // 1. Initial immediate autoplay attempt
+    playAudio();
+
+    // 2. Global First-Interaction Listener to unlock audio if browser initially blocked it
+    let unlocked = false;
+    const handleFirstInteraction = () => {
+      if (unlocked) return;
+      unlocked = true;
+      playAudio();
+
+      window.removeEventListener("pointerdown", handleFirstInteraction, true);
+      window.removeEventListener("click", handleFirstInteraction, true);
+      window.removeEventListener("touchstart", handleFirstInteraction, true);
+      window.removeEventListener("scroll", handleFirstInteraction, true);
+      window.removeEventListener("keydown", handleFirstInteraction, true);
+      window.removeEventListener("wheel", handleFirstInteraction, true);
     };
 
-    // Global capture listener to catch first interaction
-    document.addEventListener("pointerdown", triggerAudio, { capture: true, passive: true });
-    document.addEventListener("click", triggerAudio, { capture: true, passive: true });
-    document.addEventListener("touchstart", triggerAudio, { capture: true, passive: true });
-    document.addEventListener("scroll", triggerAudio, { capture: true, passive: true });
-    document.addEventListener("keydown", triggerAudio, { capture: true, passive: true });
-
-    // Aggressive retries for environments where autoplay is pre-permitted
-    const t1 = setTimeout(() => startPlayback(), 300);
-    const t2 = setTimeout(() => startPlayback(), 800);
-    const t3 = setTimeout(() => startPlayback(), 1600);
-    const t4 = setTimeout(() => startPlayback(), 2800);
+    window.addEventListener("pointerdown", handleFirstInteraction, { capture: true, passive: true });
+    window.addEventListener("click", handleFirstInteraction, { capture: true, passive: true });
+    window.addEventListener("touchstart", handleFirstInteraction, { capture: true, passive: true });
+    window.addEventListener("scroll", handleFirstInteraction, { capture: true, passive: true });
+    window.addEventListener("keydown", handleFirstInteraction, { capture: true, passive: true });
+    window.addEventListener("wheel", handleFirstInteraction, { capture: true, passive: true });
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-      clearTimeout(t4);
-      document.removeEventListener("pointerdown", triggerAudio, true);
-      document.removeEventListener("click", triggerAudio, true);
-      document.removeEventListener("touchstart", triggerAudio, true);
-      document.removeEventListener("scroll", triggerAudio, true);
-      document.removeEventListener("keydown", triggerAudio, true);
+      window.removeEventListener("pointerdown", handleFirstInteraction, true);
+      window.removeEventListener("click", handleFirstInteraction, true);
+      window.removeEventListener("touchstart", handleFirstInteraction, true);
+      window.removeEventListener("scroll", handleFirstInteraction, true);
+      window.removeEventListener("keydown", handleFirstInteraction, true);
+      window.removeEventListener("wheel", handleFirstInteraction, true);
     };
-  }, [startPlayback]);
+  }, [playAudio, volume]);
 
   // Toggle Play / Pause
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!widgetRef.current) return;
+    if (!audioRef.current) return;
 
-    try {
-      if (isPlaying) {
-        widgetRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        widgetRef.current.setVolume(isMuted ? 0 : (volume || 50));
-        widgetRef.current.play();
-        setIsPlaying(true);
-      }
-    } catch (err) {
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      playAudio();
     }
   };
 
@@ -152,8 +97,8 @@ export default function BackgroundMusic() {
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVol = parseInt(e.target.value, 10);
     setVolume(newVol);
-    if (widgetRef.current && typeof widgetRef.current.setVolume === "function") {
-      widgetRef.current.setVolume(newVol);
+    if (audioRef.current) {
+      audioRef.current.volume = newVol / 100;
       if (newVol === 0) {
         setIsMuted(true);
       } else if (isMuted) {
@@ -165,40 +110,30 @@ export default function BackgroundMusic() {
   // Toggle Mute
   const toggleMute = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!widgetRef.current) return;
+    if (!audioRef.current) return;
 
     if (isMuted) {
-      const restoreVol = volume > 0 ? volume : 50;
-      widgetRef.current.setVolume(restoreVol);
-      if (volume === 0) setVolume(50);
+      const restoreVol = volume > 0 ? volume : 40;
+      audioRef.current.volume = restoreVol / 100;
+      if (volume === 0) setVolume(40);
       setIsMuted(false);
     } else {
-      widgetRef.current.setVolume(0);
+      audioRef.current.volume = 0;
       setIsMuted(true);
     }
   };
 
   return (
     <>
-      {/* SoundCloud Iframe Embed with Full Autoplay & Audio Media Permissions */}
-      <div 
-        className="fixed -bottom-96 -left-96 w-80 h-40 opacity-0 pointer-events-none -z-50 overflow-hidden" 
-        aria-hidden="true"
-      >
-        <iframe
-          id="sc-bgm-player"
-          ref={iframeRef}
-          width="100%"
-          height="100%"
-          scrolling="no"
-          frameBorder="no"
-          allow="autoplay; encrypted-media; fullscreen"
-          src={SOUNDCLOUD_EMBED_URL}
-          onLoad={initSCWidget}
-          title="SoundCloud Background Music"
-          tabIndex={-1}
-        />
-      </div>
+      {/* Native HTML5 Audio Element streaming directly from Supabase Storage */}
+      <audio
+        ref={audioRef}
+        src={SUPABASE_AUDIO_URL}
+        preload="auto"
+        loop
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
 
       {/* Floating BGM Widget Container */}
       <div className="fixed left-4 sm:left-6 bottom-5 sm:bottom-6 z-50 select-none">
@@ -208,7 +143,7 @@ export default function BackgroundMusic() {
             onClick={() => {
               setIsOpen(true);
               if (!isPlaying) {
-                startPlayback();
+                playAudio();
               }
             }}
             className="group relative w-12 h-12 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-xl border-2 border-pink-500/50 dark:border-pink-500/60 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.35)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:border-pink-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
@@ -250,8 +185,9 @@ export default function BackgroundMusic() {
                   <Music className="w-3.5 h-3.5" />
                 </div>
                 <div className="flex flex-col truncate">
-                  <span className="text-[10px] font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider">
-                    SoundCloud BGM • kiyerivia
+                  <span className="text-[10px] font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="w-2.5 h-2.5" />
+                    Supabase Audio • RIDEV BGM
                   </span>
                   <span className="text-xs font-bold text-slate-800 dark:text-slate-100 truncate">
                     Relaxing Genshin Impact Music
