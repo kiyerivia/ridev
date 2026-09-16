@@ -194,51 +194,36 @@ export default function BackgroundMusic() {
 
       {/* Floating BGM Widget Container */}
       <div className="fixed left-4 sm:left-6 bottom-5 sm:bottom-6 z-50 select-none">
-        {/* 🌟 Compact Collapsed Floating Trigger */}
+        {/* 🌟 Compact Floating Equalizer Trigger (Only Equalizer Icon, opens details on click) */}
         {!isOpen ? (
           <button
             onClick={() => setIsOpen(true)}
-            className="group relative flex items-center gap-2.5 py-2.5 px-3.5 sm:px-4 rounded-2xl bg-white/90 dark:bg-[#120822]/90 backdrop-blur-xl border border-pink-400/50 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.3)] hover:border-pink-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
-            aria-label="Buka Pengatur Volume BGM"
-            title="Buka Pengatur Volume Musik (SoundCloud BGM)"
+            className="group relative w-12 h-12 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-xl border-2 border-pink-500/50 dark:border-pink-500/60 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.35)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:border-pink-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
+            aria-label="Buka Pengatur Musik"
+            title="Buka Pengatur Musik BGM"
           >
-            {/* Holographic glowing border pulse when playing */}
+            {/* Holographic glowing pulse when playing */}
             {isPlaying && (
-              <span className="animate-ping absolute inset-0 rounded-2xl bg-pink-500/20 pointer-events-none" />
+              <span className="animate-ping absolute inset-0 rounded-2xl bg-pink-500/25 pointer-events-none" />
             )}
 
-            {/* Music Equalizer Waves Icon */}
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-pink-500/20 to-purple-500/20 border border-pink-400/40 flex items-center justify-center text-pink-600 dark:text-pink-400 shadow-sm shrink-0">
+            {/* Lively Animated Equalizer Sound Waves */}
+            <div className="flex items-end justify-center gap-1 h-5 w-5">
               {isPlaying ? (
-                <div className="flex items-end gap-0.5 h-3.5">
-                  <span className="w-0.5 bg-pink-500 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "0ms", height: "100%" }} />
-                  <span className="w-0.5 bg-pink-500 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "200ms", height: "60%" }} />
-                  <span className="w-0.5 bg-pink-500 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "400ms", height: "90%" }} />
-                  <span className="w-0.5 bg-pink-500 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "150ms", height: "40%" }} />
-                </div>
+                <>
+                  <span className="w-1 bg-gradient-to-t from-pink-600 to-rose-400 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "0ms", height: "100%" }} />
+                  <span className="w-1 bg-gradient-to-t from-pink-600 to-rose-400 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "200ms", height: "55%" }} />
+                  <span className="w-1 bg-gradient-to-t from-pink-600 to-rose-400 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "400ms", height: "85%" }} />
+                  <span className="w-1 bg-gradient-to-t from-pink-600 to-rose-400 rounded-full animate-[bounce_0.8s_infinite_ease-in-out]" style={{ animationDelay: "150ms", height: "40%" }} />
+                </>
               ) : (
-                <Music className="w-4 h-4" />
+                <>
+                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-2" />
+                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-3" />
+                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-2" />
+                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-1" />
+                </>
               )}
-            </div>
-
-            {/* Label & Volume Indicator */}
-            <div className="flex flex-col text-left pr-1">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 flex items-center gap-1 leading-none mb-0.5">
-                <Sparkles className="w-2.5 h-2.5" />
-                <span>BGM</span>
-              </span>
-              <span className="font-heading font-black text-xs text-slate-800 dark:text-slate-100 flex items-center gap-1">
-                {isMuted || volume === 0 ? "Mute" : `${volume}%`}
-              </span>
-            </div>
-
-            {/* Quick Play/Pause on icon click */}
-            <div 
-              onClick={togglePlay}
-              className="w-6 h-6 rounded-lg bg-pink-100 dark:bg-pink-950/80 hover:bg-pink-500 hover:text-white dark:hover:bg-pink-500 text-pink-600 dark:text-pink-300 flex items-center justify-center transition-colors ml-0.5 cursor-pointer"
-              title={isPlaying ? "Jeda Musik" : "Putar Musik"}
-            >
-              {isPlaying ? <Pause className="w-3 h-3 fill-current" /> : <Play className="w-3 h-3 fill-current ml-0.5" />}
             </div>
           </button>
         ) : (
