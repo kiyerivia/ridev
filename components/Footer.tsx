@@ -36,14 +36,12 @@ export default function Footer() {
           
           {/* Col 1: Brand & Bio (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(255,0,127,0.35)] border-2 border-pink-500/60 bg-[#0d0814] p-0.5 flex items-center justify-center">
-                <img
-                  src="/logo.png"
-                  alt="RIDEV Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
+              <img
+                src="/logo.png"
+                alt="RIDEV Logo"
+                className="h-10 sm:h-11 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
+              />
               <div className="flex flex-col">
                 <div className="flex items-center gap-1">
                   <span className="font-heading font-black text-lg text-white">RI</span>

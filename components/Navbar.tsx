@@ -41,17 +41,15 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo with Custom Uploaded Emblem */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-11 h-11 rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,0,127,0.35)] group-hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] transition-all duration-300 border-2 border-pink-500/60 bg-[#0d0814] p-0.5 flex items-center justify-center">
-            <img
-              src="/logo.png"
-              alt="RIDEV Logo"
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform"
-            />
-          </div>
+        {/* Brand Logo with Official RIDEV Emblem */}
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
+          <img
+            src="/logo.png"
+            alt="RIDEV Logo"
+            className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
+          />
           <div className="flex flex-col">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               <span className="font-heading font-black text-xl tracking-wider text-slate-900 dark:text-white">
                 RI
               </span>
