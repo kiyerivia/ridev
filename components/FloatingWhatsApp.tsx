@@ -60,7 +60,7 @@ export default function FloatingWhatsApp() {
 
       {/* 🌟 Expanded Chat Box (Muncul Saat Tombol Diklik) */}
       {open && (
-        <div className="mr-4 sm:mr-6 mb-2 w-[calc(100vw-2rem)] sm:w-96 rounded-3xl bg-[#0e091a]/98 backdrop-blur-2xl border-2 border-pink-500/50 shadow-[-10px_15px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(255,0,127,0.3)] overflow-hidden animate-in slide-in-from-right-8 duration-300 holo-corners">
+        <div className="mr-4 sm:mr-6 mb-2 w-[calc(100vw-2rem)] sm:w-96 rounded-3xl bg-white dark:bg-[#0e091a]/98 backdrop-blur-2xl border-2 border-pink-500/50 shadow-2xl overflow-hidden animate-in slide-in-from-right-8 duration-300 holo-corners">
           
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] p-4 text-white flex items-center justify-between shadow-md">
@@ -84,7 +84,7 @@ export default function FloatingWhatsApp() {
             {/* Close / Minimize Button */}
             <button
               onClick={() => setOpen(false)}
-              className="p-1.5 rounded-full hover:bg-black/25 text-white/90 hover:text-white transition-colors"
+              className="p-1.5 rounded-full hover:bg-black/25 text-white/90 hover:text-white transition-colors cursor-pointer"
               title="Tutup / Sembunyikan Chat"
               aria-label="Tutup Chat"
             >
@@ -93,24 +93,24 @@ export default function FloatingWhatsApp() {
           </div>
 
           {/* Chat Messages Body */}
-          <div className="p-4 bg-[#090610] space-y-3.5">
+          <div className="p-4 bg-slate-50 dark:bg-[#090610] space-y-3.5">
             {/* Incoming Greeting Bubble */}
-            <div className="bg-[#140c22] border border-pink-500/20 rounded-2xl rounded-tl-sm p-3.5 text-xs text-slate-200 leading-relaxed max-w-[90%] shadow-md">
-              <div className="flex items-center gap-1.5 text-pink-400 font-bold text-[10px] uppercase mb-1">
-                <Sparkles className="w-3 h-3" />
+            <div className="bg-white dark:bg-[#140c22] border border-pink-200 dark:border-pink-500/20 rounded-2xl rounded-tl-sm p-3.5 text-xs text-slate-800 dark:text-slate-200 leading-relaxed max-w-[90%] shadow-md">
+              <div className="flex items-center gap-1.5 text-pink-600 dark:text-pink-400 font-bold text-[10px] uppercase mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-pink-500" />
                 <span>Customer Support</span>
               </div>
               <p>
                 Halo! Senang bertemu Anda. Ada yang bisa kami bantu seputar pembuatan website atau aplikasi untuk bisnis Anda? 👋
               </p>
               <span className="text-[9px] text-slate-400 flex items-center justify-end gap-1 mt-1.5">
-                Baru saja <CheckCheck className="w-3 h-3 text-pink-400" />
+                Baru saja <CheckCheck className="w-3 h-3 text-pink-500" />
               </span>
             </div>
 
             {/* Quick Messages Options */}
             <div className="space-y-1.5 pt-1">
-              <span className="text-[10px] uppercase font-bold text-pink-400 tracking-wider block">
+              <span className="text-[10px] uppercase font-bold text-pink-700 dark:text-pink-400 tracking-wider block">
                 Pilih topik cepat:
               </span>
               {quickMessages.map((msg, i) => (
@@ -118,7 +118,7 @@ export default function FloatingWhatsApp() {
                   key={i}
                   type="button"
                   onClick={() => setCustomText(msg)}
-                  className="w-full text-left text-xs bg-[#140c22] hover:bg-pink-500/20 border border-slate-800 hover:border-pink-500/40 text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition-all truncate shadow-sm font-normal active:scale-[0.98]"
+                  className="w-full text-left text-xs bg-white dark:bg-[#140c22] hover:bg-pink-50 dark:hover:bg-pink-500/20 border border-slate-200 dark:border-slate-800 hover:border-pink-300 dark:hover:border-pink-500/40 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-3.5 py-2 rounded-xl transition-all truncate shadow-sm font-normal active:scale-[0.98] cursor-pointer"
                 >
                   &ldquo;{msg}&rdquo;
                 </button>
@@ -133,11 +133,11 @@ export default function FloatingWhatsApp() {
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
                 autoFocus
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#140c22] border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 shadow-sm"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#140c22] border border-slate-300 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 shadow-sm"
               />
               <button
                 type="submit"
-                className="p-2.5 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white font-bold transition-all hover:brightness-110 active:scale-95 shadow-[0_0_15px_rgba(255,0,127,0.4)] shrink-0 flex items-center justify-center"
+                className="p-2.5 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white font-bold transition-all hover:brightness-110 active:scale-95 shadow-[0_0_15px_rgba(255,0,127,0.4)] shrink-0 flex items-center justify-center cursor-pointer"
                 title="Kirim Pesan ke WhatsApp"
               >
                 <Send className="w-4 h-4" />
@@ -146,8 +146,8 @@ export default function FloatingWhatsApp() {
           </div>
 
           {/* Footer Sub-info */}
-          <div className="bg-[#0b0614] px-4 py-2 text-center text-[10px] text-slate-400 border-t border-slate-800/80 font-normal">
-            WhatsApp Resmi RIDEV: <strong className="text-white">+62 8222-68-000-63</strong>
+          <div className="bg-slate-100 dark:bg-[#0b0614] px-4 py-2 text-center text-[10px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 font-normal">
+            WhatsApp Resmi RIDEV: <strong className="text-slate-900 dark:text-white">+62 8222-68-000-63</strong>
           </div>
         </div>
       )}

@@ -63,10 +63,8 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var savedMode = localStorage.getItem('ridev_theme_mode');
                   var hour = new Date().getHours();
-                  var timeTheme = (hour >= 5 && hour < 18) ? 'light' : 'dark';
-                  var activeTheme = (savedMode === 'light' || savedMode === 'dark') ? savedMode : timeTheme;
+                  var activeTheme = (hour >= 5 && hour < 18) ? 'light' : 'dark';
                   var root = document.documentElement;
                   if (activeTheme === 'dark') {
                     root.classList.add('dark');
@@ -83,7 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="font-sans bg-[#07070a] text-slate-100 min-h-screen antialiased selection:bg-pink-500 selection:text-white transition-colors duration-300"
+        className="font-sans bg-[#f8f9fd] dark:bg-[#07070a] text-slate-900 dark:text-slate-100 min-h-screen antialiased selection:bg-pink-500 selection:text-white transition-colors duration-300"
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

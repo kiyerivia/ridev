@@ -28,22 +28,18 @@ export function getTimeBasedTheme(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>("auto");
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme from localStorage or local time
+  // Initialize theme based on local clock time
   useEffect(() => {
     setMounted(true);
-    const savedMode = (localStorage.getItem("ridev_theme_mode") as ThemeMode) || "auto";
-    setModeState(savedMode);
+    // Clear any legacy override
+    try {
+      localStorage.removeItem("ridev_theme_mode");
+    } catch (e) {}
 
-    let effectiveTheme: Theme;
-    if (savedMode === "light" || savedMode === "dark") {
-      effectiveTheme = savedMode;
-    } else {
-      effectiveTheme = getTimeBasedTheme();
-    }
+    const effectiveTheme = getTimeBasedTheme();
     setTheme(effectiveTheme);
     applyThemeToDOM(effectiveTheme);
   }, []);
@@ -53,16 +49,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return;
 
     const checkTimeTheme = () => {
-      if (mode === "auto") {
-        const timeTheme = getTimeBasedTheme();
-        setTheme(timeTheme);
-        applyThemeToDOM(timeTheme);
-      }
+      const timeTheme = getTimeBasedTheme();
+      setTheme(timeTheme);
+      applyThemeToDOM(timeTheme);
     };
 
     const interval = setInterval(checkTimeTheme, 30000);
     return () => clearInterval(interval);
-  }, [mode, mounted]);
+  }, [mounted]);
 
   const applyThemeToDOM = (activeTheme: Theme) => {
     if (typeof document === "undefined") return;
@@ -87,27 +81,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const setMode = (newMode: ThemeMode) => {
-    setModeState(newMode);
-    localStorage.setItem("ridev_theme_mode", newMode);
-
-    let effectiveTheme: Theme;
-    if (newMode === "light" || newMode === "dark") {
-      effectiveTheme = newMode;
-    } else {
-      effectiveTheme = getTimeBasedTheme();
-    }
-    setTheme(effectiveTheme);
-    applyThemeToDOM(effectiveTheme);
+  const setMode = (_newMode: ThemeMode) => {
+    // No-op or update if needed
   };
 
   const toggleTheme = () => {
-    // If currently dark, switch to light; if light, switch to dark
+    // Toggle for testing/fallback
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    setMode(nextTheme);
+    setTheme(nextTheme);
+    applyThemeToDOM(nextTheme);
   };
 
-  const isAuto = mode === "auto";
+  const isAuto = true;
+  const mode: ThemeMode = "auto";
   const activeTimeRange =
     theme === "light" ? "05.00 - 18.00 (Terang)" : "18.00 - 05.00 (Gelap)";
 

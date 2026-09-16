@@ -156,7 +156,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="layanan" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0d0918]/60 to-transparent">
+    <section id="layanan" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0d0918]/60 dark:to-transparent">
       {/* Background Decorators */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -165,15 +165,15 @@ export default function Services() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
-            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Layanan Unggulan RIDEV (Rivia Developer)</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight">
             Solusi Digital Lengkap untuk <br />
             <span className="text-pink-glow">Pertumbuhan Bisnis Anda</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal">
             Mulai dari landing page iklan berkonversi tinggi, toko online siap jualan, LMS pendidikan, hingga aplikasi sistem informasi kustom skala korporasi.
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function Services() {
             return (
               <div
                 key={index}
-                className="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-pink-500/60 relative overflow-hidden transition-all duration-300 shadow-2xl holo-corners"
+                className="glass-card rounded-2xl p-6 flex flex-col justify-between group hover:border-pink-500/60 relative overflow-hidden transition-all duration-300 shadow-xl dark:shadow-2xl holo-corners"
               >
                 {/* Top Glowing Edge on hover */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -195,7 +195,7 @@ export default function Services() {
                 <div>
                   {/* Category & Badge */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-pink-400">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400">
                       {service.category}
                     </span>
                     {service.badge && (
@@ -206,23 +206,23 @@ export default function Services() {
                   </div>
 
                   {/* Icon & Title */}
-                  <div className="w-12 h-12 rounded-xl bg-pink-950/60 border border-pink-500/40 flex items-center justify-center text-pink-400 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white transition-all duration-300 mb-4 shadow-md">
+                  <div className="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-950/60 border border-pink-200 dark:border-pink-500/40 flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white transition-all duration-300 mb-4 shadow-sm">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="font-heading font-extrabold text-lg text-white group-hover:text-pink-400 transition-colors leading-snug">
+                  <h3 className="font-heading font-extrabold text-lg text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
                     {service.title}
                   </h3>
 
-                  <p className="text-xs text-slate-300 mt-2.5 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed font-normal">
                     {service.description}
                   </p>
 
                   {/* Features List */}
-                  <div className="mt-4 pt-4 border-t border-slate-800 space-y-2">
+                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
                     {service.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-200">
-                        <CheckCircle className="w-3.5 h-3.5 text-pink-400 shrink-0 mt-0.5" />
+                      <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200">
+                        <CheckCircle className="w-3.5 h-3.5 text-pink-500 dark:text-pink-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -230,12 +230,12 @@ export default function Services() {
                 </div>
 
                 {/* Bottom CTA to WhatsApp for this specific service */}
-                <div className="mt-6 pt-4 border-t border-slate-800">
+                <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
                   <a
                     href={waLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 px-4 rounded-xl bg-pink-950/50 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 hover:text-white border border-pink-500/40 text-pink-300 text-xs font-bold transition-all duration-200 flex items-center justify-between group/btn shadow-sm"
+                    className="w-full py-2.5 px-4 rounded-xl bg-pink-50 dark:bg-pink-950/50 hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 hover:text-white border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-300 text-xs font-bold transition-all duration-200 flex items-center justify-between group/btn shadow-sm"
                   >
                     <span>Konsultasi Layanan Ini</span>
                     <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

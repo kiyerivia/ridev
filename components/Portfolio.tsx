@@ -199,7 +199,7 @@ export default function Portfolio() {
     new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(num);
 
   return (
-    <section id="portofolio" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0d0818]/60 to-transparent">
+    <section id="portofolio" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0d0818]/60 dark:to-transparent">
       {/* Background Decorators */}
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -208,16 +208,16 @@ export default function Portfolio() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
-            <Briefcase className="w-3.5 h-3.5 text-pink-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <Briefcase className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Interactive Portfolio & Live Simulator</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight">
             Karya & Hasil Proyek <br />
             <span className="text-pink-glow">Klien RIDEV (Rivia Developer)</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal">
-            Bukan sekadar gambar statis! Klik <strong>&ldquo;Coba Live Mockup Interaktif&rdquo;</strong> pada setiap proyek di bawah untuk mencoba fitur dan simulasi aplikasi web nyata yang kami kembangkan.
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal">
+            Bukan sekadar gambar statis! Klik <strong className="text-slate-900 dark:text-white">&ldquo;Coba Live Mockup Interaktif&rdquo;</strong> pada setiap proyek di bawah untuk mencoba fitur dan simulasi aplikasi web nyata yang kami kembangkan.
           </p>
         </div>
 
@@ -230,7 +230,7 @@ export default function Portfolio() {
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 selectedCategory === cat
                   ? "bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_15px_rgba(255,0,127,0.4)] font-bold"
-                  : "bg-[#0e0918] text-slate-300 border border-slate-800 hover:border-pink-500/40 hover:text-white shadow-sm"
+                  : "bg-slate-100 dark:bg-[#0e0918] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-pink-400 hover:text-slate-900 dark:hover:text-white shadow-sm"
               }`}
             >
               {cat}
@@ -243,7 +243,7 @@ export default function Portfolio() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="glass-card rounded-2xl overflow-hidden border border-pink-500/30 hover:border-pink-500/60 flex flex-col justify-between group transition-all duration-300 shadow-2xl holo-corners"
+              className="glass-card rounded-2xl overflow-hidden border border-slate-200 dark:border-pink-500/30 hover:border-pink-400 dark:hover:border-pink-500/60 flex flex-col justify-between group transition-all duration-300 shadow-xl dark:shadow-2xl holo-corners"
             >
               {/* Realistic UI Mockup Card Preview */}
               <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0918] border-b border-slate-800 flex flex-col">
@@ -374,27 +374,27 @@ export default function Portfolio() {
               {/* Card Body */}
               <div className="p-6 flex flex-col justify-between flex-1">
                 <div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 mb-1.5 font-medium">
-                    <span>Klien: <strong className="text-white">{project.client}</strong></span>
-                    <span>Tahun: <strong className="text-pink-400">{project.year}</strong></span>
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-medium">
+                    <span>Klien: <strong className="text-slate-900 dark:text-white">{project.client}</strong></span>
+                    <span>Tahun: <strong className="text-pink-600 dark:text-pink-400">{project.year}</strong></span>
                   </div>
 
-                  <h3 className="font-heading font-bold text-lg text-white group-hover:text-pink-400 transition-colors leading-snug">
+                  <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-normal">
                     {project.subtitle}
                   </p>
                 </div>
 
                 {/* Tech Stack Badges & CTA Link */}
-                <div className="mt-5 pt-4 border-t border-slate-800">
+                <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[10px] font-semibold bg-pink-950/60 text-pink-300 px-2 py-0.5 rounded border border-pink-500/40"
+                        className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded border border-pink-200 dark:border-pink-500/40"
                       >
                         {tech}
                       </span>
@@ -403,7 +403,7 @@ export default function Portfolio() {
 
                   <button
                     onClick={() => setActiveAppId(project.id)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-[#140b20] hover:bg-pink-500/20 text-pink-300 hover:text-white text-xs font-bold text-center border border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                    className="w-full py-2.5 px-3 rounded-xl bg-pink-50 dark:bg-[#140b20] hover:bg-pink-100 dark:hover:bg-pink-500/20 text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-white text-xs font-bold text-center border border-pink-300 dark:border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                   >
                     <span>⚡ Coba Simulator Aplikasi Ini</span>
                   </button>

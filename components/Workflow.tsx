@@ -63,7 +63,7 @@ export default function Workflow() {
   ];
 
   return (
-    <section id="alur-kerja" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-[#0e0918]/60 to-transparent">
+    <section id="alur-kerja" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0e0918]/60 dark:to-transparent">
       {/* Background Decorators */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -71,15 +71,15 @@ export default function Workflow() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0e0918] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(255,0,127,0.2)]">
-            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Alur Kerja Transparan & Terpercaya</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight">
             5 Langkah Mudah Memiliki <br />
             <span className="text-pink-glow">Website Profesional Idaman</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base mt-4 font-normal">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-4 font-normal">
             Proses terstruktur dengan SOP jelas untuk memastikan proyek selesai tepat waktu dan sesuai ekspektasi bisnis Anda.
           </p>
         </div>
@@ -93,41 +93,41 @@ export default function Workflow() {
             return (
               <div
                 key={idx}
-                className="glass-card rounded-2xl p-6 border border-pink-500/30 hover:border-pink-500/60 flex flex-col justify-between relative group transition-all duration-300 shadow-2xl holo-corners"
+                className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 hover:border-pink-400 dark:hover:border-pink-500/60 flex flex-col justify-between relative group transition-all duration-300 shadow-xl dark:shadow-2xl holo-corners"
               >
                 {/* Step Number Watermark */}
-                <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-800 group-hover:text-pink-500/25 transition-colors pointer-events-none">
+                <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-200 dark:text-slate-800 group-hover:text-pink-500/25 transition-colors pointer-events-none">
                   {step.number}
                 </span>
 
                 <div>
                   {/* Icon */}
                   <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 shadow-md ${
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 shadow-sm ${
                       isGold
-                        ? "bg-amber-950/60 border border-amber-500/40 text-amber-400 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:text-white"
-                        : "bg-pink-950/60 border border-pink-500/40 text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white"
+                        ? "bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-400 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:text-white"
+                        : "bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white"
                     }`}
                   >
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <span className="text-[11px] font-bold text-pink-400 uppercase tracking-wider block mb-1">
+                  <span className="text-[11px] font-bold text-pink-700 dark:text-pink-400 uppercase tracking-wider block mb-1">
                     {step.tagline}
                   </span>
 
-                  <h3 className="font-heading font-extrabold text-base text-white group-hover:text-pink-400 transition-colors leading-snug">
+                  <h3 className="font-heading font-extrabold text-base text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
                     {step.title}
                   </h3>
 
-                  <p className="text-xs text-slate-300 mt-2.5 leading-relaxed font-normal">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 font-normal">
+                <div className="mt-5 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-normal">
                   <span>Tahap {idx + 1} dari 5</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-pink-400 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 text-pink-500 dark:text-pink-400 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             );

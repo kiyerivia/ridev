@@ -74,38 +74,38 @@ export default function Hero() {
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
             {/* Top Sci-Fi Hologram Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0e0918]/90 border border-pink-500/40 text-pink-400 text-xs sm:text-sm font-semibold shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
-              <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-              <span className="tracking-wide text-slate-200">Jasa Pembuatan Website & Aplikasi Profesional</span>
+              <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
+              <span className="tracking-wide text-slate-800 dark:text-slate-200 font-semibold">Jasa Pembuatan Website & Aplikasi Profesional</span>
             </div>
 
             {/* Main Headline (ATM EDA Credibility Hook) */}
-            <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-white">
+            <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-slate-950 dark:text-white">
               Website Profesional untuk Meningkatkan{" "}
               <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
               Hadir dengan desain modern, fitur lengkap, keamanan tinggi, dan harga terjangkau. 
-              Saatnya bisnis Anda tampil terpercaya di mata klien bersama <strong className="text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">RIDEV (Rivia Developer)</strong>!
+              Saatnya bisnis Anda tampil terpercaya di mata klien bersama <strong className="text-slate-900 dark:text-white font-bold underline decoration-pink-500 decoration-2 underline-offset-4">RIDEV (Rivia Developer)</strong>!
             </p>
 
             {/* Target Area Coverage Badges (ATM EDA City Targeting) */}
             <div className="flex items-center gap-2 flex-wrap justify-center lg:justify-start pt-1">
-              <div className="flex items-center gap-1 text-[11px] font-bold text-pink-400 uppercase tracking-wider bg-pink-950/60 px-2.5 py-1 rounded-md border border-pink-500/40">
-                <MapPin className="w-3 h-3 text-pink-400" />
+              <div className="flex items-center gap-1 text-[11px] font-bold text-pink-700 dark:text-pink-400 uppercase tracking-wider bg-pink-100 dark:bg-pink-950/60 px-2.5 py-1 rounded-md border border-pink-300 dark:border-pink-500/40">
+                <MapPin className="w-3 h-3 text-pink-600 dark:text-pink-400" />
                 <span>Melayani Area:</span>
               </div>
               <div className="flex flex-wrap gap-1.5 justify-center lg:justify-start">
                 {cities.map((city, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] text-slate-300 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800"
+                    className="text-[11px] text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-900/80 px-2 py-0.5 rounded border border-slate-300 dark:border-slate-800 font-medium"
                   >
                     {city}
                   </span>
@@ -113,29 +113,29 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Inclusions Box ("Yang Didapat") - Dark Laser Glass Console */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-card border border-pink-500/30 shadow-2xl text-left holo-corners">
-              <div className="flex items-center justify-between mb-3 border-b border-pink-500/20 pb-2">
-                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-pink-400" />
+            {/* Inclusions Box ("Yang Didapat") - Glass Console */}
+            <div className="p-4 sm:p-5 rounded-2xl glass-card border border-pink-500/20 dark:border-pink-500/30 shadow-xl dark:shadow-2xl text-left holo-corners">
+              <div className="flex items-center justify-between mb-3 border-b border-pink-500/15 dark:border-pink-500/20 pb-2">
+                <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 flex items-center gap-1.5">
+                  <Zap className="w-4 h-4 text-pink-500 dark:text-pink-400" />
                   Fasilitas Lengkap Termasuk (All-in-One):
                 </span>
-                <span className="text-[11px] font-bold text-pink-300 bg-pink-950/70 px-2.5 py-0.5 rounded-full border border-pink-500/40">
+                <span className="text-[11px] font-bold text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950/70 px-2.5 py-0.5 rounded-full border border-pink-300 dark:border-pink-500/40">
                   Siap Pakai
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {perks.map((perk, index) => (
-                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-200 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
+                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-semibold">
+                    <CheckCircle2 className="w-4 h-4 text-pink-600 dark:text-pink-400 shrink-0 mt-0.5" />
                     <span>{perk}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Call to Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            {/* Dual High-Conversion CTA Buttons */}
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
                 href={waUrl}
                 target="_blank"
@@ -145,26 +145,26 @@ export default function Hero() {
                 <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="text-lg">💬</span>
                 </div>
-                <span>Konsultasi WhatsApp Sekarang</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="text-white font-bold">Konsultasi WhatsApp Sekarang</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white" />
               </a>
 
               <a
                 href="#harga"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-[#0f0a1a] hover:bg-pink-500/20 border border-pink-500/50 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-white dark:bg-[#0f0a1a] hover:bg-pink-50 dark:hover:bg-pink-500/20 border border-pink-500/30 dark:border-pink-500/50 text-slate-900 dark:text-white shadow-md dark:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <span>📦 Lihat Paket & Harga</span>
               </a>
             </div>
 
             {/* Quick Contacts Callout */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 pt-1 font-medium">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-600 dark:text-slate-400 pt-1 font-medium">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>WhatsApp: <strong className="text-white font-bold">+62 8222-68-000-63</strong></span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>WhatsApp: <strong className="text-slate-900 dark:text-white font-bold">+62 8222-68-000-63</strong></span>
               </div>
               <div className="flex items-center gap-2">
-                <span>✉️ Email: <strong className="text-pink-400 font-bold">kiyerivia@gmail.com</strong></span>
+                <span>✉️ Email: <strong className="text-pink-600 dark:text-pink-400 font-bold">kiyerivia@gmail.com</strong></span>
               </div>
             </div>
           </div>
@@ -277,14 +277,14 @@ export default function Hero() {
                   key={idx}
                   className="glass-card p-4 rounded-xl border border-pink-500/20 flex items-center gap-3.5 group hover:border-pink-500/50 transition-all duration-300 shadow-lg"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-pink-950/60 border border-pink-500/40 flex items-center justify-center text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-500 group-hover:text-white transition-all shrink-0 shadow-md">
+                  <div className="w-11 h-11 rounded-lg bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-500/40 flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-500 group-hover:text-white transition-all shrink-0 shadow-md">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="text-left">
-                    <h4 className="font-heading font-bold text-sm text-white group-hover:text-pink-400 transition-colors">
+                    <h4 className="font-heading font-bold text-sm text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
                       {badge.label}
                     </h4>
-                    <p className="text-xs text-slate-400 mt-0.5 font-normal">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 font-normal">
                       {badge.desc}
                     </p>
                   </div>

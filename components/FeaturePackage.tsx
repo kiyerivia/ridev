@@ -140,7 +140,7 @@ export default function FeaturePackage() {
   ];
 
   return (
-    <section id="fasilitas" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#07070a] via-[#0d0818]/80 to-[#07070a]">
+    <section id="fasilitas" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-[#07070a] dark:via-[#0d0818]/80 dark:to-[#07070a]">
       {/* Laser Glow Ambient Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-pink-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute top-10 right-10 w-72 h-72 bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none" />
@@ -149,18 +149,18 @@ export default function FeaturePackage() {
         
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#120a22] border border-pink-500/40 text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-[0_0_20px_rgba(255,0,127,0.25)]">
-            <Zap className="w-3.5 h-3.5 text-pink-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 dark:bg-[#120a22] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_20px_rgba(255,0,127,0.25)]">
+            <Zap className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Our Feature Package • Apa yang Anda Dapatkan?</span>
           </div>
 
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
             6 Fasilitas Unggulan <br />
             <span className="text-pink-glow">Dalam Setiap Website RIDEV</span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base mt-4 font-normal leading-relaxed">
-            Kami memastikan Anda menerima website yang sudah <strong className="text-white font-semibold">100% siap pakai</strong> tanpa biaya tersembunyi. Dari domain, hosting, keamanan, hingga optimasi mesin pencari Google.
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-4 font-normal leading-relaxed">
+            Kami memastikan Anda menerima website yang sudah <strong className="text-slate-900 dark:text-white font-semibold">100% siap pakai</strong> tanpa biaya tersembunyi. Dari domain, hosting, keamanan, hingga optimasi mesin pencari Google.
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export default function FeaturePackage() {
             return (
               <div
                 key={idx}
-                className={`group relative rounded-3xl p-7 bg-[#0f091a]/90 backdrop-blur-xl border border-slate-800/90 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] ${item.borderColor} flex flex-col justify-between overflow-hidden`}
+                className={`group relative rounded-3xl p-7 bg-white/90 dark:bg-[#0f091a]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/90 shadow-lg dark:shadow-[0_15px_35px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-2 ${item.borderColor} flex flex-col justify-between overflow-hidden`}
               >
                 {/* Internal Card Gradient Glow */}
                 <div className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${item.gradient} rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none`} />
@@ -179,33 +179,33 @@ export default function FeaturePackage() {
                 {/* Top: Icon + Badge */}
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className={`w-14 h-14 rounded-2xl bg-[#160d26] border border-slate-700/60 p-3 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform ${item.iconColor}`}>
+                    <div className={`w-14 h-14 rounded-2xl bg-pink-50 dark:bg-[#160d26] border border-pink-200 dark:border-slate-700/60 p-3 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform ${item.iconColor}`}>
                       <Icon className="w-7 h-7" />
                     </div>
-                    <span className="text-[11px] font-bold text-slate-200 bg-white/5 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+                    <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
                       {item.badge}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <span className="text-xs font-bold uppercase tracking-wider text-pink-400 block mb-1">
+                  <span className="text-xs font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400 block mb-1">
                     {item.subtitle}
                   </span>
-                  <h3 className="font-heading font-extrabold text-xl text-white mb-3 group-hover:text-pink-300 transition-colors">
+                  <h3 className="font-heading font-extrabold text-xl text-slate-900 dark:text-white mb-3 group-hover:text-pink-600 dark:group-hover:text-pink-300 transition-colors">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+                  <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Bottom: Feature List */}
-                <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-2.5">
                   {item.highlights.map((point, pIdx) => (
-                    <div key={pIdx} className="flex items-start gap-2.5 text-xs text-slate-300 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-pink-400 shrink-0 mt-0.5" />
+                    <div key={pIdx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-pink-500 dark:text-pink-400 shrink-0 mt-0.5" />
                       <span>{point}</span>
                     </div>
                   ))}
@@ -216,16 +216,16 @@ export default function FeaturePackage() {
         </div>
 
         {/* Bottom Callout Banner */}
-        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#150a26] via-[#1f0d36] to-[#150a26] border border-pink-500/40 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-pink-50 via-purple-50 to-pink-50 dark:from-[#150a26] dark:via-[#1f0d36] dark:to-[#150a26] border border-pink-200 dark:border-pink-500/40 shadow-xl dark:shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/50 flex items-center justify-center shrink-0 hidden sm:flex">
-              <Server className="w-6 h-6 text-pink-400" />
+            <div className="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-500/20 border border-pink-300 dark:border-pink-500/50 flex items-center justify-center shrink-0 hidden sm:flex">
+              <Server className="w-6 h-6 text-pink-600 dark:text-pink-400" />
             </div>
             <div>
-              <h4 className="font-heading font-extrabold text-base sm:text-lg text-white">
+              <h4 className="font-heading font-extrabold text-base sm:text-lg text-slate-900 dark:text-white">
                 Butuh Fasilitas Khusus atau Kustomisasi Tambahan?
               </h4>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
                 Tim developer RIDEV siap menyesuaikan kebutuhan fitur spesifik (Payment Gateway, Webhook API, Sistem Login, dll).
               </p>
             </div>
