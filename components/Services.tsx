@@ -5,12 +5,10 @@ import {
   Flame,
   Building2,
   ShoppingCart,
-  GraduationCap,
   Sparkles,
   BookOpenCheck,
   Cpu,
   Smartphone,
-  Search,
   Palette,
   ArrowUpRight,
   CheckCircle,
@@ -33,9 +31,13 @@ interface ServiceItem {
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStartX, setDragStartX] = useState<number>(0);
-  const [dragOffset, setDragOffset] = useState<number>(0);
+  const [dragStartAngle, setDragStartAngle] = useState<number>(0);
+  const [radius, setRadius] = useState<number>(580);
+  const [perspective, setPerspective] = useState<number>(1400);
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const services: ServiceItem[] = [
@@ -173,72 +175,107 @@ export default function Services() {
   ];
 
   const totalServices = services.length;
+  const ANGLE_STEP = 360 / totalServices; // 45 degrees per item
+
+  // Dynamic responsive geometry calculation for true cylinder sizing
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setRadius(330);
+        setPerspective(900);
+      } else if (width < 1024) {
+        setRadius(460);
+        setPerspective(1200);
+      } else {
+        setRadius(580);
+        setPerspective(1400);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Smooth cylinder navigation by index
+  const rotateTo = useCallback((targetIndex: number) => {
+    setActiveIndex(targetIndex);
+    setRotationAngle((prev) => {
+      const targetBase = -targetIndex * ANGLE_STEP;
+      const currentNorm = ((prev % 360) + 360) % 360;
+      const targetNorm = ((targetBase % 360) + 360) % 360;
+      let diff = targetNorm - currentNorm;
+      if (diff > 180) diff -= 360;
+      if (diff < -180) diff += 360;
+      return prev + diff;
+    });
+  }, [ANGLE_STEP]);
 
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % totalServices);
-  }, [totalServices]);
+    setRotationAngle((prev) => prev - ANGLE_STEP);
+  }, [totalServices, ANGLE_STEP]);
 
   const prevSlide = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + totalServices) % totalServices);
-  }, [totalServices]);
+    setRotationAngle((prev) => prev + ANGLE_STEP);
+  }, [totalServices, ANGLE_STEP]);
 
-  const goToSlide = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  // Touch & Drag Gesture Handling
+  // Touch & Drag Gesture Handling for 3D Cylinder Rotation
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
     setDragStartX(e.touches[0].clientX);
-    setDragOffset(0);
+    setDragStartAngle(rotationAngle);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return;
     const currentX = e.touches[0].clientX;
-    const diff = currentX - dragStartX;
-    setDragOffset(diff);
+    const diffX = currentX - dragStartX;
+    const angleDelta = (diffX / radius) * (180 / Math.PI) * 1.1;
+    setRotationAngle(dragStartAngle + angleDelta);
   };
 
   const handleTouchEnd = () => {
     if (!isDragging) return;
     setIsDragging(false);
-    if (dragOffset < -45) {
-      nextSlide();
-    } else if (dragOffset > 45) {
-      prevSlide();
-    }
-    setDragOffset(0);
+    snapToNearest();
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragStartX(e.clientX);
-    setDragOffset(0);
+    setDragStartAngle(rotationAngle);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
-    const diff = e.clientX - dragStartX;
-    setDragOffset(diff);
+    const diffX = e.clientX - dragStartX;
+    const angleDelta = (diffX / radius) * (180 / Math.PI) * 1.1;
+    setRotationAngle(dragStartAngle + angleDelta);
   };
 
   const handleMouseUp = () => {
     if (!isDragging) return;
     setIsDragging(false);
-    if (dragOffset < -50) {
-      nextSlide();
-    } else if (dragOffset > 50) {
-      prevSlide();
-    }
-    setDragOffset(0);
+    snapToNearest();
   };
 
   const handleMouseLeave = () => {
     if (isDragging) {
       setIsDragging(false);
-      setDragOffset(0);
+      snapToNearest();
     }
+  };
+
+  const snapToNearest = () => {
+    setRotationAngle((curr) => {
+      const nearestSlot = Math.round(-curr / ANGLE_STEP);
+      const targetAngle = -nearestSlot * ANGLE_STEP;
+      const newActive = ((nearestSlot % totalServices) + totalServices) % totalServices;
+      setActiveIndex(newActive);
+      return targetAngle;
+    });
   };
 
   // Keyboard navigation
@@ -282,7 +319,7 @@ export default function Services() {
                 return (
                   <button
                     key={idx}
-                    onClick={() => goToSlide(idx)}
+                    onClick={() => rotateTo(idx)}
                     className={`px-3.5 sm:px-4 py-2 rounded-xl font-heading text-xs font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap relative ${
                       isActive
                         ? "bg-gradient-to-r from-pink-600 via-rose-600 to-pink-500 text-white shadow-md shadow-pink-500/30 scale-100 dark:shadow-[0_0_20px_rgba(255,0,127,0.5)]"
@@ -304,11 +341,14 @@ export default function Services() {
           </div>
         </div>
 
-        {/* 3D Curved Coverflow Stage Container */}
+        {/* 3D Cylinder Stage Container */}
         <div 
           ref={carouselRef}
-          className="relative w-full py-8 sm:py-12 overflow-visible cursor-grab active:cursor-grabbing"
-          style={{ perspective: "1400px" }}
+          className="relative w-full py-8 sm:py-12 overflow-visible cursor-grab active:cursor-grabbing select-none"
+          style={{ 
+            perspective: `${perspective}px`,
+            perspectiveOrigin: "50% 50%",
+          }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -317,14 +357,23 @@ export default function Services() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
-          {/* Holographic Center Glow Circle */}
+          {/* Holographic Center Glow & Cylinder Orbit FX */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] rounded-full bg-gradient-to-tr from-pink-500/20 via-purple-500/15 to-cyan-500/20 blur-3xl pointer-events-none -z-10" />
+          
+          {/* Cylinder Ring Grid Base Indicator */}
+          <div 
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-32 rounded-[100%] border border-pink-500/20 dark:border-pink-500/30 pointer-events-none opacity-40 dark:opacity-60 -z-10"
+            style={{
+              transform: "rotateX(75deg)",
+              boxShadow: "0 0 40px rgba(255,0,127,0.2), inset 0 0 40px rgba(255,0,127,0.2)",
+            }}
+          />
 
           {/* Floating Neon Chevrons */}
           <button
             onClick={prevSlide}
             aria-label="Previous Service"
-            className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+            className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group active:scale-95"
           >
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -332,57 +381,61 @@ export default function Services() {
           <button
             onClick={nextSlide}
             aria-label="Next Service"
-            className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+            className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group active:scale-95"
           >
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* 3D Cards Carousel Wrapper */}
-          <div className="relative min-h-[560px] sm:min-h-[530px] flex items-center justify-center">
+          {/* 3D Cylinder Cards Wrapper */}
+          <div 
+            className="relative min-h-[580px] sm:min-h-[540px] flex items-center justify-center"
+            style={{ 
+              transformStyle: "preserve-3d",
+            }}
+          >
             {services.map((service, index) => {
-              const offset = index - activeIndex;
-              const isCenter = offset === 0;
-              const isPrev = offset === -1;
-              const isNext = offset === 1;
-              const isFarLeft = offset < -1;
-              const isFarRight = offset > 1;
+              const baseAngle = index * ANGLE_STEP;
+              // Compute shortest relative angle diff in [-180, 180] deg
+              const rawDiff = ((baseAngle + rotationAngle) % 360 + 540) % 360 - 180;
+              const rad = (rawDiff * Math.PI) / 180;
+              const absDiff = Math.abs(rawDiff);
 
-              let transformStyle = "";
+              // Position along 3D cylinder surface
+              const x = Math.sin(rad) * radius;
+              const z = Math.cos(rad) * radius - radius; // 0 at front center, negative as it curves back
+              const rotateY = rawDiff; // Perfectly tangent to cylinder wall
+
+              const isBackside = absDiff > 105;
+              const isCenter = absDiff < 18;
+              const isFlank = absDiff >= 18 && absDiff <= 65;
+              const isFarEdge = absDiff > 65 && absDiff <= 105;
+
               let opacity = 0;
+              let scale = 0.72;
               let zIndex = 10;
               let pointerEvents: "auto" | "none" = "none";
               let filter = "none";
 
-              if (isCenter) {
-                transformStyle = `translateX(${dragOffset}px) translateZ(0px) rotateY(0deg) scale(1)`;
-                opacity = 1;
-                zIndex = 30;
-                pointerEvents = "auto";
-                filter = "none";
-              } else if (isPrev) {
-                transformStyle = `translateX(calc(-72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(26deg) scale(0.85)`;
-                opacity = 0.65;
-                zIndex = 20;
-                pointerEvents = "auto";
-                filter = "blur(0.4px)";
-              } else if (isNext) {
-                transformStyle = `translateX(calc(72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(-26deg) scale(0.85)`;
-                opacity = 0.65;
-                zIndex = 20;
-                pointerEvents = "auto";
-                filter = "blur(0.4px)";
-              } else if (isFarLeft) {
-                transformStyle = `translateX(calc(-135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(40deg) scale(0.7)`;
-                opacity = 0.2;
-                zIndex = 10;
-                pointerEvents = "none";
-                filter = "blur(1.5px)";
-              } else if (isFarRight) {
-                transformStyle = `translateX(calc(135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(-40deg) scale(0.7)`;
-                opacity = 0.2;
-                zIndex = 10;
-                pointerEvents = "none";
-                filter = "blur(1.5px)";
+              if (!isBackside) {
+                if (isCenter) {
+                  opacity = 1;
+                  scale = 1;
+                  zIndex = 50;
+                  pointerEvents = "auto";
+                  filter = "none";
+                } else if (isFlank) {
+                  opacity = 0.72;
+                  scale = 0.88;
+                  zIndex = 30;
+                  pointerEvents = "auto";
+                  filter = "brightness(0.9) saturate(0.95)";
+                } else if (isFarEdge) {
+                  opacity = 0.22;
+                  scale = 0.74;
+                  zIndex = 15;
+                  pointerEvents = "auto";
+                  filter = "brightness(0.65) blur(1.2px)";
+                }
               }
 
               const Icon = service.icon;
@@ -392,23 +445,39 @@ export default function Services() {
                 <div
                   key={index}
                   onClick={() => {
-                    if (!isCenter) goToSlide(index);
+                    if (!isCenter) rotateTo(index);
                   }}
-                  className={`absolute top-0 w-[90%] sm:w-[400px] max-w-[420px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 ease-out shadow-2xl ${
+                  className={`absolute top-0 w-[88%] sm:w-[390px] max-w-[420px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-2xl transition-[filter,opacity] duration-300 ${
                     isCenter
-                      ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/20 dark:shadow-[0_0_40px_rgba(255,0,127,0.35)] holo-corners ring-4 ring-pink-500/15"
-                      : "bg-white/85 dark:bg-[#0c0618]/85 border border-slate-300 dark:border-slate-850 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/50"
+                      ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/25 dark:shadow-[0_0_40px_rgba(255,0,127,0.4)] holo-corners ring-4 ring-pink-500/20"
+                      : "bg-white/90 dark:bg-[#0c0618]/90 border border-slate-300 dark:border-pink-500/20 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/60 hover:opacity-90"
                   }`}
                   style={{
-                    transform: transformStyle,
+                    transform: `translate3d(${x}px, 0px, ${z}px) rotateY(${rotateY}deg) scale(${scale})`,
+                    transformOrigin: "center center",
                     opacity: opacity,
                     zIndex: zIndex,
                     pointerEvents: pointerEvents,
                     filter: filter,
                     transformStyle: "preserve-3d",
-                    transition: isDragging ? "none" : "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, filter 0.4s ease",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                    transition: isDragging 
+                      ? "opacity 0.15s ease, filter 0.15s ease" 
+                      : "transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.4s ease, filter 0.4s ease",
                   }}
                 >
+                  {/* Subtle Curved Cylinder Gradient Lighting Overlay for side cards */}
+                  {!isCenter && (
+                    <div 
+                      className={`absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300 ${
+                        rawDiff > 0 
+                          ? "bg-gradient-to-r from-transparent via-transparent to-black/30 dark:to-black/50" 
+                          : "bg-gradient-to-r from-black/30 dark:from-black/50 via-transparent to-transparent"
+                      }`} 
+                    />
+                  )}
+
                   <div>
                     {/* Category & Badge */}
                     <div className="flex items-center justify-between mb-4">
@@ -472,7 +541,7 @@ export default function Services() {
                 return (
                   <button
                     key={idx}
-                    onClick={() => goToSlide(idx)}
+                    onClick={() => rotateTo(idx)}
                     aria-label={`Go to ${s.title}`}
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       isActive
@@ -491,3 +560,4 @@ export default function Services() {
     </section>
   );
 }
+
