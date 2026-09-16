@@ -20,10 +20,7 @@ import {
   Layers,
   Clock,
   CheckCircle2,
-  BadgePercent,
-  MoveHorizontal,
-  SlidersHorizontal,
-  Compass
+  BadgePercent
 } from "lucide-react";
 import { createWhatsAppLink, getPackageWhatsAppMessage } from "@/lib/whatsapp";
 
@@ -367,12 +364,6 @@ export default function Pricing() {
               })}
             </div>
           </div>
-
-          {/* Gesture swipe guidance hint */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-            <MoveHorizontal className="w-3.5 h-3.5 text-pink-500 animate-pulse" />
-            <span className="tracking-wide">Geser ke samping (Swipe) atau klik kartu untuk beralih</span>
-          </div>
         </div>
 
         {/* 3D Curved Coverflow Stage Container */}
@@ -635,8 +626,8 @@ export default function Pricing() {
             })}
           </div>
 
-          {/* Futuristic Bottom Slide Progress Telemetry Indicator */}
-          <div className="mt-8 flex flex-col items-center gap-3">
+          {/* Futuristic Bottom Slide Dots Indicator */}
+          <div className="mt-8 flex items-center justify-center">
             <div className="flex items-center gap-2">
               {plans.map((p, idx) => {
                 const isActive = activeIndex === idx;
@@ -653,12 +644,6 @@ export default function Pricing() {
                   />
                 );
               })}
-            </div>
-
-            <div className="font-mono text-[11px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase flex items-center gap-2">
-              <span>TIER [0{activeIndex + 1} / 0{totalPlans}]</span>
-              <span>•</span>
-              <span className="text-pink-600 dark:text-pink-400">{plans[activeIndex].name}</span>
             </div>
           </div>
 
