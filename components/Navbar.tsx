@@ -5,6 +5,8 @@ import Link from "next/link";
 import { MessageSquare, Menu, X, Sparkles, ChevronRight, PhoneCall, Code2 } from "lucide-react";
 import { createWhatsAppLink, getGeneralConsultationMessage } from "@/lib/whatsapp";
 
+import ThemeToggle from "@/components/ThemeToggle";
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +37,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[#07070a]/90 backdrop-blur-2xl border-b border-pink-500/25 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.9)]"
-          : "bg-transparent py-5"
+          : "bg-transparent py-4 sm:py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -77,8 +79,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA Action */}
+        {/* Desktop Controls: Theme Switcher + CTA */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Theme Switcher */}
+          <ThemeToggle />
+
           <a
             href={waUrl}
             target="_blank"
@@ -90,8 +95,11 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Actions: Theme Toggle + WA + Hamburger Toggle */}
         <div className="flex items-center gap-2 lg:hidden">
+          {/* Compact Theme Toggle for Mobile */}
+          <ThemeToggle compact />
+
           <a
             href={waUrl}
             target="_blank"
@@ -128,6 +136,12 @@ export default function Navbar() {
             ))}
 
             <div className="pt-4 border-t border-slate-800 flex flex-col gap-3">
+              {/* Mobile Full Theme Selector */}
+              <div className="flex items-center justify-between py-2 px-3 rounded-xl bg-black/20 dark:bg-white/5 border border-pink-500/20">
+                <span className="text-xs font-semibold text-slate-300">Pilihan Tema</span>
+                <ThemeToggle />
+              </div>
+
               <a
                 href={waUrl}
                 target="_blank"

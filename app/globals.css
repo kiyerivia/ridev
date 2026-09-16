@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+  --background: #f8f9fd;
+  --foreground: #0f172a;
+}
+
+html.dark, :root[data-theme="dark"] {
   --background: #07070a;
   --foreground: #f8fafc;
 }
@@ -12,6 +17,7 @@ body {
   background-color: var(--background);
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Cyber Sci-Fi Laser Grid & Reflective Sanctuary Background (Matching Image 1) */
@@ -184,4 +190,152 @@ body {
 .laser-border-pulse {
   animation: laserPulse 3s infinite ease-in-out;
 }
+
+/* ========================================================================= */
+/* 🌟 LIGHT THEME SPECIFIC OVERRIDES (05:00 - 18:00)                         */
+/* ========================================================================= */
+html.light body,
+html.light main {
+  background-color: #f8f9fd !important;
+  color: #0f172a !important;
+}
+
+/* Light Theme Card Glassmorphism */
+html.light .glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.92) 100%) !important;
+  border: 1px solid rgba(255, 0, 127, 0.16) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 0 15px rgba(255, 0, 127, 0.04) !important;
+  color: #0f172a !important;
+}
+
+html.light .glass-card:hover {
+  border-color: rgba(255, 0, 127, 0.45) !important;
+  box-shadow: 0 18px 35px -5px rgba(255, 0, 127, 0.12), 0 0 20px rgba(255, 0, 127, 0.06) !important;
+}
+
+html.light .glass-card-pink {
+  background: linear-gradient(135deg, rgba(255, 245, 250, 0.96) 0%, rgba(255, 238, 246, 0.92) 100%) !important;
+  border: 1px solid rgba(255, 0, 127, 0.35) !important;
+  box-shadow: 0 15px 35px -5px rgba(255, 0, 127, 0.12) !important;
+  color: #0f172a !important;
+}
+
+html.light .glass-card-gold {
+  background: linear-gradient(135deg, rgba(254, 252, 232, 0.96) 0%, rgba(254, 249, 195, 0.9) 100%) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 15px 35px -5px rgba(245, 158, 11, 0.12) !important;
+  color: #0f172a !important;
+}
+
+/* Light Theme Text Hierarchy */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0f172a !important;
+}
+
+html.light p {
+  color: #475569;
+}
+
+html.light .text-slate-100,
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-300 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Maintain crisp white text inside colored CTA buttons */
+html.light .bg-gradient-to-r,
+html.light button.bg-gradient-to-r,
+html.light a.bg-gradient-to-r,
+html.light .text-white-force {
+  color: #ffffff !important;
+}
+
+html.light a.bg-gradient-to-r span,
+html.light button.bg-gradient-to-r span {
+  color: #ffffff !important;
+}
+
+/* Light Mode Background Surfaces */
+html.light .bg-\[\#07070a\],
+html.light .bg-\[\#0c0814\],
+html.light .bg-\[\#0f091a\],
+html.light .bg-\[\#0d0818\],
+html.light .bg-\[\#100b19\],
+html.light .bg-\[\#0e0918\],
+html.light .bg-\[\#0c0816\],
+html.light .bg-\[\#050308\],
+html.light .bg-\[\#0d0814\],
+html.light .bg-\[\#07070a\]\/90,
+html.light .bg-\[\#0c0814\]\/98,
+html.light .bg-\[\#0f0a1a\]\/80,
+html.light .bg-\[\#0e0918\]\/90,
+html.light .bg-\[\#0f091a\]\/90,
+html.light .bg-\[\#0c0816\]\/95 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-\[\#120a22\],
+html.light .bg-\[\#160d26\],
+html.light .bg-\[\#140b20\],
+html.light .bg-\[\#120d1c\] {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .bg-slate-900,
+html.light .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-slate-900\/80,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-950\/90 {
+  background-color: rgba(241, 245, 249, 0.92) !important;
+}
+
+html.light .border-slate-800,
+html.light .border-slate-700,
+html.light .border-slate-800\/90 {
+  border-color: rgba(226, 232, 240, 0.95) !important;
+}
+
+/* Light Theme Grids & Lasers */
+html.light .cyber-laser-grid {
+  background-color: #f8f9fd !important;
+  background-image: 
+    linear-gradient(to right, rgba(255, 0, 85, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 0, 127, 0.04) 1px, transparent 1px) !important;
+}
+
+html.light .cyber-floor-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 0, 85, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 0, 127, 0.08) 1px, transparent 1px) !important;
+  opacity: 0.25 !important;
+}
+
+/* Light Mode Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border: 1px solid rgba(255, 0, 127, 0.2) !important;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #ff007f !important;
+}
+
 

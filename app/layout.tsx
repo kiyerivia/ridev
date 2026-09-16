@@ -47,20 +47,45 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/context/ThemeContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable} ${outfit.variable}`}>
+    <html lang="id" className={`scroll-smooth ${plusJakartaSans.variable} ${outfit.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#07070a" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedMode = localStorage.getItem('ridev_theme_mode');
+                  var hour = new Date().getHours();
+                  var timeTheme = (hour >= 5 && hour < 18) ? 'light' : 'dark';
+                  var activeTheme = (savedMode === 'light' || savedMode === 'dark') ? savedMode : timeTheme;
+                  var root = document.documentElement;
+                  if (activeTheme === 'dark') {
+                    root.classList.add('dark');
+                    root.classList.remove('light');
+                  } else {
+                    root.classList.add('light');
+                    root.classList.remove('dark');
+                  }
+                  root.setAttribute('data-theme', activeTheme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body
-        className="font-sans bg-[#07070a] text-slate-100 min-h-screen antialiased selection:bg-pink-500 selection:text-white"
+        className="font-sans bg-[#07070a] text-slate-100 min-h-screen antialiased selection:bg-pink-500 selection:text-white transition-colors duration-300"
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
