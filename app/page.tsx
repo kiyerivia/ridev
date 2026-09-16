@@ -15,6 +15,7 @@ import ConsultationForm from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AnimatedCyberWallpaper from "@/components/AnimatedCyberWallpaper";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 export default function Home() {
   return (
@@ -65,6 +66,7 @@ export default function Home() {
 
       {/* Floating Widgets */}
       <FloatingWhatsApp />
+      <BackgroundMusic />
     </main>
   );
 }
