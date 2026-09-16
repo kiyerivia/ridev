@@ -434,11 +434,11 @@ export default function CostCalculator() {
 
               {/* Price Display */}
               <div className="py-6 text-center">
-                <span className="text-xs text-slate-600 dark:text-slate-300 block font-medium">Perkiraan Biaya Total:</span>
-                <div className="font-heading font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-600 to-red-600 dark:from-pink-400 dark:via-rose-400 dark:to-red-400 mt-1 tracking-tight">
+                <span className="text-xs text-slate-700 dark:text-slate-300 block font-bold">Perkiraan Biaya Total:</span>
+                <div className="font-heading font-black text-3xl sm:text-4xl text-[#ff007f] dark:text-pink-400 mt-1 tracking-tight">
                   {formatIDR(calculatedTotal)}
                 </div>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400 block mt-1">
+                <span className="text-[11px] text-slate-600 dark:text-slate-400 block mt-1">
                   *Bisa dicicil DP 50% di awal & pelunasan setelah website selesai
                 </span>
               </div>

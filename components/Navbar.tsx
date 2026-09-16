@@ -52,10 +52,10 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-heading font-black text-xl tracking-wider text-slate-900 dark:text-white group-hover:text-pink-500 transition-colors">
+              <span className="font-heading font-black text-xl tracking-wider text-slate-900 dark:text-white">
                 RI
               </span>
-              <span className="font-heading font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-red-500">
+              <span className="font-heading font-black text-xl tracking-wider text-[#ff007f]">
                 DEV
               </span>
             </div>

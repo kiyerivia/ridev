@@ -35,7 +35,7 @@ export default function FloatingWhatsApp() {
           <span className="animate-ping absolute inset-0 rounded-l-2xl bg-pink-400 opacity-25"></span>
 
           {/* Left Indicator Chevron */}
-          <ChevronLeft className="w-4 h-4 text-pink-200 group-hover:-translate-x-1 transition-transform shrink-0" />
+          <ChevronLeft className="w-4 h-4 text-white group-hover:-translate-x-1 transition-transform shrink-0" />
 
           {/* Chat Icon & Online Indicator */}
           <div className="relative shrink-0">
@@ -47,7 +47,7 @@ export default function FloatingWhatsApp() {
 
           {/* Peeking Label (Hidden on ultra-narrow screens, visible on normal) */}
           <div className="flex flex-col text-left pr-1">
-            <span className="text-[10px] font-black uppercase tracking-wider text-pink-200 flex items-center gap-1 leading-none mb-1">
+            <span className="text-[10px] font-black uppercase tracking-wider text-white flex items-center gap-1 leading-none mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               Konsultasi
             </span>

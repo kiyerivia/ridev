@@ -201,14 +201,14 @@ html.light main {
   color: #0f172a !important;
 }
 
-/* Force dark, bold text on all headings & body */
+/* Force dark, bold text on all headings & body in light mode */
 html.light h1,
 html.light h2,
 html.light h3,
 html.light h4,
 html.light h5,
 html.light h6 {
-  color: #0f172a !important;
+  color: #0f172a;
 }
 
 html.light p,
@@ -221,81 +221,16 @@ html.light label {
 
 html.light strong,
 html.light b {
-  color: #0f172a !important;
+  color: #0f172a;
 }
 
-/* Light Mode Text Contrast Overrides */
-html.light .text-white:not(button.bg-gradient-to-r *):not(a.bg-gradient-to-r *):not(.force-white):not(button.bg-gradient-to-r):not(a.bg-gradient-to-r) {
-  color: #0f172a !important;
-}
-
-html.light .text-slate-100,
-html.light .text-slate-200 {
-  color: #0f172a !important;
-}
-
-html.light .text-slate-300 {
-  color: #334155 !important;
-}
-
-html.light .text-slate-400 {
-  color: #475569 !important;
-}
-
-html.light .text-slate-500 {
-  color: #64748b !important;
-}
-
-/* High Contrast Accent Colors for Light Mode */
-html.light .text-pink-200,
-html.light .text-pink-300 {
-  color: #be185d !important; /* Rich Dark Pink */
-}
-
-html.light .text-pink-400 {
-  color: #db2777 !important; /* Bold Rose Pink */
-}
-
-html.light .text-cyan-200,
-html.light .text-cyan-300 {
-  color: #0e7490 !important; /* Deep Cyan */
-}
-
-html.light .text-cyan-400 {
-  color: #0891b2 !important;
-}
-
-html.light .text-emerald-300 {
-  color: #047857 !important; /* Deep Emerald */
-}
-
-html.light .text-emerald-400 {
-  color: #059669 !important;
-}
-
-html.light .text-amber-300 {
-  color: #b45309 !important; /* Deep Amber */
-}
-
-html.light .text-amber-400 {
-  color: #d97706 !important;
-}
-
-/* Preserve White Text for Colored CTA Buttons */
-html.light .bg-gradient-to-r,
-html.light button.bg-gradient-to-r,
-html.light a.bg-gradient-to-r,
-html.light .bg-pink-600,
-html.light .bg-pink-500,
-html.light .bg-emerald-500,
-html.light .bg-emerald-600 {
-  color: #ffffff !important;
-}
-
-html.light .bg-gradient-to-r *,
-html.light button.bg-gradient-to-r *,
-html.light a.bg-gradient-to-r * {
-  color: #ffffff !important;
+/* Light Theme Text Pink Glow - deep, vivid magenta-rose for maximum readability on white */
+html.light .text-pink-glow {
+  background: linear-gradient(135deg, #e11d48 0%, #db2777 50%, #be185d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: none;
 }
 
 /* Light Theme Glass Cards */
@@ -323,70 +258,6 @@ html.light .glass-card-gold {
   border: 1.5px solid rgba(245, 158, 11, 0.35) !important;
   box-shadow: 0 15px 35px -5px rgba(245, 158, 11, 0.12) !important;
   color: #0f172a !important;
-}
-
-/* Light Theme Background Containers */
-html.light .bg-\[\#07070a\],
-html.light .bg-\[\#0c0814\],
-html.light .bg-\[\#0f091a\],
-html.light .bg-\[\#0d0818\],
-html.light .bg-\[\#100b19\],
-html.light .bg-\[\#0e0918\],
-html.light .bg-\[\#0c0816\],
-html.light .bg-\[\#050308\],
-html.light .bg-\[\#0d0814\],
-html.light .bg-\[\#07070a\]\/90,
-html.light .bg-\[\#0c0814\]\/98,
-html.light .bg-\[\#0f0a1a\]\/80,
-html.light .bg-\[\#0e0918\]\/90,
-html.light .bg-\[\#0f091a\]\/90,
-html.light .bg-\[\#0c0816\]\/95 {
-  background-color: #ffffff !important;
-}
-
-html.light .bg-\[\#120a22\],
-html.light .bg-\[\#160d26\],
-html.light .bg-\[\#140b20\],
-html.light .bg-\[\#120d1c\] {
-  background-color: #f1f5f9 !important;
-}
-
-html.light .bg-slate-900,
-html.light .bg-slate-950 {
-  background-color: #f8fafc !important;
-}
-
-html.light .bg-slate-900\/80,
-html.light .bg-slate-950\/80,
-html.light .bg-slate-900\/90,
-html.light .bg-slate-950\/90,
-html.light .bg-slate-900\/70 {
-  background-color: #f1f5f9 !important;
-}
-
-html.light .bg-pink-950\/60,
-html.light .bg-pink-950\/80 {
-  background-color: #fdf2f8 !important;
-  border-color: #fbcfe8 !important;
-}
-
-html.light .bg-emerald-950\/60,
-html.light .bg-emerald-950\/80 {
-  background-color: #ecfdf5 !important;
-  border-color: #a7f3d0 !important;
-}
-
-html.light .bg-amber-950\/60 {
-  background-color: #fffbeb !important;
-  border-color: #fde68a !important;
-}
-
-/* Light Theme Borders */
-html.light .border-slate-800,
-html.light .border-slate-700,
-html.light .border-slate-800\/90,
-html.light .border-slate-700\/60 {
-  border-color: #e2e8f0 !important;
 }
 
 /* Light Theme Forms & Inputs */

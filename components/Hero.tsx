@@ -185,11 +185,11 @@ export default function Hero() {
                       <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                       <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                     </div>
-                    <span className="text-[11px] font-mono text-cyan-300 ml-2 bg-[#050508] px-2 py-0.5 rounded border border-slate-800">
+                    <span className="text-[11px] font-mono text-cyan-700 dark:text-cyan-300 ml-2 bg-slate-100 dark:bg-[#050508] px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800">
                       https://medikacare.ridev.app
                     </span>
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40">
+                  <span className="text-[10px] uppercase font-bold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-300 dark:border-amber-500/40">
                     Live Demo
                   </span>
                 </div>
@@ -218,7 +218,7 @@ export default function Hero() {
                   {["Next.js 14", "Tailwind CSS", "Supabase DB", "Online Payment"].map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-semibold bg-pink-950/60 text-pink-300 px-2 py-0.5 rounded-md border border-pink-500/40"
+                      className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded-md border border-pink-200 dark:border-pink-500/40"
                     >
                       {tag}
                     </span>
@@ -233,13 +233,13 @@ export default function Hero() {
                     🛍️
                   </div>
                   <div>
-                    <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider block">
+                    <span className="text-[10px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider block">
                       Toko Online
                     </span>
-                    <h4 className="text-xs font-bold text-white leading-tight">
+                    <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
                       AuraStyle Fashion
                     </h4>
-                    <span className="text-[10px] text-emerald-400 font-semibold">
+                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
                       +200% Konversi Sales
                     </span>
                   </div>

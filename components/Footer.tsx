@@ -47,7 +47,7 @@ export default function Footer() {
               <div className="flex flex-col">
                 <div className="flex items-center gap-1">
                   <span className="font-heading font-black text-lg text-white">RI</span>
-                  <span className="font-heading font-extrabold text-lg text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-red-500">DEV</span>
+                  <span className="font-heading font-black text-lg text-[#ff007f]">DEV</span>
                 </div>
                 <span className="text-[8px] uppercase tracking-[0.2em] text-pink-400 font-bold -mt-1">
                   Rivia Developer • Studio
