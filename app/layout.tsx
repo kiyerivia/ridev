@@ -37,13 +37,28 @@ export const metadata: Metadata = {
       "Wujudkan Website Impian Anda Bersama RIDEV (Rivia Developer)! Cepat, Estetik, SEO-Ready & Bergaransi.",
     url: "https://riviadeveloper.com",
     siteName: "RIDEV (Rivia Developer)",
+    images: [
+      {
+        url: "/logo.png?v=3",
+        width: 1200,
+        height: 1200,
+        alt: "RIDEV (Rivia Developer) Official Logo",
+      },
+    ],
     locale: "id_ID",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "RIDEV (Rivia Developer) | Jasa Pembuatan Website & Aplikasi Profesional",
+    description:
+      "Wujudkan Website Impian Anda Bersama RIDEV (Rivia Developer)! Cepat, Estetik, SEO-Ready & Bergaransi.",
+    images: ["/logo.png?v=3"],
+  },
   metadataBase: new URL("https://riviadeveloper.com"),
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/logo.png?v=3",
+    apple: "/logo.png?v=3",
   },
 };
 
