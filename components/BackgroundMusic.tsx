@@ -22,24 +22,34 @@ export default function BackgroundMusic() {
 
   // Safe playback trigger
   const startPlayback = useCallback(() => {
-    if (playerRef.current && typeof playerRef.current.playVideo === "function") {
+    if (playerRef.current) {
       try {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(volume || 50);
-        playerRef.current.playVideo();
+        if (typeof playerRef.current.unMute === "function") playerRef.current.unMute();
+        if (typeof playerRef.current.setVolume === "function") playerRef.current.setVolume(volume || 50);
+        if (typeof playerRef.current.playVideo === "function") playerRef.current.playVideo();
         setIsPlaying(true);
+        setIsMuted(false);
       } catch (err) {
-        // Fallback postMessage to iframe
-        if (iframeRef.current && iframeRef.current.contentWindow) {
-          iframeRef.current.contentWindow.postMessage(
-            JSON.stringify({ event: "command", func: "playVideo", args: "" }),
-            "*"
-          );
-          iframeRef.current.contentWindow.postMessage(
-            JSON.stringify({ event: "command", func: "setVolume", args: [50] }),
-            "*"
-          );
-        }
+        // ignore
+      }
+    }
+    // Fallback postMessage to iframe contentWindow
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "unMute", args: [] }),
+          "*"
+        );
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "setVolume", args: [volume || 50] }),
+          "*"
+        );
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "playVideo", args: [] }),
+          "*"
+        );
+      } catch (e) {
+        // ignore
       }
     }
   }, [volume]);
@@ -197,7 +207,7 @@ export default function BackgroundMusic() {
           ref={iframeRef}
           width="100%"
           height="100%"
-          src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&playsinline=1&rel=0`}
+          src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&playsinline=1&rel=0`}
           title="Background Music"
           allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture"
           tabIndex={-1}
