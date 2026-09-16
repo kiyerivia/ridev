@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { 
   Briefcase, 
   ExternalLink, 
@@ -29,7 +29,9 @@ import {
   DollarSign,
   Send,
   RefreshCw,
-  Zap
+  Zap,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { createWhatsAppLink } from "@/lib/whatsapp";
 
@@ -107,6 +109,99 @@ export default function Portfolio() {
   const filteredProjects = selectedCategory === "All"
     ? projects
     : projects.filter((p) => p.category.toLowerCase().includes(selectedCategory.toLowerCase()));
+
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStartX, setDragStartX] = useState<number>(0);
+  const [dragOffset, setDragOffset] = useState<number>(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const totalFiltered = filteredProjects.length;
+
+  const nextSlide = useCallback(() => {
+    if (totalFiltered <= 1) return;
+    setActiveIndex((prev) => (prev + 1) % totalFiltered);
+  }, [totalFiltered]);
+
+  const prevSlide = useCallback(() => {
+    if (totalFiltered <= 1) return;
+    setActiveIndex((prev) => (prev - 1 + totalFiltered) % totalFiltered);
+  }, [totalFiltered]);
+
+  const goToSlide = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    setActiveIndex(0);
+  };
+
+  // Touch & Drag Gesture Handling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setDragStartX(e.touches[0].clientX);
+    setDragOffset(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - dragStartX;
+    setDragOffset(diff);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (dragOffset < -45) {
+      nextSlide();
+    } else if (dragOffset > 45) {
+      prevSlide();
+    }
+    setDragOffset(0);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStartX(e.clientX);
+    setDragOffset(0);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const diff = e.clientX - dragStartX;
+    setDragOffset(diff);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (dragOffset < -50) {
+      nextSlide();
+    } else if (dragOffset > 50) {
+      prevSlide();
+    }
+    setDragOffset(0);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      setDragOffset(0);
+    }
+  };
+
+  // Keyboard navigation when modal is not active
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (activeAppId) return;
+      if (e.key === "ArrowLeft") prevSlide();
+      if (e.key === "ArrowRight") nextSlide();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nextSlide, prevSlide, activeAppId]);
 
   // Close modal on Escape key & manage body scroll
   useEffect(() => {
@@ -222,11 +317,11 @@ export default function Portfolio() {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              onClick={() => handleCategoryChange(cat)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 selectedCategory === cat
                   ? "bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_15px_rgba(255,0,127,0.4)] font-bold"
@@ -238,179 +333,312 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Portfolio Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="glass-card rounded-2xl overflow-hidden border border-slate-200 dark:border-pink-500/30 hover:border-pink-400 dark:hover:border-pink-500/60 flex flex-col justify-between group transition-all duration-300 shadow-xl dark:shadow-2xl holo-corners"
-            >
-              {/* Realistic UI Mockup Card Preview */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0918] border-b border-slate-800 flex flex-col">
-                
-                {/* Browser window top bar */}
-                <div className="bg-[#090610] px-3 py-2 border-b border-slate-800 flex items-center justify-between shrink-0">
-                  <div className="flex gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-rose-500" />
-                    <div className="w-2 h-2 rounded-full bg-amber-500" />
-                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  </div>
-                  <span className="text-[10px] font-mono text-cyan-300 bg-[#050308] px-2 py-0.5 rounded border border-slate-800">
-                    https://{project.id}.ridev.app
-                  </span>
-                  <span className="text-[9px] text-emerald-400 font-bold">🟢 Live Ready</span>
-                </div>
+        {/* 3D Curved Coverflow Stage Container */}
+        <div 
+          ref={carouselRef}
+          className="relative w-full py-8 sm:py-12 overflow-visible cursor-grab active:cursor-grabbing select-none"
+          style={{ perspective: "1400px" }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Holographic Center Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] rounded-full bg-gradient-to-tr from-pink-500/20 via-cyan-500/15 to-purple-500/20 blur-3xl pointer-events-none -z-10" />
 
-                {/* Simulated UI Screen Rendering */}
-                <div className="p-3 bg-gradient-to-br from-[#0c0816] via-[#100b1d] to-[#07050b] flex-1 overflow-hidden relative text-left">
-                  
-                  {project.id === "healthcare" && (
-                    <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-cyan-950/60 p-2 rounded-lg border border-cyan-500/40">
-                        <span className="font-bold text-cyan-300">🏥 MedikaCare Antrean Online</span>
-                        <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded font-bold border border-emerald-500/40">Buka 24 Jam</span>
+          {/* Floating Neon Chevrons (shown if more than 1 item) */}
+          {totalFiltered > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                aria-label="Previous Project"
+                className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+              >
+                <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                aria-label="Next Project"
+                className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+              >
+                <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </>
+          )}
+
+          {/* 3D Cards Carousel Wrapper */}
+          <div className="relative min-h-[600px] sm:min-h-[580px] flex items-center justify-center">
+            {filteredProjects.map((project, index) => {
+              const offset = index - activeIndex;
+              const isCenter = offset === 0;
+              const isPrev = offset === -1;
+              const isNext = offset === 1;
+              const isFarLeft = offset < -1;
+              const isFarRight = offset > 1;
+
+              let transformStyle = "";
+              let opacity = 0;
+              let zIndex = 10;
+              let pointerEvents: "auto" | "none" = "none";
+              let filter = "none";
+
+              if (totalFiltered === 1) {
+                transformStyle = "translateX(0px) translateZ(0px) rotateY(0deg) scale(1)";
+                opacity = 1;
+                zIndex = 30;
+                pointerEvents = "auto";
+              } else if (isCenter) {
+                transformStyle = `translateX(${dragOffset}px) translateZ(0px) rotateY(0deg) scale(1)`;
+                opacity = 1;
+                zIndex = 30;
+                pointerEvents = "auto";
+                filter = "none";
+              } else if (isPrev) {
+                transformStyle = `translateX(calc(-72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(26deg) scale(0.85)`;
+                opacity = 0.65;
+                zIndex = 20;
+                pointerEvents = "auto";
+                filter = "blur(0.4px)";
+              } else if (isNext) {
+                transformStyle = `translateX(calc(72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(-26deg) scale(0.85)`;
+                opacity = 0.65;
+                zIndex = 20;
+                pointerEvents = "auto";
+                filter = "blur(0.4px)";
+              } else if (isFarLeft) {
+                transformStyle = `translateX(calc(-135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(40deg) scale(0.7)`;
+                opacity = 0.2;
+                zIndex = 10;
+                pointerEvents = "none";
+                filter = "blur(1.5px)";
+              } else if (isFarRight) {
+                transformStyle = `translateX(calc(135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(-40deg) scale(0.7)`;
+                opacity = 0.2;
+                zIndex = 10;
+                pointerEvents = "none";
+                filter = "blur(1.5px)";
+              }
+
+              return (
+                <div
+                  key={project.id}
+                  onClick={() => {
+                    if (!isCenter) goToSlide(index);
+                  }}
+                  className={`absolute top-0 w-[90%] sm:w-[440px] max-w-[460px] rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-500 ease-out shadow-2xl ${
+                    isCenter
+                      ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/20 dark:shadow-[0_0_40px_rgba(255,0,127,0.35)] holo-corners ring-4 ring-pink-500/15"
+                      : "bg-white/85 dark:bg-[#0c0618]/85 border border-slate-300 dark:border-slate-850 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/50"
+                  }`}
+                  style={{
+                    transform: transformStyle,
+                    opacity: opacity,
+                    zIndex: zIndex,
+                    pointerEvents: pointerEvents,
+                    filter: filter,
+                    transformStyle: "preserve-3d",
+                    transition: isDragging ? "none" : "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, filter 0.4s ease",
+                  }}
+                >
+                  {/* Realistic UI Mockup Card Preview */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0918] border-b border-slate-800 flex flex-col">
+                    {/* Browser window top bar */}
+                    <div className="bg-[#090610] px-3 py-2 border-b border-slate-800 flex items-center justify-between shrink-0">
+                      <div className="flex gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-rose-500" />
+                        <div className="w-2 h-2 rounded-full bg-amber-500" />
+                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
                       </div>
-                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
-                        <div>
-                          <strong className="text-white block">dr. Hendra K., Sp.A</strong>
-                          <span className="text-[9px] text-slate-400">Jadwal: 10:00 WIB</span>
-                        </div>
-                        <span className="text-[10px] text-pink-300 bg-pink-950/70 px-2 py-1 rounded border border-pink-500/40 font-bold">
-                          Reservasi
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.id === "travel" && (
-                    <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-emerald-950/60 p-2 rounded-lg border border-emerald-500/40">
-                        <span className="font-bold text-emerald-300">🌴 Nusantara Escapes</span>
-                        <span className="text-[9px] bg-amber-950 text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-500/40">Promo 2026</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
-                          <span className="text-[9px] text-slate-400 block">Labuan Bajo</span>
-                          <strong className="text-amber-400 text-[10px]">Rp 3.200.000</strong>
-                        </div>
-                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
-                          <span className="text-[9px] text-slate-400 block">Raja Ampat</span>
-                          <strong className="text-amber-400 text-[10px]">Rp 4.500.000</strong>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.id === "ecommerce" && (
-                    <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-amber-950/60 p-2 rounded-lg border border-amber-500/40">
-                        <span className="font-bold text-amber-300">🛍️ AuraStyle Official Store</span>
-                        <span className="text-[9px] bg-pink-950 text-pink-300 px-1.5 py-0.5 rounded font-bold border border-pink-500/40">🛒 Keranjang (1)</span>
-                      </div>
-                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
-                        <div>
-                          <strong className="text-white block">Cyber Sapphire Hoodie</strong>
-                          <span className="text-[10px] text-amber-400 font-bold">Rp 349.000</span>
-                        </div>
-                        <span className="text-[10px] bg-gradient-to-r from-pink-500 to-rose-600 text-white px-2 py-1 rounded font-extrabold shadow-sm">
-                          + Beli
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.id === "lms" && (
-                    <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-purple-950/60 p-2 rounded-lg border border-purple-500/40">
-                        <span className="font-bold text-purple-300">🎓 Cendekia Academy E-Learning</span>
-                        <span className="text-[9px] text-emerald-400 font-bold">Progres: 75%</span>
-                      </div>
-                      <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center gap-2 shadow-sm">
-                        <div className="w-5 h-5 rounded-full bg-purple-900/60 border border-purple-500/40 flex items-center justify-center text-purple-400">
-                          <Play className="w-3 h-3 fill-purple-400" />
-                        </div>
-                        <div>
-                          <span className="text-[10px] text-white font-bold block">Bab 1: Next.js 14 App Router</span>
-                          <span className="text-[9px] text-slate-400">Durasi: 18 Menit • Video HD</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.id === "erp" && (
-                    <div className="space-y-2 text-[11px]">
-                      <div className="flex items-center justify-between bg-blue-950/60 p-2 rounded-lg border border-blue-500/40">
-                        <span className="font-bold text-blue-300">📊 Nexus ERP Dashboard</span>
-                        <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/40">Omset: +18%</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
-                          <span className="text-[8px] text-slate-400 block">Pesanan Hari Ini</span>
-                          <strong className="text-white text-[10px]">1,248 Order</strong>
-                        </div>
-                        <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
-                          <span className="text-[8px] text-slate-400 block">Stok Gudang</span>
-                          <strong className="text-pink-400 text-[10px]">98.2% Optimal</strong>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Hover Overlay with Live Demo Trigger */}
-                  <div className="absolute inset-0 bg-[#07070a]/90 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center p-4">
-                    <span className="text-xs font-bold text-pink-400 mb-2">⚡ Interactive Live Simulator</span>
-                    <button
-                      onClick={() => setActiveAppId(project.id)}
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white text-xs font-black flex items-center gap-1.5 shadow-[0_0_20px_rgba(255,0,127,0.5)] hover:brightness-110 active:scale-95 transition-all"
-                    >
-                      <Eye className="w-4 h-4" />
-                      <span>Buka Mockup Interaktif</span>
-                    </button>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6 flex flex-col justify-between flex-1">
-                <div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-medium">
-                    <span>Klien: <strong className="text-slate-900 dark:text-white">{project.client}</strong></span>
-                    <span>Tahun: <strong className="text-pink-600 dark:text-pink-400">{project.year}</strong></span>
-                  </div>
-
-                  <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-normal">
-                    {project.subtitle}
-                  </p>
-                </div>
-
-                {/* Tech Stack Badges & CTA Link */}
-                <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.techStack.map((tech, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded border border-pink-200 dark:border-pink-500/40"
-                      >
-                        {tech}
+                      <span className="text-[10px] font-mono text-cyan-300 bg-[#050308] px-2 py-0.5 rounded border border-slate-800">
+                        https://{project.id}.ridev.app
                       </span>
-                    ))}
+                      <span className="text-[9px] text-emerald-400 font-bold">🟢 Live Ready</span>
+                    </div>
+
+                    {/* Simulated UI Screen Rendering */}
+                    <div className="p-3 bg-gradient-to-br from-[#0c0816] via-[#100b1d] to-[#07050b] flex-1 overflow-hidden relative text-left">
+                      {project.id === "healthcare" && (
+                        <div className="space-y-2 text-[11px]">
+                          <div className="flex items-center justify-between bg-cyan-950/60 p-2 rounded-lg border border-cyan-500/40">
+                            <span className="font-bold text-cyan-300">🏥 MedikaCare Antrean Online</span>
+                            <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded font-bold border border-emerald-500/40">Buka 24 Jam</span>
+                          </div>
+                          <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
+                            <div>
+                              <strong className="text-white block">dr. Hendra K., Sp.A</strong>
+                              <span className="text-[9px] text-slate-400">Jadwal: 10:00 WIB</span>
+                            </div>
+                            <span className="text-[10px] text-pink-300 bg-pink-950/70 px-2 py-1 rounded border border-pink-500/40 font-bold">
+                              Reservasi
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === "travel" && (
+                        <div className="space-y-2 text-[11px]">
+                          <div className="flex items-center justify-between bg-emerald-950/60 p-2 rounded-lg border border-emerald-500/40">
+                            <span className="font-bold text-emerald-300">🌴 Nusantara Escapes</span>
+                            <span className="text-[9px] bg-amber-950 text-amber-300 px-1.5 py-0.5 rounded font-bold border border-amber-500/40">Promo 2026</span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-1.5">
+                            <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
+                              <span className="text-[9px] text-slate-400 block">Labuan Bajo</span>
+                              <strong className="text-amber-400 text-[10px]">Rp 3.200.000</strong>
+                            </div>
+                            <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
+                              <span className="text-[9px] text-slate-400 block">Raja Ampat</span>
+                              <strong className="text-amber-400 text-[10px]">Rp 4.500.000</strong>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === "ecommerce" && (
+                        <div className="space-y-2 text-[11px]">
+                          <div className="flex items-center justify-between bg-amber-950/60 p-2 rounded-lg border border-amber-500/40">
+                            <span className="font-bold text-amber-300">🛍️ AuraStyle Official Store</span>
+                            <span className="text-[9px] bg-pink-950 text-pink-300 px-1.5 py-0.5 rounded font-bold border border-pink-500/40">🛒 Keranjang (1)</span>
+                          </div>
+                          <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center justify-between shadow-sm">
+                            <div>
+                              <strong className="text-white block">Cyber Sapphire Hoodie</strong>
+                              <span className="text-[10px] text-amber-400 font-bold">Rp 349.000</span>
+                            </div>
+                            <span className="text-[10px] bg-gradient-to-r from-pink-500 to-rose-600 text-white px-2 py-1 rounded font-extrabold shadow-sm">
+                              + Beli
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === "lms" && (
+                        <div className="space-y-2 text-[11px]">
+                          <div className="flex items-center justify-between bg-purple-950/60 p-2 rounded-lg border border-purple-500/40">
+                            <span className="font-bold text-purple-300">🎓 Cendekia Academy E-Learning</span>
+                            <span className="text-[9px] text-emerald-400 font-bold">Progres: 75%</span>
+                          </div>
+                          <div className="p-2 rounded bg-[#130d22] border border-slate-800 flex items-center gap-2 shadow-sm">
+                            <div className="w-5 h-5 rounded-full bg-purple-900/60 border border-purple-500/40 flex items-center justify-center text-purple-400">
+                              <Play className="w-3 h-3 fill-purple-400" />
+                            </div>
+                            <div>
+                              <span className="text-[10px] text-white font-bold block">Bab 1: Next.js 14 App Router</span>
+                              <span className="text-[9px] text-slate-400">Durasi: 18 Menit • Video HD</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {project.id === "erp" && (
+                        <div className="space-y-2 text-[11px]">
+                          <div className="flex items-center justify-between bg-blue-950/60 p-2 rounded-lg border border-blue-500/40">
+                            <span className="font-bold text-blue-300">📊 Nexus ERP Dashboard</span>
+                            <span className="text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/40">Omset: +18%</span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-1.5">
+                            <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
+                              <span className="text-[8px] text-slate-400 block">Pesanan Hari Ini</span>
+                              <strong className="text-white text-[10px]">1,248 Order</strong>
+                            </div>
+                            <div className="p-1.5 rounded bg-[#130d22] border border-slate-800 shadow-sm">
+                              <span className="text-[8px] text-slate-400 block">Stok Gudang</span>
+                              <strong className="text-pink-400 text-[10px]">98.2% Optimal</strong>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Hover Overlay with Live Demo Trigger */}
+                      <div className="absolute inset-0 bg-[#07070a]/90 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center p-4">
+                        <span className="text-xs font-bold text-pink-400 mb-2">⚡ Interactive Live Simulator</span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveAppId(project.id);
+                          }}
+                          className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white text-xs font-black flex items-center gap-1.5 shadow-[0_0_20px_rgba(255,0,127,0.5)] hover:brightness-110 active:scale-95 transition-all"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>Buka Mockup Interaktif</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
-                  <button
-                    onClick={() => setActiveAppId(project.id)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-pink-50 dark:bg-[#140b20] hover:bg-pink-100 dark:hover:bg-pink-500/20 text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-white text-xs font-bold text-center border border-pink-300 dark:border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
-                  >
-                    <span>⚡ Coba Simulator Aplikasi Ini</span>
-                  </button>
+                  {/* Card Body */}
+                  <div className="p-6 flex flex-col justify-between flex-1">
+                    <div>
+                      <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-medium">
+                        <span>Klien: <strong className="text-slate-900 dark:text-white">{project.client}</strong></span>
+                        <span>Tahun: <strong className="text-pink-600 dark:text-pink-400">{project.year}</strong></span>
+                      </div>
+
+                      <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors leading-snug">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-normal">
+                        {project.subtitle}
+                      </p>
+                    </div>
+
+                    {/* Tech Stack Badges & CTA Link */}
+                    <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {project.techStack.map((tech, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded border border-pink-200 dark:border-pink-500/40"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveAppId(project.id);
+                        }}
+                        className="w-full py-2.5 px-3 rounded-xl bg-pink-50 dark:bg-[#140b20] hover:bg-pink-100 dark:hover:bg-pink-500/20 text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-white text-xs font-bold text-center border border-pink-300 dark:border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                      >
+                        <span>⚡ Coba Simulator Aplikasi Ini</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom Slide Dots */}
+          {totalFiltered > 1 && (
+            <div className="mt-8 flex items-center justify-center">
+              <div className="flex items-center gap-2">
+                {filteredProjects.map((p, idx) => {
+                  const isActive = activeIndex === idx;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => goToSlide(idx)}
+                      aria-label={`Go to ${p.title}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        isActive
+                          ? "w-9 bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-500/40 dark:shadow-[0_0_12px_#ff007f]"
+                          : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-pink-400"
+                      }`}
+                    />
+                  );
+                })}
               </div>
             </div>
-          ))}
+          )}
+
         </div>
 
       </div>
