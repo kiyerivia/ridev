@@ -110,7 +110,7 @@ export default function Portfolio() {
     ? projects
     : projects.filter((p) => p.category.toLowerCase().includes(selectedCategory.toLowerCase()));
 
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(Math.floor(projects.length / 2)); // Default to center project
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStartX, setDragStartX] = useState<number>(0);
   const [dragOffset, setDragOffset] = useState<number>(0);
@@ -134,7 +134,11 @@ export default function Portfolio() {
 
   const handleCategoryChange = (cat: string) => {
     setSelectedCategory(cat);
-    setActiveIndex(0);
+    if (cat === "All") {
+      setActiveIndex(Math.floor(projects.length / 2));
+    } else {
+      setActiveIndex(0);
+    }
   };
 
   // Touch & Drag Gesture Handling

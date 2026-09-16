@@ -53,7 +53,7 @@ interface PricingPlan {
 
 export default function Pricing() {
   const [activeIndex, setActiveIndex] = useState<number>(1); // Default to Gold (Best Seller)
-  const [expandedPlan, setExpandedPlan] = useState<string | null>("gold");
+  const [expandedPlan, setExpandedPlan] = useState<string | null>(null); // Closed by default
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [dragStartX, setDragStartX] = useState<number>(0);
   const [dragOffset, setDragOffset] = useState<number>(0);
@@ -400,7 +400,7 @@ export default function Pricing() {
           </button>
 
           {/* 3D Cards Carousel Wrapper */}
-          <div className="relative min-h-[720px] sm:min-h-[700px] flex items-center justify-center">
+          <div className="relative min-h-[580px] sm:min-h-[560px] flex items-center justify-center">
             {plans.map((plan, index) => {
               const offset = index - activeIndex;
               const isCenter = offset === 0;
