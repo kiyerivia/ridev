@@ -15,29 +15,24 @@ export default function BackgroundMusic() {
   const SUPABASE_AUDIO_URL =
     "https://kjivhrztkiggctvxqoud.supabase.co/storage/v1/object/public/pubs/1%20Hour%20of%20Relaxing%20Genshin%20Impact%20Music%20and%20Ambiance%20cmprs.mp3";
 
-  // Safe Playback Executor with Gentle Fade-In
-  const playAudio = useCallback(() => {
-    if (!audioRef.current) return;
+  // Play audio safely and return success boolean
+  const startAudioPlayback = useCallback(async (): Promise<boolean> => {
     const audio = audioRef.current;
-    
-    const targetVol = isMuted ? 0 : volume / 100;
-    audio.volume = targetVol;
+    if (!audio) return false;
 
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch((err) => {
-          // Autoplay blocked by browser policy until user gesture
-          console.log("Autoplay waiting for first user gesture:", err.message);
-          setIsPlaying(false);
-        });
+    try {
+      audio.muted = isMuted;
+      audio.volume = isMuted ? 0 : volume / 100;
+      await audio.play();
+      setIsPlaying(true);
+      return true;
+    } catch (err) {
+      console.log("Browser autoplay restriction waiting for user gesture...");
+      setIsPlaying(false);
+      return false;
     }
   }, [volume, isMuted]);
 
-  // Set up Audio & Multi-tier Autoplay Engine
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -45,43 +40,46 @@ export default function BackgroundMusic() {
     audio.volume = volume / 100;
     audio.loop = true;
 
-    // 1. Initial immediate autoplay attempt
-    playAudio();
+    // 1. Immediate playback attempt upon mount
+    startAudioPlayback();
 
-    // 2. Global First-Interaction Listener to unlock audio if browser initially blocked it
-    let unlocked = false;
-    const handleFirstInteraction = () => {
-      if (unlocked) return;
-      unlocked = true;
-      playAudio();
-
-      window.removeEventListener("pointerdown", handleFirstInteraction, true);
-      window.removeEventListener("click", handleFirstInteraction, true);
-      window.removeEventListener("touchstart", handleFirstInteraction, true);
-      window.removeEventListener("scroll", handleFirstInteraction, true);
-      window.removeEventListener("keydown", handleFirstInteraction, true);
-      window.removeEventListener("wheel", handleFirstInteraction, true);
+    // 2. Persistent global user gesture listener:
+    // Captures first click / tap / keydown ANYWHERE across the entire window
+    // and ONLY detaches when playback has actually succeeded!
+    const handleGlobalInteraction = async () => {
+      const success = await startAudioPlayback();
+      if (success) {
+        detachListeners();
+      }
     };
 
-    window.addEventListener("pointerdown", handleFirstInteraction, { capture: true, passive: true });
-    window.addEventListener("click", handleFirstInteraction, { capture: true, passive: true });
-    window.addEventListener("touchstart", handleFirstInteraction, { capture: true, passive: true });
-    window.addEventListener("scroll", handleFirstInteraction, { capture: true, passive: true });
-    window.addEventListener("keydown", handleFirstInteraction, { capture: true, passive: true });
-    window.addEventListener("wheel", handleFirstInteraction, { capture: true, passive: true });
+    const attachListeners = () => {
+      document.addEventListener("click", handleGlobalInteraction, { capture: true, passive: true });
+      document.addEventListener("pointerdown", handleGlobalInteraction, { capture: true, passive: true });
+      document.addEventListener("pointerup", handleGlobalInteraction, { capture: true, passive: true });
+      document.addEventListener("touchstart", handleGlobalInteraction, { capture: true, passive: true });
+      document.addEventListener("touchend", handleGlobalInteraction, { capture: true, passive: true });
+      document.addEventListener("keydown", handleGlobalInteraction, { capture: true, passive: true });
+    };
+
+    const detachListeners = () => {
+      document.removeEventListener("click", handleGlobalInteraction, true);
+      document.removeEventListener("pointerdown", handleGlobalInteraction, true);
+      document.removeEventListener("pointerup", handleGlobalInteraction, true);
+      document.removeEventListener("touchstart", handleGlobalInteraction, true);
+      document.removeEventListener("touchend", handleGlobalInteraction, true);
+      document.removeEventListener("keydown", handleGlobalInteraction, true);
+    };
+
+    attachListeners();
 
     return () => {
-      window.removeEventListener("pointerdown", handleFirstInteraction, true);
-      window.removeEventListener("click", handleFirstInteraction, true);
-      window.removeEventListener("touchstart", handleFirstInteraction, true);
-      window.removeEventListener("scroll", handleFirstInteraction, true);
-      window.removeEventListener("keydown", handleFirstInteraction, true);
-      window.removeEventListener("wheel", handleFirstInteraction, true);
+      detachListeners();
     };
-  }, [playAudio, volume]);
+  }, [startAudioPlayback, volume]);
 
   // Toggle Play / Pause
-  const togglePlay = (e?: React.MouseEvent) => {
+  const togglePlay = async (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (!audioRef.current) return;
 
@@ -89,7 +87,7 @@ export default function BackgroundMusic() {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      playAudio();
+      await startAudioPlayback();
     }
   };
 
@@ -143,7 +141,7 @@ export default function BackgroundMusic() {
             onClick={() => {
               setIsOpen(true);
               if (!isPlaying) {
-                playAudio();
+                startAudioPlayback();
               }
             }}
             className="group relative w-12 h-12 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-xl border-2 border-pink-500/50 dark:border-pink-500/60 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.35)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:border-pink-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
