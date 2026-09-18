@@ -4,9 +4,9 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturePackage from "@/components/FeaturePackage";
-import Pricing from "@/components/Pricing";
-import CostCalculator from "@/components/CostCalculator";
 import Services from "@/components/Services";
+import CostCalculator from "@/components/CostCalculator";
+import Pricing from "@/components/Pricing";
 import Portfolio from "@/components/Portfolio";
 import Workflow from "@/components/Workflow";
 import Testimonials from "@/components/Testimonials";
@@ -19,26 +19,25 @@ import BackgroundMusic from "@/components/BackgroundMusic";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#07040d] text-slate-100 relative overflow-x-hidden selection:bg-[#ff007f] selection:text-white">
+    <main className="min-h-screen bg-[#f8f9fd] dark:bg-[#07070a] text-slate-900 dark:text-slate-100 relative overflow-x-hidden selection:bg-pink-500 selection:text-white transition-colors duration-300">
       {/* 🌟 Dynamic Sci-Fi Animated Cyber Wallpaper & FX Layer */}
       <AnimatedCyberWallpaper />
 
       {/* Global Background Ambient Laser Glows */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[2px] h-[800px] bg-gradient-to-b from-pink-500/70 via-rose-500/20 to-transparent shadow-[0_0_25px_#ff007f] pointer-events-none z-0" />
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-pink-600/15 via-rose-600/10 to-transparent rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="fixed top-1/4 -left-40 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[160px] pointer-events-none z-0" />
-      <div className="fixed top-1/3 -right-40 w-[600px] h-[600px] bg-rose-600/10 rounded-full blur-[160px] pointer-events-none z-0" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-pink-600/15 via-rose-600/10 to-transparent rounded-full blur-[140px] pointer-events-none z-0 opacity-40 dark:opacity-100" />
+      <div className="fixed bottom-0 left-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[160px] pointer-events-none z-0 opacity-30 dark:opacity-100" />
+      <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[160px] pointer-events-none z-0 opacity-30 dark:opacity-100" />
 
-      {/* Sticky Header Navbar */}
+      {/* Sticky Header */}
       <Navbar />
 
-      {/* Hero Section & Masterpiece Showcase */}
+      {/* Hero Section (ATM EDA Credibility & Nationwide Coverage) */}
       <Hero />
 
-      {/* 6 Core Value Deliverables / Feature Package */}
+      {/* 6 Core Value Deliverables / Our Feature Package (ATM EDA) */}
       <FeaturePackage />
 
-      {/* Transparent Pricing Packages */}
+      {/* Transparent 4-Tier Pricing Packages with Renewal Fee & Expandable Specs (ATM EDA) */}
       <Pricing />
 
       {/* Interactive Project Cost Calculator */}
@@ -47,7 +46,7 @@ export default function Home() {
       {/* Services Showcase */}
       <Services />
 
-      {/* Comprehensive Case Studies & Interactive Portfolio */}
+      {/* Case Studies & Portfolio */}
       <Portfolio />
 
       {/* 5-Step SOP Workflow */}
@@ -56,13 +55,13 @@ export default function Home() {
       {/* Client Reviews & FAQ */}
       <Testimonials />
 
-      {/* Closing Trust & Action Banner */}
+      {/* Closing Trust & Action Banner (ATM EDA) */}
       <ClosingTrustBanner />
 
-      {/* Lead Generation & Consultation Form */}
+      {/* Lead Generation & Contact Form */}
       <ConsultationForm />
 
-      {/* Detailed Footer */}
+      {/* Footer */}
       <Footer />
 
       {/* Floating Widgets */}
