@@ -67,22 +67,28 @@ export default function Hero() {
         style={{ width: "700px", height: "700px" }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          
-          {/* Left Column: Official Logo + Copywriting, Perks, and Conversion CTA */}
-          <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
-            
-            {/* Brand Logo Emblem - dinaikkan sampai batas atas */}
-            <div className="flex justify-center lg:justify-start -mt-8 sm:-mt-12 lg:-mt-14 mb-1">
-              <img
-                src="/logo.png"
-                alt="RIDEV Official Logo"
-                className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] object-contain drop-shadow-[0_0_35px_rgba(255,0,127,0.45)] dark:drop-shadow-[0_0_55px_rgba(255,0,127,0.65)] hover:scale-105 transition-transform"
-              />
-            </div>
+      {/* Giant Aesthetic Background Brand Emblem with Smooth Transparent Gradient Fade */}
+      <div 
+        className="absolute -top-8 sm:-top-12 lg:-top-14 left-0 sm:left-4 lg:left-6 pointer-events-none select-none z-0 opacity-90 dark:opacity-40 transition-all"
+        style={{
+          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 82%, transparent 100%)"
+        }}
+      >
+        <img
+          src="/logo.png"
+          alt="RIDEV Background Emblem"
+          className="w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] md:w-[520px] md:h-[520px] lg:w-[620px] lg:h-[620px] object-contain drop-shadow-[0_0_50px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_80px_rgba(255,0,127,0.6)]"
+        />
+      </div>
 
-            {/* Top Sci-Fi Hologram Badge - di bawah logo persis */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          {/* Left Column: Copywriting, Perks, and Conversion CTA */}
+          <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left relative z-10">
+            
+            {/* Top Sci-Fi Hologram Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
@@ -91,6 +97,12 @@ export default function Hero() {
               <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
               <span className="tracking-wide text-slate-800 dark:text-slate-200 font-semibold">Jasa Pembuatan Website & Aplikasi Profesional</span>
             </div>
+
+            {/* Main Headline (ATM EDA Credibility Hook) */}
+            <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-slate-950 dark:text-white">
+              Website Profesional untuk Meningkatkan{" "}
+              <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
+            </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
@@ -172,15 +184,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Main Headline + Floating Interactive Mockups & Showcase Stack */}
-          <div className="lg:col-span-5 relative flex flex-col justify-start lg:pt-2">
-            {/* Main Headline - spasi atas dan bawah presisi */}
-            <h1 className="font-heading font-black text-3xl sm:text-4xl xl:text-5xl tracking-tight leading-[1.18] text-slate-950 dark:text-white mb-6 lg:mb-8 text-center lg:text-left">
-              Website Profesional untuk Meningkatkan{" "}
-              <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
-            </h1>
-
-            <div className="relative mx-auto max-w-md lg:max-w-none w-full">
+          {/* Right Column: Floating Interactive Mockups & Showcase Stack */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
               
               {/* Central Glowing Shield Aura */}
               <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/30 via-rose-600/20 to-red-600/30 rounded-3xl blur-3xl transform rotate-3 scale-95 pointer-events-none" />
