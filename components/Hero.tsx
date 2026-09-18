@@ -67,22 +67,22 @@ export default function Hero() {
         style={{ width: "700px", height: "700px" }}
       />
 
-      {/* Giant Aesthetic Background Brand Emblem */}
-      <div className="absolute top-4 sm:top-8 lg:top-10 left-2 sm:left-6 lg:left-12 pointer-events-none select-none z-0 opacity-85 dark:opacity-45 transition-all">
-        <img
-          src="/logo.png"
-          alt="RIDEV Background Emblem"
-          className="w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[460px] md:h-[460px] lg:w-[540px] lg:h-[540px] object-contain drop-shadow-[0_0_50px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_80px_rgba(255,0,127,0.6)]"
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
-          {/* Left Column: Copywriting, Perks, and Conversion CTA */}
+          {/* Left Column: Official Logo + Copywriting, Perks, and Conversion CTA */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
-            {/* Top Sci-Fi Hologram Badge - tepat di atas kalimat Hadir dengan blablabla */}
+            {/* Brand Logo Emblem - dinaikkan sampai batas atas */}
+            <div className="flex justify-center lg:justify-start -mt-8 sm:-mt-12 lg:-mt-14 mb-1">
+              <img
+                src="/logo.png"
+                alt="RIDEV Official Logo"
+                className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] object-contain drop-shadow-[0_0_35px_rgba(255,0,127,0.45)] dark:drop-shadow-[0_0_55px_rgba(255,0,127,0.65)] hover:scale-105 transition-transform"
+              />
+            </div>
+
+            {/* Top Sci-Fi Hologram Badge - di bawah logo persis */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
@@ -173,9 +173,9 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Main Headline + Floating Interactive Mockups & Showcase Stack */}
-          <div className="lg:col-span-5 relative flex flex-col">
-            {/* Main Headline - dipindahkan ke sebelah kanan di atasnya Medikacare */}
-            <h1 className="font-heading font-black text-3xl sm:text-4xl xl:text-5xl tracking-tight leading-[1.18] text-slate-950 dark:text-white mb-6 text-center lg:text-left">
+          <div className="lg:col-span-5 relative flex flex-col justify-start lg:pt-2">
+            {/* Main Headline - spasi atas dan bawah presisi */}
+            <h1 className="font-heading font-black text-3xl sm:text-4xl xl:text-5xl tracking-tight leading-[1.18] text-slate-950 dark:text-white mb-6 lg:mb-8 text-center lg:text-left">
               Website Profesional untuk Meningkatkan{" "}
               <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
             </h1>
