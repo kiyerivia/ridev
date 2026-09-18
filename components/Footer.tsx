@@ -45,7 +45,7 @@ export default function Footer() {
               <img
                 src="/RIDEVLOGO TEXT.PNG"
                 alt="RIDEV"
-                className="h-7 sm:h-8 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,0,127,0.4)] group-hover:scale-105 transition-transform"
+                className="h-8 sm:h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,0,127,0.4)] group-hover:scale-105 transition-transform"
               />
             </Link>
 
