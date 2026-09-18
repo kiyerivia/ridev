@@ -34,34 +34,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         scrolled
-          ? "bg-white/95 dark:bg-[#07070a]/90 backdrop-blur-2xl border-b border-pink-500/20 dark:border-pink-500/25 py-3 shadow-md dark:shadow-[0_10px_35px_rgba(0,0,0,0.9)]"
+          ? "bg-white/95 dark:bg-[#07070a]/90 backdrop-blur-2xl border-b border-pink-500/20 dark:border-pink-500/25 py-2.5 shadow-md dark:shadow-[0_10px_35px_rgba(0,0,0,0.9)]"
           : "bg-transparent py-4 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo - fades in smoothly when scrolled */}
-        <Link 
-          href="/" 
-          className={`flex items-center gap-2 sm:gap-3 group shrink-0 transition-opacity duration-300 ${
-            scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <img
-            src="/logo.png"
-            alt="RIDEV Logo"
-            className="h-10 sm:h-11 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.45)] dark:drop-shadow-[0_0_20px_rgba(255,0,127,0.6)] group-hover:scale-105 transition-transform"
-          />
-          <img
-            src="/RIDEVLOGO TEXT.PNG"
-            alt="RIDEV"
-            className="h-7 sm:h-8 w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_20px_rgba(255,0,127,0.6)] group-hover:scale-105 transition-transform"
-          />
-        </Link>
-
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#0f0a1a]/80 border border-slate-200/90 dark:border-pink-500/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-md dark:shadow-black/60">
+      <div 
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center transition-all duration-500 ease-in-out ${
+          scrolled ? "justify-center" : "justify-end"
+        }`}
+      >
+        {/* Desktop Navigation Links - Centered on scroll, Right-aligned at top */}
+        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#0f0a1a]/80 border border-slate-200/90 dark:border-pink-500/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-md dark:shadow-black/60 transition-all duration-500 ease-in-out">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -73,10 +58,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-
-
         {/* Mobile Actions: WA + Hamburger Toggle */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden ml-auto">
           <a
             href={waUrl}
             target="_blank"

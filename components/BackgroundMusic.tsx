@@ -54,6 +54,9 @@ export default function BackgroundMusic() {
     };
 
     const attachListeners = () => {
+      window.addEventListener("scroll", handleGlobalInteraction, { passive: true });
+      window.addEventListener("wheel", handleGlobalInteraction, { passive: true });
+      window.addEventListener("touchmove", handleGlobalInteraction, { passive: true });
       document.addEventListener("click", handleGlobalInteraction, { capture: true, passive: true });
       document.addEventListener("pointerdown", handleGlobalInteraction, { capture: true, passive: true });
       document.addEventListener("pointerup", handleGlobalInteraction, { capture: true, passive: true });
@@ -63,6 +66,9 @@ export default function BackgroundMusic() {
     };
 
     const detachListeners = () => {
+      window.removeEventListener("scroll", handleGlobalInteraction);
+      window.removeEventListener("wheel", handleGlobalInteraction);
+      window.removeEventListener("touchmove", handleGlobalInteraction);
       document.removeEventListener("click", handleGlobalInteraction, true);
       document.removeEventListener("pointerdown", handleGlobalInteraction, true);
       document.removeEventListener("pointerup", handleGlobalInteraction, true);
