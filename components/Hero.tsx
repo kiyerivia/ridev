@@ -223,13 +223,13 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setActiveModal("services")}
+                <a
+                  href="#layanan"
                   className="text-[11px] font-semibold text-pink-400 hover:text-pink-300 flex items-center gap-1 bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 px-2.5 py-1 rounded-full transition-colors shrink-0 cursor-pointer"
                 >
                   <span>Lihat Semua Layanan</span>
                   <ArrowRight className="w-3 h-3" />
-                </button>
+                </a>
               </div>
 
               {/* 2x2 Services Grid */}
@@ -268,13 +268,13 @@ export default function Hero() {
                 <ArrowRight className="w-3.5 h-3.5 text-white" />
               </a>
 
-              <button
-                onClick={() => setActiveModal("pricing")}
+              <a
+                href="#harga"
                 className="px-6 py-3.5 rounded-xl font-heading font-bold text-xs sm:text-sm bg-[#120a1f] hover:bg-pink-950/40 border border-pink-500/40 text-white shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Layers className="w-4 h-4 text-pink-400" />
                 <span>Lihat Paket & Harga</span>
-              </button>
+              </a>
             </div>
 
             {/* 9. Contact Info Row */}
@@ -458,21 +458,21 @@ export default function Hero() {
               </div>
             </div>
 
-            <button
-              onClick={() => setActiveModal("portfolio")}
+            <a
+              href="#portofolio"
               className="self-start sm:self-auto text-xs font-semibold text-white bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/40 px-4 py-1.5 rounded-full transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <span>Lihat Semua</span>
               <ArrowRight className="w-3.5 h-3.5 text-pink-400" />
-            </button>
+            </a>
           </div>
 
           {/* 4 Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {portfolioItems.map((item, idx) => (
-              <div
+              <a
                 key={idx}
-                onClick={() => setActiveModal("portfolio")}
+                href="#portofolio"
                 className="group rounded-xl bg-[#080410] border border-pink-500/25 hover:border-pink-500/60 p-2.5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,0,127,0.3)] flex flex-col justify-between cursor-pointer"
               >
                 {/* Preview Image */}
@@ -500,7 +500,7 @@ export default function Hero() {
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
