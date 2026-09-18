@@ -82,7 +82,7 @@ export default function Hero() {
           {/* Left Column: Copywriting, Perks, and Conversion CTA */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
-            {/* Top Sci-Fi Hologram Badge */}
+            {/* Top Sci-Fi Hologram Badge - tepat di atas kalimat Hadir dengan blablabla */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
@@ -91,12 +91,6 @@ export default function Hero() {
               <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
               <span className="tracking-wide text-slate-800 dark:text-slate-200 font-semibold">Jasa Pembuatan Website & Aplikasi Profesional</span>
             </div>
-
-            {/* Main Headline (ATM EDA Credibility Hook) */}
-            <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-slate-950 dark:text-white">
-              Website Profesional untuk Meningkatkan{" "}
-              <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
-            </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
@@ -178,9 +172,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Floating Interactive Mockups & Showcase Stack */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Right Column: Main Headline + Floating Interactive Mockups & Showcase Stack */}
+          <div className="lg:col-span-5 relative flex flex-col">
+            {/* Main Headline - dipindahkan ke sebelah kanan di atasnya Medikacare */}
+            <h1 className="font-heading font-black text-3xl sm:text-4xl xl:text-5xl tracking-tight leading-[1.18] text-slate-950 dark:text-white mb-6 text-center lg:text-left">
+              Website Profesional untuk Meningkatkan{" "}
+              <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
+            </h1>
+
+            <div className="relative mx-auto max-w-md lg:max-w-none w-full">
               
               {/* Central Glowing Shield Aura */}
               <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/30 via-rose-600/20 to-red-600/30 rounded-3xl blur-3xl transform rotate-3 scale-95 pointer-events-none" />
