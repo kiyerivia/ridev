@@ -42,20 +42,11 @@ export default function Footer() {
                 alt="RIDEV Logo"
                 className="h-10 sm:h-11 w-auto object-contain drop-shadow-[0_0_12px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
               />
-              <div className="flex flex-col justify-center select-none">
-                <div className="flex items-center gap-1.5 leading-none">
-                  <span className="font-heading font-black text-xl sm:text-2xl text-white">
-                    RI
-                  </span>
-                  <span className="font-heading font-black text-xl sm:text-2xl text-[#ff007f]">
-                    DEV
-                  </span>
-                </div>
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] text-pink-400 font-extrabold mt-1 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></span>
-                  RIVIA DEVELOPER • STUDIO
-                </span>
-              </div>
+              <img
+                src="/RIDEVLOGO TEXT.PNG"
+                alt="RIDEV"
+                className="h-8 sm:h-10 w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_15px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
+              />
             </Link>
 
             <p className="text-slate-300 dark:text-slate-300 leading-relaxed text-xs">
