@@ -67,28 +67,22 @@ export default function Hero() {
         style={{ width: "700px", height: "700px" }}
       />
 
-      {/* Giant Aesthetic Background Brand Emblem with Smooth Transparent Gradient Fade */}
-      <div 
-        className="absolute -top-8 sm:-top-12 lg:-top-14 left-0 sm:left-4 lg:left-6 pointer-events-none select-none z-0 opacity-90 dark:opacity-40 transition-all"
-        style={{
-          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 82%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.15) 82%, transparent 100%)"
-        }}
-      >
-        <img
-          src="/logo.png"
-          alt="RIDEV Background Emblem"
-          className="w-[340px] h-[340px] sm:w-[440px] sm:h-[440px] md:w-[520px] md:h-[520px] lg:w-[620px] lg:h-[620px] object-contain drop-shadow-[0_0_50px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_80px_rgba(255,0,127,0.6)]"
-        />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
-          {/* Left Column: Copywriting, Perks, and Conversion CTA */}
+          {/* Left Column: Official Logo + Copywriting, Perks, and Conversion CTA */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left relative z-10">
             
-            {/* Top Sci-Fi Hologram Badge */}
+            {/* Brand Logo Emblem - Berada di atas tanpa tertutup teks */}
+            <div className="flex justify-center lg:justify-start -mt-6 sm:-mt-10 lg:-mt-12 mb-1">
+              <img
+                src="/logo.png"
+                alt="RIDEV Official Logo"
+                className="w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] lg:w-[340px] lg:h-[340px] object-contain drop-shadow-[0_0_40px_rgba(255,0,127,0.4)] dark:drop-shadow-[0_0_60px_rgba(255,0,127,0.65)] hover:scale-105 transition-transform"
+              />
+            </div>
+
+            {/* Top Sci-Fi Hologram Badge - Dimulai tepat di bawah logo (garis merah) */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
