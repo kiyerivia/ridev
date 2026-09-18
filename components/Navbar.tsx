@@ -40,18 +40,20 @@ export default function Navbar() {
           : "bg-transparent py-4 sm:py-5"
       }`}
     >
-      <div 
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center transition-all duration-500 ease-in-out ${
-          scrolled ? "justify-center" : "justify-end"
-        }`}
-      >
-        {/* Desktop Navigation Links - Centered on scroll, Right-aligned at top */}
-        <nav className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#0f0a1a]/80 border border-slate-200/90 dark:border-pink-500/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-md dark:shadow-black/60 transition-all duration-500 ease-in-out">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between">
+        {/* Desktop Navigation Links - Smooth Gliding Animation from Right to Center */}
+        <nav 
+          className="hidden lg:flex items-center gap-1 bg-white/90 dark:bg-[#0f0a1a]/80 border border-slate-200/90 dark:border-pink-500/20 px-4 py-1.5 rounded-full backdrop-blur-md shadow-md dark:shadow-black/60 absolute top-1/2 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{
+            left: scrolled ? "50%" : "calc(100% - 1.5rem)",
+            transform: scrolled ? "translate(-50%, -50%)" : "translate(-100%, -50%)",
+          }}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-white hover:bg-pink-50 dark:hover:bg-pink-500/20 rounded-full transition-all duration-200"
+              className="px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-white hover:bg-pink-50 dark:hover:bg-pink-500/20 rounded-full transition-all duration-200 whitespace-nowrap"
             >
               {link.name}
             </Link>
