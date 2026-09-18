@@ -167,7 +167,7 @@ export default function Hero() {
 
             {/* 5. Hashtag Line */}
             <div className="flex items-center gap-2 text-sm font-bold text-pink-500 -mt-2">
-              <span>#RidevDevelopment</span>
+              <span>#riviadot</span>
               <span className="inline-block w-6 h-[2px] bg-pink-500 rounded-full" />
             </div>
 
