@@ -41,17 +41,22 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo with Official RIDEV Emblem & 3D Logo Text */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+        {/* Brand Logo - fades in smoothly when scrolled */}
+        <Link 
+          href="/" 
+          className={`flex items-center gap-2 sm:gap-3 group shrink-0 transition-opacity duration-300 ${
+            scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
           <img
             src="/logo.png"
             alt="RIDEV Logo"
-            className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.45)] dark:drop-shadow-[0_0_20px_rgba(255,0,127,0.6)] group-hover:scale-105 transition-transform"
+            className="h-10 sm:h-11 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.45)] dark:drop-shadow-[0_0_20px_rgba(255,0,127,0.6)] group-hover:scale-105 transition-transform"
           />
           <img
             src="/RIDEVLOGO TEXT.PNG"
             alt="RIDEV"
-            className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-[0_4px_14px_rgba(255,0,127,0.35)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] contrast-[1.05] brightness-95 dark:brightness-110 dark:contrast-100 dark:drop-shadow-[0_0_25px_rgba(255,0,127,0.65)] group-hover:scale-105 transition-all duration-300"
+            className="h-7 sm:h-8 w-auto object-contain drop-shadow-[0_2px_10px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_20px_rgba(255,0,127,0.6)] group-hover:scale-105 transition-transform"
           />
         </Link>
 

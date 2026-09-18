@@ -67,6 +67,15 @@ export default function Hero() {
         style={{ width: "700px", height: "700px" }}
       />
 
+      {/* Giant Aesthetic Background Brand Emblem */}
+      <div className="absolute top-4 sm:top-8 lg:top-10 left-2 sm:left-6 lg:left-12 pointer-events-none select-none z-0 opacity-85 dark:opacity-45 transition-all">
+        <img
+          src="/logo.png"
+          alt="RIDEV Background Emblem"
+          className="w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[460px] md:h-[460px] lg:w-[540px] lg:h-[540px] object-contain drop-shadow-[0_0_50px_rgba(255,0,127,0.35)] dark:drop-shadow-[0_0_80px_rgba(255,0,127,0.6)]"
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
