@@ -41,18 +41,27 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo with Official RIDEV Emblem & 3D Logo Text */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+        {/* Brand Logo with Official RIDEV Emblem & Typography */}
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
           <img
             src="/logo.png"
             alt="RIDEV Logo"
-            className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
+            className="h-11 sm:h-13 md:h-14 lg:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.5)] group-hover:scale-105 transition-transform"
           />
-          <img
-            src="/RIDEVLOGO TEXT.PNG"
-            alt="RIDEV"
-            className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,127,0.4)] group-hover:scale-105 transition-transform"
-          />
+          <div className="flex flex-col justify-center select-none">
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="font-heading font-black text-2xl sm:text-3xl tracking-wider text-slate-900 dark:text-white transition-colors">
+                RI
+              </span>
+              <span className="font-heading font-black text-2xl sm:text-3xl tracking-wider text-[#ff007f] drop-shadow-[0_0_12px_rgba(255,0,127,0.4)]">
+                DEV
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-pink-600 dark:text-pink-400 font-extrabold mt-0.5 flex items-center gap-1.5 transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></span>
+              RIVIA DEVELOPER • STUDIO
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation Links */}
