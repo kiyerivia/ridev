@@ -5,6 +5,8 @@
 :root {
   --background: #f3f1fb;
   --foreground: #0f172a;
+  --font-sans: "Plus Jakarta Sans";
+  --font-heading: "Outfit";
 }
 
 html.dark, :root[data-theme="dark"] {
