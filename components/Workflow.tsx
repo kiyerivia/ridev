@@ -140,15 +140,15 @@ export default function Workflow() {
   };
 
   return (
-    <section id="alur-kerja" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0e0918]/60 dark:to-transparent">
+    <section id="alur-kerja" className="py-20 sm:py-28 relative overflow-hidden">
       {/* Background Decorators */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-pink-500/15 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Alur Kerja Transparan & Terpercaya</span>
           </div>
@@ -178,13 +178,13 @@ export default function Workflow() {
             onMouseLeave={handleMouseLeave}
           >
             {/* Holographic Center Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full bg-gradient-to-tr from-pink-500/20 via-cyan-500/15 to-purple-500/20 blur-3xl pointer-events-none -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full bg-gradient-to-tr from-pink-500/25 via-cyan-400/20 to-purple-500/25 blur-3xl pointer-events-none -z-10" />
 
-            {/* Floating Neon Chevrons */}
+            {/* Floating Liquid Glass Chevrons */}
             <button
               onClick={prevSlide}
               aria-label="Previous Step"
-              className="absolute left-1 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl flex items-center justify-center hover:text-pink-600 transition-all active:scale-95"
+              className="absolute left-1 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:text-pink-600 transition-all active:scale-95"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -192,7 +192,7 @@ export default function Workflow() {
             <button
               onClick={nextSlide}
               aria-label="Next Step"
-              className="absolute right-1 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl flex items-center justify-center hover:text-pink-600 transition-all active:scale-95"
+              className="absolute right-1 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:text-pink-600 transition-all active:scale-95"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -221,25 +221,25 @@ export default function Workflow() {
                   filter = "none";
                 } else if (isPrev) {
                   transformStyle = `translateX(calc(-72% + ${dragOffset * 0.4}px)) translateZ(-70px) rotateY(24deg) scale(0.86)`;
-                  opacity = 0.6;
+                  opacity = 0.65;
                   zIndex = 20;
                   pointerEvents = "auto";
                   filter = "blur(0.4px)";
                 } else if (isNext) {
                   transformStyle = `translateX(calc(72% + ${dragOffset * 0.4}px)) translateZ(-70px) rotateY(-24deg) scale(0.86)`;
-                  opacity = 0.6;
+                  opacity = 0.65;
                   zIndex = 20;
                   pointerEvents = "auto";
                   filter = "blur(0.4px)";
                 } else if (isFarLeft) {
                   transformStyle = `translateX(calc(-130% + ${dragOffset * 0.2}px)) translateZ(-140px) rotateY(38deg) scale(0.72)`;
-                  opacity = 0.15;
+                  opacity = 0.18;
                   zIndex = 10;
                   pointerEvents = "none";
                   filter = "blur(1.5px)";
                 } else if (isFarRight) {
                   transformStyle = `translateX(calc(130% + ${dragOffset * 0.2}px)) translateZ(-140px) rotateY(-38deg) scale(0.72)`;
-                  opacity = 0.15;
+                  opacity = 0.18;
                   zIndex = 10;
                   pointerEvents = "none";
                   filter = "blur(1.5px)";
@@ -254,10 +254,10 @@ export default function Workflow() {
                     onClick={() => {
                       if (!isCenter) goToSlide(index);
                     }}
-                    className={`absolute top-0 w-[88%] max-w-[340px] rounded-3xl p-6 flex flex-col justify-between transition-all duration-500 ease-out shadow-xl ${
+                    className={`absolute top-0 w-[88%] max-w-[340px] rounded-3xl p-6 flex flex-col justify-between transition-all duration-500 ease-out ${
                       isCenter
-                        ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/20 dark:shadow-[0_0_35px_rgba(255,0,127,0.35)] holo-corners ring-4 ring-pink-500/15"
-                        : "bg-white/85 dark:bg-[#0c0618]/85 border border-slate-300 dark:border-slate-850 cursor-pointer"
+                        ? "glass-card-pink holo-corners ring-4 ring-pink-500/15"
+                        : "glass-surface cursor-pointer"
                     }`}
                     style={{
                       transform: transformStyle,
@@ -270,17 +270,17 @@ export default function Workflow() {
                     }}
                   >
                     {/* Step Number Watermark */}
-                    <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-200 dark:text-slate-800 pointer-events-none">
+                    <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-900/10 dark:text-white/10 pointer-events-none">
                       {step.number}
                     </span>
 
                     <div>
                       {/* Icon */}
                       <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-sm ${
+                        className={`w-12 h-12 rounded-2xl glass-icon flex items-center justify-center mb-4 transition-all duration-300 ${
                           isGold
-                            ? "bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-400"
-                            : "bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400"
+                            ? "text-amber-600 dark:text-amber-400"
+                            : "text-pink-600 dark:text-pink-400"
                         }`}
                       >
                         <Icon className="w-6 h-6" />
@@ -299,7 +299,7 @@ export default function Workflow() {
                       </p>
                     </div>
 
-                    <div className="mt-5 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-normal">
+                    <div className="mt-5 pt-3 border-t border-white/50 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-normal">
                       <span>Tahap {index + 1} dari 5</span>
                       <ArrowRight className="w-3.5 h-3.5 text-pink-500 dark:text-pink-400" />
                     </div>
@@ -310,7 +310,7 @@ export default function Workflow() {
 
             {/* Mobile Slide Dots */}
             <div className="mt-6 flex items-center justify-center">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-pill px-3 py-1.5 rounded-full">
                 {steps.map((s, idx) => {
                   const isActive = activeIndex === idx;
                   return (
@@ -321,7 +321,7 @@ export default function Workflow() {
                       className={`h-2 rounded-full transition-all duration-300 ${
                         isActive
                           ? "w-8 bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-500/40 dark:shadow-[0_0_12px_#ff007f]"
-                          : "w-2 bg-slate-300 dark:bg-slate-700 hover:bg-pink-400"
+                          : "w-2 bg-slate-400/50 dark:bg-white/25 hover:bg-pink-400"
                       }`}
                     />
                   );
@@ -332,7 +332,7 @@ export default function Workflow() {
         </div>
 
         {/* ============================================================== */}
-        {/* 2. PC / DESKTOP BROWSER: Standard Grid Layout (>= md)          */}
+        {/* 2. PC / DESKTOP BROWSER: Liquid Glass Grid Layout (>= md)      */}
         {/* ============================================================== */}
         <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 relative">
           {steps.map((step, idx) => {
@@ -342,20 +342,20 @@ export default function Workflow() {
             return (
               <div
                 key={idx}
-                className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 hover:border-pink-400 dark:hover:border-pink-500/60 flex flex-col justify-between relative group transition-all duration-300 shadow-xl dark:shadow-2xl holo-corners"
+                className="glass-card rounded-3xl p-6 flex flex-col justify-between relative group holo-corners"
               >
                 {/* Step Number Watermark */}
-                <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-200 dark:text-slate-800 group-hover:text-pink-500/25 transition-colors pointer-events-none">
+                <span className="absolute top-3 right-4 font-heading font-black text-4xl text-slate-900/10 dark:text-white/10 group-hover:text-pink-500/25 transition-colors pointer-events-none">
                   {step.number}
                 </span>
 
                 <div>
                   {/* Icon */}
                   <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 shadow-sm ${
+                    className={`w-12 h-12 rounded-2xl glass-icon flex items-center justify-center mb-5 transition-all duration-300 ${
                       isGold
-                        ? "bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-500/40 text-amber-700 dark:text-amber-400 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:text-white"
-                        : "bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white"
+                        ? "text-amber-600 dark:text-amber-400 group-hover:bg-gradient-to-r group-hover:from-amber-500 group-hover:to-amber-600 group-hover:text-white"
+                        : "text-pink-600 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-600 group-hover:text-white"
                     }`}
                   >
                     <Icon className="w-6 h-6" />
@@ -374,7 +374,7 @@ export default function Workflow() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-normal">
+                <div className="mt-5 pt-3 border-t border-white/50 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-normal">
                   <span>Tahap {idx + 1} dari 5</span>
                   <ArrowRight className="w-3.5 h-3.5 text-pink-500 dark:text-pink-400 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -389,7 +389,7 @@ export default function Workflow() {
             href={createWhatsAppLink(getGeneralConsultationMessage())}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-heading font-extrabold text-sm sm:text-base bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_25px_rgba(255,0,127,0.5)] hover:brightness-110 active:scale-95 transition-all"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-heading font-extrabold text-sm sm:text-base glass-btn-primary text-white active:scale-95"
           >
             <Users className="w-5 h-5 text-white" />
             <span>Mulai Konsultasi Gratis Tahap 1 Sekarang</span>

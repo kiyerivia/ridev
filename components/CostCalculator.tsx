@@ -226,15 +226,15 @@ export default function CostCalculator() {
   };
 
   return (
-    <section id="kalkulator" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0d0918]/60 dark:to-transparent">
+    <section id="kalkulator" className="py-24 relative overflow-hidden">
       {/* Glow Backdrop */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-b from-pink-600/15 via-rose-600/10 to-transparent blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[420px] bg-gradient-to-b from-pink-500/20 via-violet-500/12 to-transparent blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Calculator className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Interactive Cost Calculator</span>
           </div>
@@ -253,9 +253,9 @@ export default function CostCalculator() {
           <div className="lg:col-span-7 space-y-8">
             
             {/* Step 1: Select Project Type */}
-            <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 shadow-xl dark:shadow-2xl holo-corners">
+            <div className="glass-card rounded-3xl p-6 holo-corners">
               <label className="text-sm font-extrabold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
+                <span className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-xs font-black shadow-[0_0_12px_rgba(255,0,127,0.5)]">
                   1
                 </span>
                 Pilih Jenis Website / Aplikasi:
@@ -269,10 +269,10 @@ export default function CostCalculator() {
                       key={project.id}
                       type="button"
                       onClick={() => handleProjectTypeChange(project)}
-                      className={`p-4 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                      className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between backdrop-blur-md ${
                         isSelected
-                          ? "bg-pink-50/90 dark:bg-[#200d28]/90 border-2 border-pink-500 shadow-md dark:shadow-[0_0_20px_rgba(255,0,127,0.3)]"
-                          : "bg-white/80 dark:bg-[#0c0814]/80 border-slate-200 dark:border-slate-800 hover:border-pink-400 dark:hover:border-pink-500/50 hover:bg-pink-50/40 dark:hover:bg-[#160c22] shadow-sm"
+                          ? "bg-pink-500/15 dark:bg-pink-500/20 border-2 border-pink-500/80 shadow-[0_8px_24px_-6px_rgba(255,0,127,0.28)]"
+                          : "glass-inset hover:border-pink-400/60"
                       }`}
                     >
                       <div className="flex items-start justify-between">
@@ -285,7 +285,7 @@ export default function CostCalculator() {
                       </div>
                       <div>
                         <h4 className="font-heading font-bold text-sm text-slate-900 dark:text-white">{project.name}</h4>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">{project.description}</p>
+                        <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-snug">{project.description}</p>
                         <span className="text-xs font-extrabold text-pink-600 dark:text-pink-400 mt-2 block">
                           Mulai {formatIDR(project.basePrice)}
                         </span>
@@ -297,15 +297,15 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 2: Number of Pages Slider */}
-            <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 shadow-xl dark:shadow-2xl holo-corners">
+            <div className="glass-card rounded-3xl p-6 holo-corners">
               <div className="flex items-center justify-between mb-4">
                 <label className="text-sm font-extrabold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-xs font-black shadow-[0_0_12px_rgba(255,0,127,0.5)]">
                     2
                   </span>
                   Estimasi Jumlah Halaman / Menu:
                 </label>
-                <span className="text-base font-extrabold text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950/70 px-3 py-1 rounded-lg border border-pink-300 dark:border-pink-500/40">
+                <span className="text-base font-extrabold text-pink-700 dark:text-pink-300 glass-pill px-3.5 py-1 rounded-full">
                   {pagesCount} Halaman
                 </span>
               </div>
@@ -316,7 +316,7 @@ export default function CostCalculator() {
                 max="25"
                 value={pagesCount}
                 onChange={(e) => setPagesCount(Number(e.target.value))}
-                className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-pink-500"
+                className="w-full h-2 bg-slate-300/60 dark:bg-white/15 rounded-lg appearance-none cursor-pointer accent-pink-500"
               />
               <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400 mt-2 font-medium">
                 <span>1 Halaman (Minisite)</span>
@@ -327,9 +327,9 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 3: Add-on Features Checklist */}
-            <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 shadow-xl dark:shadow-2xl holo-corners">
+            <div className="glass-card rounded-3xl p-6 holo-corners">
               <label className="text-sm font-extrabold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
+                <span className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-xs font-black shadow-[0_0_12px_rgba(255,0,127,0.5)]">
                   3
                 </span>
                 Pilih Fitur Tambahan & Integrasi:
@@ -342,10 +342,10 @@ export default function CostCalculator() {
                     <div
                       key={addon.id}
                       onClick={() => toggleAddon(addon.id)}
-                      className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between gap-4 ${
+                      className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between gap-4 backdrop-blur-md ${
                         isChecked
-                          ? "bg-pink-50/90 dark:bg-[#200d28]/80 border-pink-500 text-slate-900 dark:text-white shadow-sm"
-                          : "bg-white/80 dark:bg-[#0c0814]/80 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-pink-400"
+                          ? "bg-pink-500/15 dark:bg-pink-500/20 border-pink-500/75 text-slate-900 dark:text-white shadow-sm"
+                          : "glass-inset text-slate-700 dark:text-slate-300 hover:border-pink-400/60"
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -353,14 +353,14 @@ export default function CostCalculator() {
                           className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border ${
                             isChecked
                               ? "bg-pink-500 border-pink-500 text-white shadow-sm"
-                              : "border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900"
+                              : "border-slate-300 dark:border-white/20 bg-white/60 dark:bg-white/5"
                           }`}
                         >
                           {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
                           <span className="text-xs sm:text-sm font-bold block text-slate-900 dark:text-white">{addon.name}</span>
-                          <span className="text-[11px] text-slate-500 dark:text-slate-400 block">{addon.description}</span>
+                          <span className="text-[11px] text-slate-600 dark:text-slate-300 block">{addon.description}</span>
                         </div>
                       </div>
                       <span className="text-xs font-extrabold text-pink-600 dark:text-pink-400 shrink-0">
@@ -373,9 +373,9 @@ export default function CostCalculator() {
             </div>
 
             {/* Step 4: Delivery Timeline Speed */}
-            <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-pink-500/30 shadow-xl dark:shadow-2xl holo-corners">
+            <div className="glass-card rounded-3xl p-6 holo-corners">
               <label className="text-sm font-extrabold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center gap-2 mb-4">
-                <span className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-black shadow-[0_0_10px_#ff007f]">
+                <span className="w-6 h-6 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white flex items-center justify-center text-xs font-black shadow-[0_0_12px_rgba(255,0,127,0.5)]">
                   4
                 </span>
                 Kecepatan Pengerjaan:
@@ -385,10 +385,10 @@ export default function CostCalculator() {
                 <button
                   type="button"
                   onClick={() => setDeliverySpeed("normal")}
-                  className={`p-3.5 rounded-xl border text-left transition-all ${
+                  className={`p-4 rounded-2xl border text-left transition-all backdrop-blur-md ${
                     deliverySpeed === "normal"
-                      ? "bg-pink-50 dark:bg-[#200d28] border-2 border-pink-500 text-slate-900 dark:text-white shadow-sm"
-                      : "bg-white/80 dark:bg-[#0c0814]/80 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400"
+                      ? "bg-pink-500/15 dark:bg-pink-500/20 border-2 border-pink-500/80 text-slate-900 dark:text-white shadow-sm"
+                      : "glass-inset text-slate-500 dark:text-slate-400"
                   }`}
                 >
                   <span className="text-xs font-extrabold text-pink-600 dark:text-pink-400 block">Standar Pengerjaan</span>
@@ -399,10 +399,10 @@ export default function CostCalculator() {
                 <button
                   type="button"
                   onClick={() => setDeliverySpeed("express")}
-                  className={`p-3.5 rounded-xl border text-left transition-all ${
+                  className={`p-4 rounded-2xl border text-left transition-all backdrop-blur-md ${
                     deliverySpeed === "express"
-                      ? "bg-amber-50 dark:bg-[#281c0d] border-2 border-amber-500 text-slate-900 dark:text-white shadow-sm"
-                      : "bg-white/80 dark:bg-[#0c0814]/80 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400"
+                      ? "bg-amber-500/15 dark:bg-amber-500/20 border-2 border-amber-500/80 text-slate-900 dark:text-white shadow-sm"
+                      : "glass-inset text-slate-500 dark:text-slate-400"
                   }`}
                 >
                   <span className="text-xs font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-1">
@@ -418,33 +418,33 @@ export default function CostCalculator() {
 
           {/* Right Column: Dynamic Price Summary Card (Sticky 5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24">
-            <div className="glass-card-pink rounded-3xl p-6 sm:p-7 border border-pink-300 dark:border-pink-500/50 shadow-2xl relative overflow-hidden holo-corners">
+            <div className="glass-card-pink rounded-3xl p-6 sm:p-7 relative overflow-hidden holo-corners">
               
               {/* Card Aura Header */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-pink-600/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-36 h-36 bg-pink-500/25 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="flex items-center justify-between pb-4 border-b border-pink-200 dark:border-pink-500/20">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-pink-700 dark:text-pink-400">
+              <div className="flex items-center justify-between pb-4 border-b border-white/50 dark:border-white/15">
+                <span className="text-xs font-extrabold uppercase tracking-widest text-pink-700 dark:text-pink-300">
                   Ringkasan Estimasi
                 </span>
-                <span className="text-[10px] font-bold bg-pink-100 dark:bg-pink-950/70 text-pink-700 dark:text-pink-300 px-2.5 py-1 rounded-full border border-pink-300 dark:border-pink-500/40">
+                <span className="text-[10px] font-bold glass-pill text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full">
                   Live Calculator
                 </span>
               </div>
 
               {/* Price Display */}
               <div className="py-6 text-center">
-                <span className="text-xs text-slate-700 dark:text-slate-300 block font-bold">Perkiraan Biaya Total:</span>
-                <div className="font-heading font-black text-3xl sm:text-4xl text-[#ff007f] dark:text-pink-400 mt-1 tracking-tight">
+                <span className="text-xs text-slate-700 dark:text-slate-200 block font-bold">Perkiraan Biaya Total:</span>
+                <div className="font-heading font-black text-3xl sm:text-4xl text-pink-glow mt-1 tracking-tight">
                   {formatIDR(calculatedTotal)}
                 </div>
-                <span className="text-[11px] text-slate-600 dark:text-slate-400 block mt-1">
+                <span className="text-[11px] text-slate-600 dark:text-slate-300 block mt-1">
                   *Bisa dicicil DP 50% di awal & pelunasan setelah website selesai
                 </span>
               </div>
 
               {/* Breakdown List */}
-              <div className="space-y-3 py-4 border-y border-pink-200 dark:border-pink-500/20 text-xs">
+              <div className="space-y-3 py-4 border-y border-white/50 dark:border-white/15 text-xs">
                 <div className="flex justify-between text-slate-600 dark:text-slate-300">
                   <span>Jenis Proyek:</span>
                   <strong className="text-slate-900 dark:text-white text-right">{selectedProject.name}</strong>
@@ -460,10 +460,10 @@ export default function CostCalculator() {
                   </strong>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-slate-400 block mb-1">Fitur Terpilih ({selectedAddons.length}):</span>
+                  <span className="text-slate-600 dark:text-slate-300 block mb-1">Fitur Terpilih ({selectedAddons.length}):</span>
                   <div className="max-h-28 overflow-y-auto space-y-1 pr-1">
                     {selectedFeatureNames.map((name, i) => (
-                      <div key={i} className="flex items-center gap-1.5 text-slate-700 dark:text-slate-200 text-[11px]">
+                      <div key={i} className="flex items-center gap-1.5 text-slate-700 dark:text-slate-100 text-[11px]">
                         <Check className="w-3 h-3 text-pink-500 dark:text-pink-400 shrink-0" />
                         <span className="truncate">{name}</span>
                       </div>
@@ -473,8 +473,8 @@ export default function CostCalculator() {
               </div>
 
               {/* Inclusions Reminder */}
-              <div className="mt-4 p-3 rounded-xl bg-pink-50/80 dark:bg-[#130a1c] border border-pink-200 dark:border-pink-500/30 text-[11px] text-slate-700 dark:text-slate-300 space-y-1.5 shadow-sm">
-                <div className="flex items-center gap-1.5 text-pink-700 dark:text-pink-400 font-bold">
+              <div className="mt-4 p-3.5 rounded-2xl glass-inset text-[11px] text-slate-700 dark:text-slate-200 space-y-1.5">
+                <div className="flex items-center gap-1.5 text-pink-700 dark:text-pink-300 font-bold">
                   <ShieldCheck className="w-4 h-4 text-pink-600 dark:text-pink-400" />
                   <span>Sudah Termasuk:</span>
                 </div>
@@ -491,7 +491,7 @@ export default function CostCalculator() {
                     placeholder="Nama Anda (opsional)"
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white shadow-sm"
+                    className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none"
                   />
                 </div>
                 <div>
@@ -500,20 +500,20 @@ export default function CostCalculator() {
                     placeholder="Nomor WhatsApp (opsional)"
                     value={clientPhone}
                     onChange={(e) => setClientPhone(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white shadow-sm"
+                    className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_25px_rgba(255,0,127,0.5)] transition-all duration-300 flex items-center justify-center gap-2 group active:scale-95"
+                  className="w-full py-3.5 px-4 rounded-2xl font-heading font-extrabold text-sm glass-btn-primary text-white flex items-center justify-center gap-2 group active:scale-95"
                 >
                   <Send className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
                   <span>Pesan Paket Ini via WhatsApp</span>
                 </button>
               </form>
 
-              <span className="text-[10px] text-center text-slate-500 dark:text-slate-400 block mt-3 font-medium">
+              <span className="text-[10px] text-center text-slate-600 dark:text-slate-300 block mt-3 font-medium">
                 ⚡ Otomatis terhubung ke CS RIDEV (Rivia Developer): <strong className="text-slate-900 dark:text-white">+62 8222-68-000-63</strong>
               </span>
 

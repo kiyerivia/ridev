@@ -309,16 +309,16 @@ export default function Pricing() {
   }, [nextSlide, prevSlide]);
 
   return (
-    <section id="harga" className="py-20 sm:py-28 relative overflow-hidden bg-slate-50/70 dark:bg-gradient-to-b dark:from-[#07070a] dark:via-[#0c0617] dark:to-[#07070a] select-none">
-      {/* Futuristic Background Atmospheric Beams & Grids */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[400px] bg-gradient-to-r from-pink-600/15 via-purple-600/10 to-cyan-600/15 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-96 cyber-floor-grid pointer-events-none opacity-40" />
+    <section id="harga" className="py-20 sm:py-28 relative overflow-hidden select-none">
+      {/* Liquid Glass Chromatic Atmospheric Orbs */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[420px] bg-gradient-to-r from-pink-500/20 via-purple-500/15 to-cyan-500/20 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-96 cyber-floor-grid pointer-events-none opacity-35" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 dark:bg-[#130b24] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_20px_rgba(255,0,127,0.25)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Zap className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Pricelist • 3D Interactive Tier Showcase</span>
           </div>
@@ -332,9 +332,9 @@ export default function Pricing() {
             Geser atau klik paket di bawah untuk menjelajahi spesifikasi lengkap. Semua paket sudah termasuk domain, hosting cepat, SSL, dan garansi maintenance.
           </p>
 
-          {/* Futuristic HUD Tier Switcher Tabs */}
+          {/* Liquid Glass Tier Switcher Tabs */}
           <div className="mt-8 flex items-center justify-center">
-            <div className="inline-flex p-1.5 rounded-2xl bg-white/80 dark:bg-[#10091d]/90 backdrop-blur-xl border border-slate-200/90 dark:border-pink-500/30 shadow-lg dark:shadow-[0_0_30px_rgba(255,0,127,0.15)] max-w-full overflow-x-auto scrollbar-none gap-1.5">
+            <div className="inline-flex p-1.5 rounded-2xl glass-pill max-w-full overflow-x-auto scrollbar-none gap-1.5">
               {plans.map((p, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -343,8 +343,8 @@ export default function Pricing() {
                     onClick={() => goToSlide(idx)}
                     className={`px-3.5 sm:px-5 py-2 rounded-xl font-heading text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap relative ${
                       isActive
-                        ? "bg-gradient-to-r from-pink-600 via-rose-600 to-pink-500 text-white shadow-md shadow-pink-500/30 scale-100 dark:shadow-[0_0_20px_rgba(255,0,127,0.5)]"
-                        : "text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-pink-500/10"
+                        ? "glass-btn-primary text-white scale-100"
+                        : "text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10"
                     }`}
                   >
                     {idx === 0 && <span className="text-xs">⚡</span>}
@@ -354,7 +354,7 @@ export default function Pricing() {
                     <span>{p.name.replace("Paket ", "")}</span>
                     {p.isPopular && (
                       <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black uppercase ${
-                        isActive ? "bg-white/25 text-white" : "bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300"
+                        isActive ? "bg-white/25 text-white" : "bg-pink-500/15 text-pink-600 dark:text-pink-300"
                       }`}>
                         HOT
                       </span>
@@ -380,13 +380,13 @@ export default function Pricing() {
           onMouseLeave={handleMouseLeave}
         >
           {/* Futuristic Holographic Stage Base Glow Circle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full bg-gradient-to-tr from-pink-500/20 via-cyan-500/15 to-purple-500/20 blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[540px] h-[340px] sm:h-[540px] rounded-full bg-gradient-to-tr from-pink-500/25 via-cyan-400/20 to-purple-500/25 blur-3xl pointer-events-none -z-10" />
 
-          {/* Floating Neon Navigation Chevrons */}
+          {/* Floating Liquid Glass Navigation Chevrons */}
           <button
             onClick={prevSlide}
             aria-label="Previous Package"
-            className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+            className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group"
           >
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -394,7 +394,7 @@ export default function Pricing() {
           <button
             onClick={nextSlide}
             aria-label="Next Package"
-            className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+            className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group"
           >
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
           </button>
@@ -424,25 +424,25 @@ export default function Pricing() {
                 filter = "none";
               } else if (isPrev) {
                 transformStyle = `translateX(calc(-72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(26deg) scale(0.85)`;
-                opacity = 0.65;
+                opacity = 0.7;
                 zIndex = 20;
                 pointerEvents = "auto";
                 filter = "blur(0.4px)";
               } else if (isNext) {
                 transformStyle = `translateX(calc(72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(-26deg) scale(0.85)`;
-                opacity = 0.65;
+                opacity = 0.7;
                 zIndex = 20;
                 pointerEvents = "auto";
                 filter = "blur(0.4px)";
               } else if (isFarLeft) {
                 transformStyle = `translateX(calc(-135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(40deg) scale(0.7)`;
-                opacity = 0.2;
+                opacity = 0.22;
                 zIndex = 10;
                 pointerEvents = "none";
                 filter = "blur(1.5px)";
               } else if (isFarRight) {
                 transformStyle = `translateX(calc(135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(-40deg) scale(0.7)`;
-                opacity = 0.2;
+                opacity = 0.22;
                 zIndex = 10;
                 pointerEvents = "none";
                 filter = "blur(1.5px)";
@@ -460,12 +460,12 @@ export default function Pricing() {
                   onClick={() => {
                     if (!isCenter) goToSlide(index);
                   }}
-                  className={`absolute top-0 w-[90%] sm:w-[420px] max-w-[440px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 ease-out shadow-2xl ${
+                  className={`absolute top-0 w-[90%] sm:w-[420px] max-w-[440px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 ease-out ${
                     isCenter
                       ? isPop
-                        ? "bg-white dark:bg-[#160b28] border-2 border-pink-500 shadow-pink-500/20 dark:shadow-[0_0_45px_rgba(255,0,127,0.4)] holo-corners ring-4 ring-pink-500/15"
-                        : "bg-white dark:bg-[#10091d] border-2 border-slate-300 dark:border-pink-500/40 shadow-slate-900/10 dark:shadow-[0_0_35px_rgba(255,0,127,0.25)] holo-corners"
-                      : "bg-white/80 dark:bg-[#0c0618]/85 border border-slate-300 dark:border-slate-850 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/50"
+                        ? "glass-card-pink holo-corners ring-4 ring-pink-500/20"
+                        : "glass-surface holo-corners"
+                      : "glass-surface cursor-pointer opacity-90"
                   }`}
                   style={{
                     transform: transformStyle,
@@ -478,13 +478,13 @@ export default function Pricing() {
                   }}
                 >
                   {/* Cyber Holographic Top HUD Tag */}
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-pink-500/20">
-                    <span className="font-mono text-[10px] tracking-wider font-bold text-slate-500 dark:text-pink-400/80">
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/50 dark:border-white/10">
+                    <span className="font-mono text-[10px] tracking-wider font-bold text-slate-600 dark:text-pink-300/90">
                       {plan.cyberTag}
                     </span>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <div className={`w-2 h-2 rounded-full ${isCenter ? "bg-emerald-400 animate-ping" : "bg-slate-400"}`} />
-                      <span className="font-mono text-[9px] uppercase font-bold text-slate-400 dark:text-slate-500">
+                      <span className="font-mono text-[9px] uppercase font-bold text-slate-500 dark:text-slate-400">
                         {isCenter ? "ACTIVE" : "STANDBY"}
                       </span>
                     </div>
@@ -492,7 +492,7 @@ export default function Pricing() {
 
                   {/* Popular / Best Seller Top Floating Badge */}
                   {plan.badge && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 text-white text-[10px] font-black uppercase tracking-wider px-4 py-1 rounded-full shadow-lg shadow-pink-500/40 flex items-center gap-1.5 whitespace-nowrap border border-white/30 animate-bounce-subtle">
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 glass-btn-primary text-white text-[10px] font-black uppercase tracking-wider px-4 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap">
                       {plan.badge}
                     </div>
                   )}
@@ -513,12 +513,12 @@ export default function Pricing() {
                       {plan.targetAudience}
                     </p>
 
-                    {/* Price Box with Cyber Glow */}
-                    <div className="p-4 rounded-2xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-slate-800/90 mb-5 relative overflow-hidden">
-                      <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-pink-500/10 rounded-full blur-xl pointer-events-none" />
+                    {/* Frosted Glass Inset Price Box */}
+                    <div className="p-4 rounded-2xl glass-inset mb-5 relative overflow-hidden">
+                      <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-pink-500/15 rounded-full blur-xl pointer-events-none" />
                       
                       {plan.originalPrice && (
-                        <div className="text-xs text-slate-400 dark:text-slate-500 line-through mb-0.5 font-medium">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 line-through mb-0.5 font-medium">
                           {plan.originalPrice}
                         </div>
                       )}
@@ -530,8 +530,8 @@ export default function Pricing() {
                       </div>
 
                       {/* Transparent Renewal Info */}
-                      <div className="mt-2.5 pt-2.5 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs">
-                        <span className="text-slate-600 dark:text-slate-400 font-medium">Biaya Perpanjangan:</span>
+                      <div className="mt-2.5 pt-2.5 border-t border-white/45 dark:border-white/10 flex items-center justify-between text-xs">
+                        <span className="text-slate-600 dark:text-slate-300 font-medium">Biaya Perpanjangan:</span>
                         <span className="text-emerald-600 dark:text-emerald-400 font-bold">{plan.renewalFee}</span>
                       </div>
                     </div>
@@ -542,7 +542,7 @@ export default function Pricing() {
                         Fasilitas Termasuk:
                       </span>
                       {plan.summaryFeatures.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-800 dark:text-slate-200 font-medium">
+                        <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-800 dark:text-slate-100 font-medium">
                           <Check className="w-4 h-4 text-pink-600 dark:text-pink-400 shrink-0 mt-0.5" />
                           <span className="leading-snug">{feat}</span>
                         </div>
@@ -550,7 +550,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Expandable "Detail Paket" Accordion */}
-                    <div className="mb-6 pt-2 border-t border-slate-200 dark:border-slate-800/80">
+                    <div className="mb-6 pt-2 border-t border-white/50 dark:border-white/10">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -571,7 +571,7 @@ export default function Pricing() {
                       </button>
 
                       {isExpanded && (
-                        <div className="mt-3 p-3.5 rounded-xl bg-slate-50 dark:bg-black/60 border border-slate-200 dark:border-pink-500/30 text-xs space-y-3 animate-fadeIn">
+                        <div className="mt-3 p-3.5 rounded-2xl glass-inset text-xs space-y-3 animate-fadeIn">
                           <div>
                             <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase block">Halaman & Menu</span>
                             <span className="text-slate-900 dark:text-white font-semibold text-[11px]">{plan.detailedSpecs.pages}</span>
@@ -589,14 +589,14 @@ export default function Pricing() {
                             <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase block mb-1">Fitur Tambahan</span>
                             <ul className="space-y-1">
                               {plan.detailedSpecs.featuresList.map((item, i) => (
-                                <li key={i} className="text-[10px] text-slate-700 dark:text-slate-300 flex items-start gap-1.5 font-medium">
+                                <li key={i} className="text-[10px] text-slate-700 dark:text-slate-200 flex items-start gap-1.5 font-medium">
                                   <span className="text-pink-600 dark:text-pink-400">•</span>
                                   <span>{item}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
-                          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[10px]">
+                          <div className="pt-2 border-t border-white/40 dark:border-white/10 flex items-center justify-between text-[10px]">
                             <span className="text-slate-500 dark:text-slate-400">Estimasi Selesai:</span>
                             <span className="text-amber-600 dark:text-amber-400 font-bold">{plan.detailedSpecs.turnaround}</span>
                           </div>
@@ -605,20 +605,20 @@ export default function Pricing() {
                     </div>
                   </div>
 
-                  {/* Direct-to-WhatsApp CTA Button */}
+                  {/* Direct-to-WhatsApp Liquid Glass CTA Button */}
                   <a
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className={`w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 group active:scale-95 ${
+                    className={`w-full py-3.5 px-4 rounded-2xl font-heading font-extrabold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 group active:scale-95 ${
                       isPop
-                        ? "bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-lg shadow-pink-500/30"
-                        : "bg-slate-900 text-white hover:bg-pink-600 hover:text-white dark:bg-[#190d2e] dark:text-white dark:hover:bg-pink-600 border border-slate-800 dark:border-pink-500/40"
+                        ? "glass-btn-primary text-white"
+                        : "glass-btn-secondary text-slate-900 dark:text-white hover:text-pink-600 dark:hover:text-white"
                     }`}
                   >
-                    <span className="text-white">{plan.ctaLabel}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-white" />
+                    <span>{plan.ctaLabel}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </a>
 
                 </div>
@@ -628,7 +628,7 @@ export default function Pricing() {
 
           {/* Futuristic Bottom Slide Dots Indicator */}
           <div className="mt-8 flex items-center justify-center">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 glass-pill px-3.5 py-2 rounded-full">
               {plans.map((p, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -639,7 +639,7 @@ export default function Pricing() {
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       isActive
                         ? "w-9 bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-500/40 dark:shadow-[0_0_12px_#ff007f]"
-                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-pink-400"
+                        : "w-2.5 bg-slate-400/50 dark:bg-white/25 hover:bg-pink-400"
                     }`}
                   />
                 );
@@ -650,9 +650,9 @@ export default function Pricing() {
         </div>
 
         {/* Guarantee Banner Below Pricing */}
-        <div className="mt-10 p-6 rounded-2xl bg-white dark:bg-[#0e0819] border border-pink-500/20 dark:border-pink-500/30 text-center max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md dark:shadow-none">
-          <div className="flex items-center gap-3 text-left">
-            <div className="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-500/20 border border-pink-300 dark:border-pink-500/40 flex items-center justify-center shrink-0">
+        <div className="mt-10 p-6 rounded-3xl glass-card holo-corners text-center max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5 text-left">
+            <div className="w-11 h-11 rounded-2xl glass-icon flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5 text-pink-600 dark:text-pink-400" />
             </div>
             <div>

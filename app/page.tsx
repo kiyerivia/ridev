@@ -19,14 +19,14 @@ import BackgroundMusic from "@/components/BackgroundMusic";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f8f9fd] dark:bg-[#07070a] text-slate-900 dark:text-slate-100 relative overflow-x-hidden selection:bg-pink-500 selection:text-white transition-colors duration-300">
-      {/* 🌟 Dynamic Sci-Fi Animated Cyber Wallpaper & FX Layer */}
+    <main className="min-h-screen bg-[#f3f1fb] dark:bg-[#06060b] text-slate-900 dark:text-slate-100 relative overflow-x-hidden selection:bg-pink-500 selection:text-white transition-colors duration-300">
+      {/* 🌟 Dynamic Liquid Glass Chromatic Aura & Animated Backdrop */}
       <AnimatedCyberWallpaper />
 
-      {/* Global Background Ambient Laser Glows */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-pink-600/15 via-rose-600/10 to-transparent rounded-full blur-[140px] pointer-events-none z-0 opacity-40 dark:opacity-100" />
-      <div className="fixed bottom-0 left-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[160px] pointer-events-none z-0 opacity-30 dark:opacity-100" />
-      <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[160px] pointer-events-none z-0 opacity-30 dark:opacity-100" />
+      {/* Global Background Ambient Chromatic Orbs for Glass Refraction */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-gradient-to-b from-pink-500/20 via-fuchsia-500/12 to-transparent rounded-full blur-[140px] pointer-events-none z-0 opacity-65 dark:opacity-90" />
+      <div className="fixed bottom-0 left-0 w-[640px] h-[640px] bg-cyan-400/15 dark:bg-violet-600/15 rounded-full blur-[150px] pointer-events-none z-0 opacity-60 dark:opacity-90" />
+      <div className="fixed bottom-0 right-0 w-[640px] h-[640px] bg-pink-400/20 dark:bg-pink-600/15 rounded-full blur-[150px] pointer-events-none z-0 opacity-60 dark:opacity-90" />
 
       {/* Sticky Header */}
       <Navbar />

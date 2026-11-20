@@ -48,6 +48,11 @@ const config: Config = {
         "glow-pink": "0 0 25px rgba(255, 0, 127, 0.45)",
         "glow-crimson": "0 0 30px rgba(255, 0, 56, 0.5)",
         "glow-cyan": "0 0 25px rgba(0, 240, 255, 0.4)",
+        "glass-sm": "0 4px 20px -2px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.65)",
+        "glass-md": "0 12px 36px -6px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.7)",
+        "glass-lg": "0 20px 50px -12px rgba(15, 23, 42, 0.18), inset 0 1px 1.5px rgba(255, 255, 255, 0.75)",
+        "glass-dark": "0 16px 40px -10px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.2)",
+        "glass-pink": "0 16px 40px -8px rgba(255, 0, 127, 0.28), inset 0 1px 1.5px rgba(255, 255, 255, 0.45)",
         "laser-card": "0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 0, 127, 0.25)",
         "laser-card-hover": "0 20px 40px -5px rgba(255, 0, 127, 0.25), 0 0 25px rgba(255, 0, 127, 0.45), 0 0 0 1.5px rgba(255, 0, 127, 0.6)",
       },
@@ -55,6 +60,8 @@ const config: Config = {
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "float": "float 6s ease-in-out infinite",
         "float-delayed": "float 6s ease-in-out 3s infinite",
+        "orb-drift": "orbDrift 16s ease-in-out infinite alternate",
+        "orb-drift-slow": "orbDriftSlow 22s ease-in-out infinite alternate",
         "spin-slow": "spin 20s linear infinite",
         "shimmer": "shimmer 2.5s linear infinite",
         "holo-scan": "holoScan 4s linear infinite",
@@ -66,6 +73,16 @@ const config: Config = {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
+        },
+        orbDrift: {
+          "0%": { transform: "translate(0px, 0px) scale(1)" },
+          "50%": { transform: "translate(35px, -25px) scale(1.08)" },
+          "100%": { transform: "translate(-25px, 20px) scale(0.96)" },
+        },
+        orbDriftSlow: {
+          "0%": { transform: "translate(0px, 0px) scale(1.04)" },
+          "50%": { transform: "translate(-40px, 30px) scale(0.95)" },
+          "100%": { transform: "translate(30px, -20px) scale(1.1)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },

@@ -298,16 +298,16 @@ export default function Portfolio() {
     new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(num);
 
   return (
-    <section id="portofolio" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0d0818]/60 dark:to-transparent">
+    <section id="portofolio" className="py-24 relative overflow-hidden">
       {/* Background Decorators */}
-      <div className="absolute top-1/4 right-0 w-80 h-80 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-pink-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Briefcase className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Interactive Portfolio & Live Simulator</span>
           </div>
@@ -320,7 +320,7 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Category Filters */}
+        {/* Liquid Glass Category Filters */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {categories.map((cat) => (
             <button
@@ -328,8 +328,8 @@ export default function Portfolio() {
               onClick={() => handleCategoryChange(cat)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
                 selectedCategory === cat
-                  ? "bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white shadow-[0_0_15px_rgba(255,0,127,0.4)] font-bold"
-                  : "bg-slate-100 dark:bg-[#0e0918] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-pink-400 hover:text-slate-900 dark:hover:text-white shadow-sm"
+                  ? "glass-btn-primary text-white font-bold"
+                  : "glass-pill text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-white"
               }`}
             >
               {cat}
@@ -351,15 +351,15 @@ export default function Portfolio() {
           onMouseLeave={handleMouseLeave}
         >
           {/* Holographic Center Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] rounded-full bg-gradient-to-tr from-pink-500/20 via-cyan-500/15 to-purple-500/20 blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full bg-gradient-to-tr from-pink-500/25 via-cyan-400/20 to-purple-500/25 blur-3xl pointer-events-none -z-10" />
 
-          {/* Floating Neon Chevrons (shown if more than 1 item) */}
+          {/* Floating Liquid Glass Chevrons (shown if more than 1 item) */}
           {totalFiltered > 1 && (
             <>
               <button
                 onClick={prevSlide}
                 aria-label="Previous Project"
-                className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+                className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group"
               >
                 <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
               </button>
@@ -367,7 +367,7 @@ export default function Portfolio() {
               <button
                 onClick={nextSlide}
                 aria-label="Next Project"
-                className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group"
+                className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group"
               >
                 <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
               </button>
@@ -403,25 +403,25 @@ export default function Portfolio() {
                 filter = "none";
               } else if (isPrev) {
                 transformStyle = `translateX(calc(-72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(26deg) scale(0.85)`;
-                opacity = 0.65;
+                opacity = 0.7;
                 zIndex = 20;
                 pointerEvents = "auto";
                 filter = "blur(0.4px)";
               } else if (isNext) {
                 transformStyle = `translateX(calc(72% + ${dragOffset * 0.4}px)) translateZ(-90px) rotateY(-26deg) scale(0.85)`;
-                opacity = 0.65;
+                opacity = 0.7;
                 zIndex = 20;
                 pointerEvents = "auto";
                 filter = "blur(0.4px)";
               } else if (isFarLeft) {
                 transformStyle = `translateX(calc(-135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(40deg) scale(0.7)`;
-                opacity = 0.2;
+                opacity = 0.22;
                 zIndex = 10;
                 pointerEvents = "none";
                 filter = "blur(1.5px)";
               } else if (isFarRight) {
                 transformStyle = `translateX(calc(135% + ${dragOffset * 0.2}px)) translateZ(-180px) rotateY(-40deg) scale(0.7)`;
-                opacity = 0.2;
+                opacity = 0.22;
                 zIndex = 10;
                 pointerEvents = "none";
                 filter = "blur(1.5px)";
@@ -433,10 +433,10 @@ export default function Portfolio() {
                   onClick={() => {
                     if (!isCenter) goToSlide(index);
                   }}
-                  className={`absolute top-0 w-[90%] sm:w-[440px] max-w-[460px] rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-500 ease-out shadow-2xl ${
+                  className={`group absolute top-0 w-[90%] sm:w-[440px] max-w-[460px] rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-500 ease-out ${
                     isCenter
-                      ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/20 dark:shadow-[0_0_40px_rgba(255,0,127,0.35)] holo-corners ring-4 ring-pink-500/15"
-                      : "bg-white/85 dark:bg-[#0c0618]/85 border border-slate-300 dark:border-slate-850 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/50"
+                      ? "glass-card-pink holo-corners ring-4 ring-pink-500/15"
+                      : "glass-surface cursor-pointer"
                   }`}
                   style={{
                     transform: transformStyle,
@@ -558,14 +558,14 @@ export default function Portfolio() {
                       )}
 
                       {/* Hover Overlay with Live Demo Trigger */}
-                      <div className="absolute inset-0 bg-[#07070a]/90 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center p-4">
-                        <span className="text-xs font-bold text-pink-400 mb-2">⚡ Interactive Live Simulator</span>
+                      <div className="absolute inset-0 bg-[#07070a]/75 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center p-4">
+                        <span className="text-xs font-bold text-pink-300 mb-2">⚡ Interactive Live Simulator</span>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             setActiveAppId(project.id);
                           }}
-                          className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white text-xs font-black flex items-center gap-1.5 shadow-[0_0_20px_rgba(255,0,127,0.5)] hover:brightness-110 active:scale-95 transition-all"
+                          className="px-4 py-2 rounded-xl glass-btn-primary text-white text-xs font-black flex items-center gap-1.5 active:scale-95 transition-all"
                         >
                           <Eye className="w-4 h-4" />
                           <span>Buka Mockup Interaktif</span>
@@ -577,7 +577,7 @@ export default function Portfolio() {
                   {/* Card Body */}
                   <div className="p-6 flex flex-col justify-between flex-1">
                     <div>
-                      <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mb-1.5 font-medium">
+                      <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-300 mb-1.5 font-medium">
                         <span>Klien: <strong className="text-slate-900 dark:text-white">{project.client}</strong></span>
                         <span>Tahun: <strong className="text-pink-600 dark:text-pink-400">{project.year}</strong></span>
                       </div>
@@ -592,12 +592,12 @@ export default function Portfolio() {
                     </div>
 
                     {/* Tech Stack Badges & CTA Link */}
-                    <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <div className="mt-5 pt-4 border-t border-white/50 dark:border-white/10">
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {project.techStack.map((tech, tIdx) => (
                           <span
                             key={tIdx}
-                            className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded border border-pink-200 dark:border-pink-500/40"
+                            className="text-[10px] font-semibold bg-white/60 dark:bg-white/10 backdrop-blur-md text-pink-700 dark:text-pink-300 px-2.5 py-0.5 rounded-full border border-white/80 dark:border-white/15"
                           >
                             {tech}
                           </span>
@@ -609,7 +609,7 @@ export default function Portfolio() {
                           e.stopPropagation();
                           setActiveAppId(project.id);
                         }}
-                        className="w-full py-2.5 px-3 rounded-xl bg-pink-50 dark:bg-[#140b20] hover:bg-pink-100 dark:hover:bg-pink-500/20 text-pink-700 dark:text-pink-300 hover:text-pink-900 dark:hover:text-white text-xs font-bold text-center border border-pink-300 dark:border-pink-500/40 flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                        className="w-full py-2.5 px-3 rounded-2xl glass-btn-secondary text-pink-700 dark:text-pink-300 hover:text-pink-800 dark:hover:text-white text-xs font-bold text-center flex items-center justify-center gap-1.5"
                       >
                         <span>⚡ Coba Simulator Aplikasi Ini</span>
                       </button>
@@ -623,7 +623,7 @@ export default function Portfolio() {
           {/* Bottom Slide Dots */}
           {totalFiltered > 1 && (
             <div className="mt-8 flex items-center justify-center">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-pill px-3.5 py-2 rounded-full">
                 {filteredProjects.map((p, idx) => {
                   const isActive = activeIndex === idx;
                   return (
@@ -634,7 +634,7 @@ export default function Portfolio() {
                       className={`h-2.5 rounded-full transition-all duration-300 ${
                         isActive
                           ? "w-9 bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-500/40 dark:shadow-[0_0_12px_#ff007f]"
-                          : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-pink-400"
+                          : "w-2.5 bg-slate-400/50 dark:bg-white/25 hover:bg-pink-400"
                       }`}
                     />
                   );
@@ -653,30 +653,30 @@ export default function Portfolio() {
       {activeAppId && activeProjectData && (
         <div 
           onClick={() => setActiveAppId(null)}
-          className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-xl flex items-center justify-center p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="bg-white border border-pink-500/30 rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[95vh] sm:max-h-[92vh] overflow-hidden flex flex-col shadow-2xl relative"
+            className="glass-surface rounded-2xl sm:rounded-3xl max-w-5xl w-full max-h-[95vh] sm:max-h-[92vh] overflow-hidden flex flex-col shadow-2xl relative"
           >
             
             {/* Modal Top Bar - Sticky & Mobile Responsive */}
-            <div className="p-3 sm:p-4 md:p-5 border-b border-pink-500/15 flex items-center justify-between gap-2 bg-slate-50 sticky top-0 z-30 shrink-0">
+            <div className="p-3 sm:p-4 md:p-5 border-b border-white/40 dark:border-white/10 flex items-center justify-between gap-2 bg-white/60 dark:bg-white/[0.04] backdrop-blur-xl sticky top-0 z-30 shrink-0">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                <span className="text-[10px] sm:text-xs font-bold text-pink-600 uppercase tracking-wider bg-pink-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-pink-200 shrink-0">
+                <span className="text-[10px] sm:text-xs font-bold text-pink-600 dark:text-pink-300 uppercase tracking-wider glass-pill px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shrink-0">
                   {activeProjectData.category}
                 </span>
-                <h3 className="font-heading font-extrabold text-xs sm:text-base text-slate-900 truncate">
+                <h3 className="font-heading font-extrabold text-xs sm:text-base text-slate-900 dark:text-white truncate">
                   {activeProjectData.title}
                 </h3>
               </div>
 
               {/* Device Selector Controls & Prominent Close Button */}
               <div className="flex items-center gap-2 shrink-0">
-                <div className="hidden sm:flex items-center bg-white rounded-xl p-1 border border-slate-200 shadow-sm">
+                <div className="hidden sm:flex items-center glass-pill rounded-xl p-1">
                   <button
                     onClick={() => setPreviewDevice("desktop")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "desktop" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "desktop" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"}`}
                     title="Mode Desktop"
                   >
                     <Monitor className="w-4 h-4" />
@@ -684,7 +684,7 @@ export default function Portfolio() {
                   </button>
                   <button
                     onClick={() => setPreviewDevice("tablet")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "tablet" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "tablet" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"}`}
                     title="Mode Tablet"
                   >
                     <Tablet className="w-4 h-4" />
@@ -692,7 +692,7 @@ export default function Portfolio() {
                   </button>
                   <button
                     onClick={() => setPreviewDevice("mobile")}
-                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "mobile" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                    className={`p-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 ${previewDevice === "mobile" ? "bg-pink-500 text-white shadow-sm" : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"}`}
                     title="Mode Mobile"
                   >
                     <Smartphone className="w-4 h-4" />
@@ -703,7 +703,7 @@ export default function Portfolio() {
                 {/* Primary Close Button (Clear, prominent for Mobile & PC) */}
                 <button
                   onClick={() => setActiveAppId(null)}
-                  className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-600 hover:text-white border border-rose-200 hover:border-rose-600 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all shadow-sm shrink-0 active:scale-95 group"
+                  className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-rose-500/15 hover:bg-rose-600 text-rose-600 dark:text-rose-300 hover:text-white border border-rose-400/35 hover:border-rose-600 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all shadow-sm shrink-0 active:scale-95 group"
                   aria-label="Tutup Simulator"
                   title="Tutup Simulator (Esc)"
                 >
@@ -714,10 +714,10 @@ export default function Portfolio() {
             </div>
 
             {/* Modal Body: Device Frame with REAL INTERACTIVE UI SIMULATION */}
-            <div className="p-3 sm:p-5 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-100/90 space-y-4">
+            <div className="p-3 sm:p-5 overflow-y-auto flex-1 flex flex-col items-center justify-start bg-slate-100/50 dark:bg-black/30 space-y-4">
               
               {/* Scroll Guidance Banner */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-pink-600 text-xs font-semibold shadow-sm animate-pulse">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-600 dark:text-pink-300 text-xs font-semibold animate-pulse">
                 <span>🖱️</span>
                 <span>Scroll ke bawah di dalam layar mockup untuk mencoba simulasi & melihat seluruh isi website!</span>
               </div>

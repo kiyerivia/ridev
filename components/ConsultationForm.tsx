@@ -108,10 +108,10 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
   };
 
   return (
-    <section id="kontak" className="py-24 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0e0918]/70 dark:to-transparent">
+    <section id="kontak" className="py-24 relative overflow-hidden">
       {/* Background Decorators */}
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-10 left-1/4 w-96 h-96 bg-pink-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-violet-500/15 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -119,7 +119,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
           
           {/* Left Column: Information & Contact Info */}
           <div className="lg:col-span-5 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider">
               <Zap className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
               <span>Free Consultation & Quotation</span>
             </div>
@@ -139,9 +139,9 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                 href={createWhatsAppLink("Halo RIDEV (Rivia Developer), saya ingin bertanya langsung mengenai layanan pembuatan website.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card p-4 rounded-xl border border-emerald-300 dark:border-emerald-500/40 hover:border-emerald-500 flex items-center gap-4 group transition-all shadow-md"
+                className="glass-card p-4 rounded-2xl flex items-center gap-4 group text-left"
               >
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-500/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all shrink-0">
+                <div className="w-12 h-12 rounded-2xl glass-icon flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all shrink-0">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
@@ -157,9 +157,9 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
 
               <a
                 href="mailto:kiyerivia@gmail.com"
-                className="glass-card p-4 rounded-xl border border-pink-300 dark:border-pink-500/30 hover:border-pink-500 flex items-center gap-4 group transition-all shadow-md"
+                className="glass-card p-4 rounded-2xl flex items-center gap-4 group text-left"
               >
-                <div className="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-950/60 border border-pink-200 dark:border-pink-500/40 flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:scale-110 group-hover:bg-pink-500 group-hover:text-white transition-all shrink-0">
+                <div className="w-12 h-12 rounded-2xl glass-icon flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:scale-110 group-hover:bg-pink-500 group-hover:text-white transition-all shrink-0">
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
@@ -175,7 +175,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
             </div>
 
             {/* Inclusions summary */}
-            <div className="pt-2 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 font-normal">
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-2 text-xs text-slate-600 dark:text-slate-300 font-normal">
               <ShieldCheck className="w-4 h-4 text-pink-600 dark:text-pink-400 shrink-0" />
               <span>Data & ide proyek Anda dijamin 100% aman dan rahasia (Non-Disclosure).</span>
             </div>
@@ -183,11 +183,11 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
 
           {/* Right Column: Lead Capture Form (Supabase Connected) */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-pink-500/30 shadow-2xl relative holo-corners">
+            <div className="glass-card rounded-3xl p-6 sm:p-8 relative holo-corners">
               
               {submitted ? (
                 <div className="text-center py-12 space-y-4 animate-in zoom-in-95 duration-300">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950 border-2 border-emerald-400 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                  <div className="w-16 h-16 rounded-full glass-icon flex items-center justify-center text-emerald-600 dark:text-emerald-400 mx-auto">
                     <CheckCircle className="w-9 h-9" />
                   </div>
                   <h3 className="font-heading font-black text-2xl text-slate-900 dark:text-white">
@@ -198,18 +198,18 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="px-6 py-2.5 rounded-xl bg-pink-100 hover:bg-pink-200 dark:bg-pink-950/60 dark:hover:bg-pink-900 text-xs font-bold text-pink-700 dark:text-pink-300 transition-colors border border-pink-300 dark:border-pink-500/40"
+                    className="px-6 py-2.5 rounded-xl glass-btn-secondary text-xs font-bold text-pink-700 dark:text-pink-300"
                   >
                     Kirim Form Baru
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="border-b border-pink-200 dark:border-pink-500/20 pb-3 mb-4">
+                  <div className="border-b border-white/50 dark:border-white/10 pb-3 mb-4">
                     <h3 className="font-heading font-extrabold text-xl text-slate-900 dark:text-white">
                       Formulir Permintaan Konsultasi
                     </h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-normal">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5 font-normal">
                       Isi form berikut, sistem otomatis menghubungkan Anda ke WhatsApp resmi kami.
                     </p>
                   </div>
@@ -217,7 +217,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                   {/* Name & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
                         Nama Lengkap / Bisnis <span className="text-rose-500">*</span>
                       </label>
@@ -227,12 +227,12 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                         placeholder="Contoh: Budi Santoso (PT Maju Bersama)"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white transition-colors shadow-sm"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                         <Phone className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                         Nomor WhatsApp <span className="text-rose-500">*</span>
                       </label>
@@ -242,14 +242,14 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                         placeholder="Contoh: 081234567890"
                         value={formData.phone_or_wa}
                         onChange={(e) => setFormData({ ...formData, phone_or_wa: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white transition-colors shadow-sm"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Email (Optional) */}
                   <div>
-                    <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                    <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
                       Email (Opsional untuk kirim proposal)
                     </label>
@@ -258,21 +258,21 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                       placeholder="nama@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white transition-colors shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none"
                     />
                   </div>
 
                   {/* Project Type & Budget */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
                         Jenis Proyek
                       </label>
                       <select
                         value={formData.project_type}
                         onChange={(e) => setFormData({ ...formData, project_type: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-pink-500 focus:bg-white transition-colors shadow-sm"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white focus:outline-none"
                       >
                         {projectOptions.map((opt, i) => (
                           <option key={i} value={opt} className="bg-white dark:bg-[#0f0a18] text-slate-900 dark:text-white">
@@ -283,14 +283,14 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                      <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                         <DollarSign className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                         Estimasi Budget
                       </label>
                       <select
                         value={formData.estimated_budget}
                         onChange={(e) => setFormData({ ...formData, estimated_budget: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-pink-500 focus:bg-white transition-colors shadow-sm"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white focus:outline-none"
                       >
                         {budgetOptions.map((b, i) => (
                           <option key={i} value={b} className="bg-white dark:bg-[#0f0a18] text-slate-900 dark:text-white">
@@ -303,7 +303,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
 
                   {/* Notes / Project Details */}
                   <div>
-                    <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1.5 flex items-center gap-1.5">
+                    <label className="text-xs font-bold text-slate-700 dark:text-slate-200 block mb-1.5 flex items-center gap-1.5">
                       <MessageSquare className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
                       Ceritakan Kebutuhan / Referensi Website Anda
                     </label>
@@ -312,7 +312,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                       placeholder="Contoh: Saya ingin buat website toko fashion seperti Zalora dengan fitur cek ongkir otomatis dan notifikasi WA..."
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0f0a18] border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-pink-500 focus:bg-white transition-colors resize-none shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl glass-input text-sm text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none resize-none"
                     />
                   </div>
 
@@ -321,7 +321,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-4 px-6 rounded-xl font-heading font-extrabold text-sm sm:text-base bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_25px_rgba(255,0,127,0.5)] transition-all duration-300 flex items-center justify-center gap-2.5 active:scale-95 disabled:opacity-50"
+                      className="w-full py-4 px-6 rounded-2xl font-heading font-extrabold text-sm sm:text-base glass-btn-primary text-white flex items-center justify-center gap-2.5 active:scale-95 disabled:opacity-50"
                     >
                       {loading ? (
                         <span>Menghubungkan ke Sistem...</span>
@@ -332,7 +332,7 @@ Mohon informasi langkah selanjutnya dan penawaran terbaiknya. Terima kasih!`;
                         </>
                       )}
                     </button>
-                    <span className="text-[10px] text-center text-slate-500 dark:text-slate-400 block mt-2.5 font-normal">
+                    <span className="text-[10px] text-center text-slate-600 dark:text-slate-400 block mt-2.5 font-normal">
                       🔒 Data terenkripsi dan otomatis tersimpan di database Supabase kami.
                     </span>
                   </div>

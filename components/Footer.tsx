@@ -26,13 +26,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-900 dark:bg-[#050308] border-t-2 border-pink-500/30 pt-16 pb-12 relative overflow-hidden text-slate-300 dark:text-slate-400 text-xs">
+    <footer className="bg-slate-900/80 dark:bg-[#080510]/70 backdrop-blur-2xl border-t border-white/20 dark:border-white/15 pt-16 pb-12 relative overflow-hidden text-slate-300 dark:text-slate-300 text-xs shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
       {/* Background Decorator */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[150px] bg-pink-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[160px] bg-gradient-to-r from-pink-500/20 via-violet-500/15 to-cyan-400/15 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           
           {/* Col 1: Brand & Bio (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
@@ -63,11 +63,11 @@ export default function Footer() {
               Software House & Jasa Pembuatan Website Profesional. Menghadirkan solusi website dan aplikasi berstandar tinggi, aman, mobile friendly, dan terbukti meningkatkan kredibilitas serta omset bisnis Anda.
             </p>
 
-            <div className="flex items-center gap-3 pt-2">
-              <span className="px-3 py-1 rounded-full bg-pink-950/60 border border-pink-500/40 text-pink-300 text-[10px] font-bold">
+            <div className="flex items-center gap-2.5 pt-2 flex-wrap">
+              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-pink-400/35 text-pink-200 text-[10px] font-bold">
                 ✓ Garansi Full Support
               </span>
-              <span className="px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/40 text-amber-300 text-[10px] font-bold">
+              <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-amber-400/35 text-amber-200 text-[10px] font-bold">
                 ✓ Free Domain & SSL
               </span>
             </div>
@@ -199,7 +199,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="p-2.5 rounded-xl bg-slate-800 dark:bg-[#0f0a18] border border-pink-500/30 hover:border-pink-500 text-pink-400 hover:text-white transition-all flex items-center gap-1.5 text-[11px] font-bold shadow-lg cursor-pointer"
+            className="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-pink-500/30 backdrop-blur-md border border-white/20 hover:border-pink-400/60 text-pink-300 hover:text-white transition-all flex items-center gap-1.5 text-[11px] font-bold shadow-lg cursor-pointer"
           >
             <span>Kembali ke Atas</span>
             <ArrowUp className="w-3.5 h-3.5" />

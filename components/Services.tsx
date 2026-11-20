@@ -289,17 +289,17 @@ export default function Services() {
   }, [nextSlide, prevSlide]);
 
   return (
-    <section id="layanan" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-transparent via-pink-50/20 to-transparent dark:from-transparent dark:via-[#0d0918]/60 dark:to-transparent select-none">
+    <section id="layanan" className="py-20 sm:py-28 relative overflow-hidden select-none">
       {/* Background Decorators */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-pink-500/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-500/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 inset-x-0 h-80 cyber-floor-grid pointer-events-none opacity-30" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100 dark:bg-[#0e0918] border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.2)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
             <span>Layanan Unggulan RIDEV (Rivia Developer)</span>
           </div>
@@ -311,9 +311,9 @@ export default function Services() {
             Mulai dari landing page iklan berkonversi tinggi, toko online siap jualan, LMS pendidikan, hingga aplikasi sistem informasi kustom skala korporasi.
           </p>
 
-          {/* Futuristic HUD Service Tabs */}
+          {/* Liquid Glass Service Tabs */}
           <div className="mt-8 flex items-center justify-center">
-            <div className="inline-flex p-1.5 rounded-2xl bg-white/85 dark:bg-[#10091d]/90 backdrop-blur-xl border border-slate-200/90 dark:border-pink-500/30 shadow-lg dark:shadow-[0_0_30px_rgba(255,0,127,0.15)] max-w-full overflow-x-auto scrollbar-none gap-1.5">
+            <div className="inline-flex p-1.5 rounded-2xl glass-pill max-w-full overflow-x-auto scrollbar-none gap-1.5">
               {services.map((s, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -322,14 +322,14 @@ export default function Services() {
                     onClick={() => rotateTo(idx)}
                     className={`px-3.5 sm:px-4 py-2 rounded-xl font-heading text-xs font-bold transition-all duration-300 flex items-center gap-1.5 whitespace-nowrap relative ${
                       isActive
-                        ? "bg-gradient-to-r from-pink-600 via-rose-600 to-pink-500 text-white shadow-md shadow-pink-500/30 scale-100 dark:shadow-[0_0_20px_rgba(255,0,127,0.5)]"
-                        : "text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-pink-500/10"
+                        ? "glass-btn-primary text-white scale-100"
+                        : "text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10"
                     }`}
                   >
                     <span>{s.shortName}</span>
                     {s.badge && (
                       <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black uppercase ${
-                        isActive ? "bg-white/25 text-white" : "bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300"
+                        isActive ? "bg-white/25 text-white" : "bg-pink-500/15 text-pink-600 dark:text-pink-300"
                       }`}>
                         {s.badge}
                       </span>
@@ -358,22 +358,22 @@ export default function Services() {
           onMouseLeave={handleMouseLeave}
         >
           {/* Holographic Center Glow & Cylinder Orbit FX */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] rounded-full bg-gradient-to-tr from-pink-500/20 via-purple-500/15 to-cyan-500/20 blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full bg-gradient-to-tr from-pink-500/25 via-purple-500/20 to-cyan-400/25 blur-3xl pointer-events-none -z-10" />
           
           {/* Cylinder Ring Grid Base Indicator */}
           <div 
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-32 rounded-[100%] border border-pink-500/20 dark:border-pink-500/30 pointer-events-none opacity-40 dark:opacity-60 -z-10"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-32 rounded-[100%] border border-pink-400/25 dark:border-white/15 pointer-events-none opacity-45 dark:opacity-55 -z-10"
             style={{
               transform: "rotateX(75deg)",
-              boxShadow: "0 0 40px rgba(255,0,127,0.2), inset 0 0 40px rgba(255,0,127,0.2)",
+              boxShadow: "0 0 40px rgba(255,0,127,0.18), inset 0 0 40px rgba(255,255,255,0.15)",
             }}
           />
 
-          {/* Floating Neon Chevrons */}
+          {/* Floating Liquid Glass Chevrons */}
           <button
             onClick={prevSlide}
             aria-label="Previous Service"
-            className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group active:scale-95"
+            className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group active:scale-95"
           >
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -381,7 +381,7 @@ export default function Services() {
           <button
             onClick={nextSlide}
             aria-label="Next Service"
-            className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/90 dark:bg-[#120822]/90 backdrop-blur-md border border-slate-200 dark:border-pink-500/40 text-slate-800 dark:text-white shadow-xl dark:shadow-[0_0_25px_rgba(255,0,127,0.3)] flex items-center justify-center hover:scale-110 hover:border-pink-500 dark:hover:border-pink-400 hover:text-pink-600 transition-all duration-300 group active:scale-95"
+            className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full glass-pill text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 hover:text-pink-600 dark:hover:text-pink-400 transition-all duration-300 group active:scale-95"
           >
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
           </button>
@@ -424,17 +424,17 @@ export default function Services() {
                   pointerEvents = "auto";
                   filter = "none";
                 } else if (isFlank) {
-                  opacity = 0.72;
+                  opacity = 0.76;
                   scale = 0.88;
                   zIndex = 30;
                   pointerEvents = "auto";
-                  filter = "brightness(0.9) saturate(0.95)";
+                  filter = "brightness(0.92) saturate(0.98)";
                 } else if (isFarEdge) {
-                  opacity = 0.22;
+                  opacity = 0.25;
                   scale = 0.74;
                   zIndex = 15;
                   pointerEvents = "auto";
-                  filter = "brightness(0.65) blur(1.2px)";
+                  filter = "brightness(0.72) blur(1.2px)";
                 }
               }
 
@@ -447,10 +447,10 @@ export default function Services() {
                   onClick={() => {
                     if (!isCenter) rotateTo(index);
                   }}
-                  className={`absolute top-0 w-[88%] sm:w-[390px] max-w-[420px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-2xl transition-[filter,opacity] duration-300 ${
+                  className={`absolute top-0 w-[88%] sm:w-[390px] max-w-[420px] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-[filter,opacity] duration-300 ${
                     isCenter
-                      ? "bg-white dark:bg-[#150b26] border-2 border-pink-500 shadow-pink-500/25 dark:shadow-[0_0_40px_rgba(255,0,127,0.4)] holo-corners ring-4 ring-pink-500/20"
-                      : "bg-white/90 dark:bg-[#0c0618]/90 border border-slate-300 dark:border-pink-500/20 cursor-pointer hover:border-pink-400 dark:hover:border-pink-500/60 hover:opacity-90"
+                      ? "glass-card-pink holo-corners ring-4 ring-pink-500/15"
+                      : "glass-surface cursor-pointer"
                   }`}
                   style={{
                     transform: `translate3d(${x}px, 0px, ${z}px) rotateY(${rotateY}deg) scale(${scale})`,
@@ -472,8 +472,8 @@ export default function Services() {
                     <div 
                       className={`absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300 ${
                         rawDiff > 0 
-                          ? "bg-gradient-to-r from-transparent via-transparent to-black/30 dark:to-black/50" 
-                          : "bg-gradient-to-r from-black/30 dark:from-black/50 via-transparent to-transparent"
+                          ? "bg-gradient-to-r from-transparent via-transparent to-black/15 dark:to-black/40" 
+                          : "bg-gradient-to-r from-black/15 dark:from-black/40 via-transparent to-transparent"
                       }`} 
                     />
                   )}
@@ -481,18 +481,18 @@ export default function Services() {
                   <div>
                     {/* Category & Badge */}
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-pink-700 dark:text-pink-300">
                         {service.category}
                       </span>
                       {service.badge && (
-                        <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-[0_0_10px_rgba(255,0,127,0.4)]">
+                        <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full glass-btn-primary text-white">
                           {service.badge}
                         </span>
                       )}
                     </div>
 
                     {/* Icon & Title */}
-                    <div className="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-950/60 border border-pink-200 dark:border-pink-500/40 flex items-center justify-center text-pink-600 dark:text-pink-400 mb-4 shadow-sm">
+                    <div className="w-12 h-12 rounded-2xl glass-icon flex items-center justify-center text-pink-600 dark:text-pink-400 mb-4">
                       <Icon className="w-6 h-6" />
                     </div>
 
@@ -505,9 +505,9 @@ export default function Services() {
                     </p>
 
                     {/* Features List */}
-                    <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+                    <div className="mt-4 pt-4 border-t border-white/50 dark:border-white/10 space-y-2">
                       {service.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200 font-medium">
+                        <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-100 font-medium">
                           <CheckCircle className="w-3.5 h-3.5 text-pink-500 dark:text-pink-400 shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </div>
@@ -516,13 +516,13 @@ export default function Services() {
                   </div>
 
                   {/* Bottom CTA to WhatsApp */}
-                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <div className="mt-6 pt-4 border-t border-white/50 dark:border-white/10">
                     <a
                       href={waLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="w-full py-3 px-4 rounded-xl bg-pink-50 dark:bg-[#1c0d32] hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 hover:text-white border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-300 text-xs font-bold transition-all duration-200 flex items-center justify-between group/btn shadow-sm"
+                      className="w-full py-3 px-4 rounded-2xl glass-btn-secondary hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 text-pink-700 dark:text-pink-300 hover:text-white text-xs font-bold transition-all duration-200 flex items-center justify-between group/btn"
                     >
                       <span>Konsultasi Layanan Ini</span>
                       <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
@@ -535,7 +535,7 @@ export default function Services() {
 
           {/* Bottom Slide Dots */}
           <div className="mt-8 flex items-center justify-center">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 glass-pill px-3.5 py-2 rounded-full">
               {services.map((s, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -546,7 +546,7 @@ export default function Services() {
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       isActive
                         ? "w-9 bg-gradient-to-r from-pink-500 to-rose-500 shadow-md shadow-pink-500/40 dark:shadow-[0_0_12px_#ff007f]"
-                        : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-pink-400"
+                        : "w-2.5 bg-slate-400/50 dark:bg-white/25 hover:bg-pink-400"
                     }`}
                   />
                 );

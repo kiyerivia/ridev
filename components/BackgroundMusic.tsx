@@ -135,7 +135,7 @@ export default function BackgroundMusic() {
 
       {/* Floating BGM Widget Container */}
       <div className="fixed left-4 sm:left-6 bottom-5 sm:bottom-6 z-50 select-none">
-        {/* 🌟 Compact Floating Equalizer Trigger (Only Equalizer Icon, opens details on click) */}
+        {/* 🌟 Compact Floating Liquid Glass Equalizer Trigger */}
         {!isOpen ? (
           <button
             onClick={() => {
@@ -144,7 +144,7 @@ export default function BackgroundMusic() {
                 startAudioPlayback();
               }
             }}
-            className="group relative w-12 h-12 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-xl border-2 border-pink-500/50 dark:border-pink-500/60 text-slate-800 dark:text-white shadow-[0_4px_25px_rgba(255,0,127,0.35)] hover:shadow-[0_0_30px_rgba(255,0,127,0.6)] hover:border-pink-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
+            className="group relative w-12 h-12 rounded-2xl glass-pill text-slate-800 dark:text-white hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
             aria-label="Buka Pengatur Musik"
             title="Buka Pengatur Musik BGM"
           >
@@ -164,22 +164,22 @@ export default function BackgroundMusic() {
                 </>
               ) : (
                 <>
-                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-2" />
-                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-3" />
-                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-2" />
-                  <span className="w-1 bg-slate-400 dark:bg-slate-600 rounded-full h-1" />
+                  <span className="w-1 bg-slate-500 dark:bg-slate-400 rounded-full h-2" />
+                  <span className="w-1 bg-slate-500 dark:bg-slate-400 rounded-full h-3" />
+                  <span className="w-1 bg-slate-500 dark:bg-slate-400 rounded-full h-2" />
+                  <span className="w-1 bg-slate-500 dark:bg-slate-400 rounded-full h-1" />
                 </>
               )}
             </div>
           </button>
         ) : (
-          /* 🌟 Expanded Fly-Effect Floating Dock */
-          <div className="w-72 sm:w-80 rounded-2xl bg-white/95 dark:bg-[#120822]/95 backdrop-blur-2xl border-2 border-pink-500/50 shadow-[0_10px_35px_rgba(255,0,127,0.35)] p-4 space-y-3.5 animate-in slide-in-from-bottom-5 zoom-in-95 duration-300 holo-corners">
+          /* 🌟 Expanded Liquid Glass Floating Dock */
+          <div className="w-72 sm:w-80 rounded-3xl glass-surface p-4 space-y-3.5 animate-in slide-in-from-bottom-5 zoom-in-95 duration-300 holo-corners">
             
             {/* Header: Track Info & Close Fly Button */}
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80 pb-2.5">
+            <div className="flex items-center justify-between border-b border-white/50 dark:border-white/10 pb-2.5">
               <div className="flex items-center gap-2 overflow-hidden">
-                <div className="w-7 h-7 rounded-lg bg-pink-100 dark:bg-pink-950/70 border border-pink-400/40 flex items-center justify-center text-pink-600 dark:text-pink-400 shrink-0">
+                <div className="w-8 h-8 rounded-xl glass-icon flex items-center justify-center text-pink-600 dark:text-pink-400 shrink-0">
                   <Music className="w-3.5 h-3.5" />
                 </div>
                 <div className="flex flex-col truncate">
@@ -196,7 +196,7 @@ export default function BackgroundMusic() {
               {/* Close / Fly Back Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-6 h-6 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="w-6 h-6 rounded-lg hover:bg-white/60 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white flex items-center justify-center transition-colors cursor-pointer"
                 title="Tutup Panel BGM"
                 aria-label="Tutup Panel"
               >
@@ -209,7 +209,7 @@ export default function BackgroundMusic() {
               {/* Play / Pause Toggle Button */}
               <button
                 onClick={togglePlay}
-                className="w-10 h-10 rounded-xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:brightness-110 text-white shadow-md shadow-pink-500/30 flex items-center justify-center active:scale-95 transition-all shrink-0 cursor-pointer"
+                className="w-10 h-10 rounded-xl glass-btn-primary text-white flex items-center justify-center active:scale-95 transition-all shrink-0 cursor-pointer"
                 title={isPlaying ? "Jeda" : "Putar"}
                 aria-label={isPlaying ? "Jeda" : "Putar"}
               >
@@ -219,7 +219,7 @@ export default function BackgroundMusic() {
               {/* Mute Toggle Button */}
               <button
                 onClick={toggleMute}
-                className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-pink-100 dark:hover:bg-pink-950/60 text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                className="w-8 h-8 rounded-lg glass-inset text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                 title={isMuted ? "Aktifkan Suara" : "Bisukan"}
                 aria-label={isMuted ? "Aktifkan Suara" : "Bisukan"}
               >
@@ -240,17 +240,17 @@ export default function BackgroundMusic() {
                   max="100"
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
-                  className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-pink-500 hover:accent-pink-400 transition-all"
+                  className="w-full h-1.5 bg-slate-300/60 dark:bg-white/15 rounded-lg appearance-none cursor-pointer accent-pink-500 hover:accent-pink-400 transition-all"
                   aria-label="Pengatur Volume"
                 />
-                <span className="text-[11px] font-bold text-slate-600 dark:text-slate-300 min-w-[32px] text-right font-mono">
+                <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 min-w-[32px] text-right font-mono">
                   {isMuted ? "0%" : `${volume}%`}
                 </span>
               </div>
             </div>
 
             {/* Footer Status Hint */}
-            <div className="flex items-center justify-between pt-1 text-[10px] text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60">
+            <div className="flex items-center justify-between pt-1.5 text-[10px] text-slate-600 dark:text-slate-300 border-t border-white/50 dark:border-white/10">
               <span className="flex items-center gap-1">
                 <span className={`w-1.5 h-1.5 rounded-full ${isPlaying ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
                 {isPlaying ? "Sedang Memutar" : "Dijeda"}

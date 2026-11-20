@@ -116,35 +116,40 @@ export default function AnimatedCyberWallpaper() {
     <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden select-none transition-opacity duration-500">
       {/* 1. Base Wallpaper Image (Active in Dark Mode, Soft in Light Mode) */}
       <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-700 animate-cyber-breathing scale-105 opacity-10 dark:opacity-100"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-700 animate-cyber-breathing scale-105 opacity-[0.07] dark:opacity-85"
         style={{
           backgroundImage: "url('/cyber-bg.png')",
         }}
       />
 
-      {/* 2. Light Mode Ambient Light Mesh Aura */}
-      <div className="dark:hidden absolute inset-0 bg-gradient-to-b from-[#f8f9fd] via-[#f1f5f9]/70 to-[#f8f9fd] pointer-events-none" />
-      <div className="dark:hidden absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-pink-300/30 via-rose-200/20 to-transparent rounded-full blur-[120px] pointer-events-none" />
-      <div className="dark:hidden absolute bottom-10 right-10 w-[500px] h-[500px] bg-pink-200/25 rounded-full blur-[140px] pointer-events-none" />
+      {/* 2. Light Mode Iridescent Liquid-Glass Chromatic Mesh Backdrop */}
+      <div className="dark:hidden absolute inset-0 bg-gradient-to-br from-[#fdf2f8] via-[#f3f1fb] to-[#eff6ff] pointer-events-none" />
+      <div className="dark:hidden absolute -top-24 -left-20 w-[620px] h-[620px] bg-gradient-to-br from-pink-400/40 via-rose-300/35 to-fuchsia-300/25 rounded-full blur-[110px] animate-orb-drift pointer-events-none" />
+      <div className="dark:hidden absolute top-[18%] -right-24 w-[640px] h-[640px] bg-gradient-to-bl from-violet-400/35 via-indigo-300/30 to-sky-300/30 rounded-full blur-[120px] animate-orb-drift-slow pointer-events-none" />
+      <div className="dark:hidden absolute bottom-[-10%] left-[20%] w-[680px] h-[520px] bg-gradient-to-tr from-cyan-300/35 via-pink-300/30 to-amber-200/30 rounded-full blur-[125px] animate-orb-drift pointer-events-none" />
+      <div className="dark:hidden absolute top-[55%] left-[55%] w-[420px] h-[420px] bg-gradient-to-tr from-rose-400/25 via-purple-300/25 to-transparent rounded-full blur-[100px] animate-pulse-slow pointer-events-none" />
 
-      {/* 3. Dark Mode Central Sanctuary Pillar Pulsing Glow */}
-      <div className="hidden dark:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[550px] h-[500px] bg-gradient-to-b from-pink-500/30 via-red-600/25 to-transparent rounded-full blur-[90px] animate-pulse-slow" />
+      {/* 3. Dark Mode Deep Iridescent Aurora Orbs (Refracted Through Dark Liquid Glass) */}
+      <div className="hidden dark:block absolute -top-28 -left-24 w-[650px] h-[650px] bg-gradient-to-br from-pink-600/30 via-fuchsia-600/20 to-transparent rounded-full blur-[120px] animate-orb-drift" />
+      <div className="hidden dark:block absolute top-[20%] -right-24 w-[620px] h-[620px] bg-gradient-to-bl from-violet-600/30 via-cyan-500/20 to-transparent rounded-full blur-[130px] animate-orb-drift-slow" />
+      <div className="hidden dark:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] sm:w-[620px] h-[520px] bg-gradient-to-b from-pink-500/25 via-rose-600/20 to-transparent rounded-full blur-[110px] animate-pulse-slow" />
+      <div className="hidden dark:block absolute bottom-[-12%] left-[25%] w-[680px] h-[480px] bg-gradient-to-tr from-cyan-500/20 via-purple-600/20 to-pink-600/20 rounded-full blur-[140px] animate-orb-drift" />
 
-      {/* 4. Horizontal Cyber Laser Scanning Sweep Line (Dark Mode) */}
-      <div className="hidden dark:block absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff007f] to-transparent shadow-[0_0_20px_#ff007f,0_0_40px_#ff0038] animate-laser-scan opacity-70" />
+      {/* 4. Subtle Horizontal Specular Light Sweep (Dark Mode) */}
+      <div className="hidden dark:block absolute inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-pink-400/80 to-transparent shadow-[0_0_20px_#ff007f,0_0_40px_#8b5cf6] animate-laser-scan opacity-55" />
 
-      {/* 5. Floor Laser Perspective Runway Grid Pulses (Dark Mode) */}
-      <div className="hidden dark:block absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-red-600/20 via-pink-600/10 to-transparent pointer-events-none blur-md animate-floor-flicker" />
+      {/* 5. Floor Perspective Glow Pulses (Dark Mode) */}
+      <div className="hidden dark:block absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-fuchsia-600/15 via-pink-600/10 to-transparent pointer-events-none blur-md animate-floor-flicker" />
 
-      {/* 6. Dynamic Canvas Floating Sparks & Embers */}
+      {/* 6. Dynamic Canvas Floating Luminous Dust */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-40 dark:opacity-85"
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-35 dark:opacity-75"
       />
 
-      {/* 7. Dark Mode Cinematic Vignette */}
-      <div className="hidden dark:block absolute inset-0 bg-gradient-to-b from-[#07070a]/80 via-[#07070a]/45 to-[#07070a]/90" />
-      <div className="hidden dark:block absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(7,7,10,0.65)_70%,rgba(7,7,10,0.92)_100%)]" />
+      {/* 7. Dark Mode Balanced Vignette (preserves luminous color for glass refraction) */}
+      <div className="hidden dark:block absolute inset-0 bg-gradient-to-b from-[#06060b]/70 via-[#06060b]/35 to-[#06060b]/82" />
+      <div className="hidden dark:block absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(6,6,11,0.52)_72%,rgba(6,6,11,0.86)_100%)]" />
     </div>
   );
 }

@@ -73,19 +73,19 @@ export default function Hero() {
           {/* Left Column: Copywriting, Perks, and Conversion CTA */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left">
             
-            {/* Top Sci-Fi Hologram Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-[#0e0918]/90 border border-pink-300 dark:border-pink-500/40 text-pink-700 dark:text-pink-400 text-xs sm:text-sm font-semibold shadow-sm dark:shadow-[0_0_15px_rgba(255,0,127,0.25)] w-fit mx-auto lg:mx-0 backdrop-blur-md">
+            {/* Top Liquid Glass Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-pill text-pink-700 dark:text-pink-300 text-xs sm:text-sm font-semibold w-fit mx-auto lg:mx-0">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
               <Sparkles className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
-              <span className="tracking-wide text-slate-800 dark:text-slate-200 font-semibold">Jasa Pembuatan Website & Aplikasi Profesional</span>
+              <span className="tracking-wide text-slate-800 dark:text-slate-100 font-semibold">Jasa Pembuatan Website & Aplikasi Profesional</span>
             </div>
 
-            {/* Main Headline (ATM EDA Credibility Hook) */}
+            {/* Main Headline (ATM EDA Credibility & Primary SEO Keyword Hook) */}
             <h1 className="font-heading font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.15] text-slate-950 dark:text-white">
-              Website Profesional untuk Meningkatkan{" "}
+              Jasa Pembuatan Website & Aplikasi untuk Meningkatkan{" "}
               <span className="text-pink-glow">Kredibilitas Bisnis</span> Anda
             </h1>
 
@@ -97,7 +97,7 @@ export default function Hero() {
 
             {/* Target Area Coverage Badges (ATM EDA City Targeting) */}
             <div className="flex items-center gap-2 flex-wrap justify-center lg:justify-start pt-1">
-              <div className="flex items-center gap-1 text-[11px] font-bold text-pink-700 dark:text-pink-400 uppercase tracking-wider bg-pink-100 dark:bg-pink-950/60 px-2.5 py-1 rounded-md border border-pink-300 dark:border-pink-500/40">
+              <div className="flex items-center gap-1 text-[11px] font-bold text-pink-700 dark:text-pink-300 uppercase tracking-wider glass-pill px-3 py-1 rounded-full">
                 <MapPin className="w-3 h-3 text-pink-600 dark:text-pink-400" />
                 <span>Melayani Area:</span>
               </div>
@@ -105,7 +105,7 @@ export default function Hero() {
                 {cities.map((city, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-900/80 px-2 py-0.5 rounded border border-slate-300 dark:border-slate-800 font-medium"
+                    className="text-[11px] text-slate-700 dark:text-slate-200 bg-white/55 dark:bg-white/[0.07] backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/80 dark:border-white/15 font-medium shadow-sm"
                   >
                     {city}
                   </span>
@@ -113,20 +113,20 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Inclusions Box ("Yang Didapat") - Glass Console */}
-            <div className="p-4 sm:p-5 rounded-2xl glass-card border border-pink-500/20 dark:border-pink-500/30 shadow-xl dark:shadow-2xl text-left holo-corners">
-              <div className="flex items-center justify-between mb-3 border-b border-pink-500/15 dark:border-pink-500/20 pb-2">
+            {/* Inclusions Box ("Yang Didapat") - Liquid Glass Console */}
+            <div className="p-4 sm:p-5 rounded-3xl glass-card text-left holo-corners">
+              <div className="flex items-center justify-between mb-3 border-b border-white/50 dark:border-white/10 pb-2.5">
                 <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-pink-600 dark:text-pink-400 flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-pink-500 dark:text-pink-400" />
                   Fasilitas Lengkap Termasuk (All-in-One):
                 </span>
-                <span className="text-[11px] font-bold text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950/70 px-2.5 py-0.5 rounded-full border border-pink-300 dark:border-pink-500/40">
+                <span className="text-[11px] font-bold text-pink-700 dark:text-pink-300 bg-pink-500/15 dark:bg-pink-500/20 px-2.5 py-0.5 rounded-full border border-pink-400/35 backdrop-blur-md">
                   Siap Pakai
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {perks.map((perk, index) => (
-                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-semibold">
+                  <div key={index} className="flex items-start gap-2 text-xs sm:text-sm text-slate-800 dark:text-slate-100 font-semibold">
                     <CheckCircle2 className="w-4 h-4 text-pink-600 dark:text-pink-400 shrink-0 mt-0.5" />
                     <span>{perk}</span>
                   </div>
@@ -134,15 +134,15 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Dual High-Conversion CTA Buttons */}
+            {/* Dual High-Conversion Liquid Glass CTA Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-heading font-extrabold text-base bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_30px_rgba(255,0,127,0.5)] transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl font-heading font-extrabold text-base glass-btn-primary text-white active:scale-95 flex items-center justify-center gap-3 group"
               >
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-white/25 flex items-center justify-center border border-white/30">
                   <span className="text-lg">💬</span>
                 </div>
                 <span className="text-white font-bold">Konsultasi WhatsApp Sekarang</span>
@@ -151,74 +151,74 @@ export default function Hero() {
 
               <a
                 href="#harga"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl font-heading font-bold text-base bg-white dark:bg-[#0f0a1a] hover:bg-pink-50 dark:hover:bg-pink-500/20 border border-pink-500/30 dark:border-pink-500/50 text-slate-900 dark:text-white shadow-md dark:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-7 py-4 rounded-2xl font-heading font-bold text-base glass-btn-secondary text-slate-900 dark:text-white flex items-center justify-center gap-2"
               >
                 <span>📦 Lihat Paket & Harga</span>
               </a>
             </div>
 
             {/* Quick Contacts Callout */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-600 dark:text-slate-400 pt-1 font-medium">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-600 dark:text-slate-300 pt-1 font-medium">
+              <div className="flex items-center gap-2 glass-pill px-3.5 py-1.5 rounded-full">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>WhatsApp: <strong className="text-slate-900 dark:text-white font-bold">+62 8222-68-000-63</strong></span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 glass-pill px-3.5 py-1.5 rounded-full">
                 <span>✉️ Email: <strong className="text-pink-600 dark:text-pink-400 font-bold">kiyerivia@gmail.com</strong></span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Floating Interactive Mockups & Showcase Stack */}
+          {/* Right Column: Floating Liquid Glass Mockups & Showcase Stack */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Central Glowing Shield Aura */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-pink-600/30 via-rose-600/20 to-red-600/30 rounded-3xl blur-3xl transform rotate-3 scale-95 pointer-events-none" />
+              {/* Central Glowing Iridescent Refraction Aura */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/35 via-violet-500/25 to-cyan-400/30 rounded-3xl blur-3xl transform rotate-3 scale-95 pointer-events-none" />
 
               {/* Main Showcase Card 1: Healthcare & Clinic Demo */}
-              <div className="relative glass-card rounded-2xl p-4 sm:p-5 border border-pink-500/40 shadow-2xl animate-float holo-corners">
-                <div className="flex items-center justify-between pb-3 border-b border-pink-500/20">
+              <div className="relative glass-card rounded-3xl p-4 sm:p-5 animate-float holo-corners">
+                <div className="flex items-center justify-between pb-3 border-b border-white/50 dark:border-white/10">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm" />
                     </div>
-                    <span className="text-[11px] font-mono text-cyan-700 dark:text-cyan-300 ml-2 bg-slate-100 dark:bg-[#050508] px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800">
+                    <span className="text-[11px] font-mono text-cyan-700 dark:text-cyan-300 ml-2 bg-white/60 dark:bg-black/35 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/80 dark:border-white/15">
                       https://medikacare.ridev.app
                     </span>
                   </div>
-                  <span className="text-[10px] uppercase font-bold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-300 dark:border-amber-500/40">
+                  <span className="text-[10px] uppercase font-bold text-amber-700 dark:text-amber-300 bg-amber-400/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-amber-400/40">
                     Live Demo
                   </span>
                 </div>
 
-                <div className="mt-3 relative rounded-xl overflow-hidden aspect-[16/10] bg-slate-900 border border-slate-800 group shadow-inner">
+                <div className="mt-3 relative rounded-2xl overflow-hidden aspect-[16/10] bg-slate-900 border border-white/40 dark:border-white/15 group shadow-inner">
                   <img
                     src="/Medika Care.png"
                     alt="Medika Care Web App Showcase"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent flex flex-col justify-end p-4">
                     <span className="text-[10px] font-bold text-cyan-300 uppercase tracking-widest">
                       Healthcare & Booking Portal
                     </span>
                     <h3 className="font-heading font-extrabold text-white text-base">
                       MedikaCare - Klinik & Dokter Online
                     </h3>
-                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                    <p className="text-xs text-slate-200 line-clamp-1 mt-0.5">
                       Pendaftaran pasien otomatis & integrasi rekam medis digital.
                     </p>
                   </div>
                 </div>
 
                 {/* Tech tags */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
+                <div className="mt-3.5 flex flex-wrap gap-1.5">
                   {["Next.js 14", "Tailwind CSS", "Supabase DB", "Online Payment"].map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-semibold bg-pink-100 dark:bg-pink-950/60 text-pink-700 dark:text-pink-300 px-2 py-0.5 rounded-md border border-pink-200 dark:border-pink-500/40"
+                      className="text-[10px] font-semibold bg-white/60 dark:bg-white/10 backdrop-blur-md text-pink-700 dark:text-pink-300 px-2.5 py-0.5 rounded-full border border-white/80 dark:border-white/15"
                     >
                       {tag}
                     </span>
@@ -227,9 +227,9 @@ export default function Hero() {
               </div>
 
               {/* Floating Mini Card 2: E-Commerce & Toko Online */}
-              <div className="absolute -bottom-8 -left-4 sm:-left-8 glass-card p-3.5 rounded-xl border border-amber-500/40 shadow-2xl max-w-[220px] sm:max-w-[250px] animate-float-delayed hidden sm:block">
+              <div className="absolute -bottom-8 -left-4 sm:-left-8 glass-card p-3.5 rounded-2xl max-w-[220px] sm:max-w-[250px] animate-float-delayed hidden sm:block">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-lg shadow-sm shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400/90 to-amber-600/90 border border-white/40 flex items-center justify-center text-white font-bold text-lg shadow-md shrink-0">
                     🛍️
                   </div>
                   <div>
@@ -247,16 +247,16 @@ export default function Hero() {
               </div>
 
               {/* Floating Mini Card 3: Speed & SEO Score Badge */}
-              <div className="absolute -top-6 -right-4 sm:-right-6 glass-card p-3 rounded-xl border border-emerald-500/40 shadow-2xl animate-float">
+              <div className="absolute -top-6 -right-4 sm:-right-6 glass-card p-3 rounded-2xl animate-float">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 font-extrabold text-xs">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-600 dark:text-emerald-300 font-extrabold text-xs">
                     99+
                   </div>
                   <div className="text-left">
-                    <span className="text-[10px] font-bold text-white block">
+                    <span className="text-[10px] font-bold text-slate-900 dark:text-white block">
                       Google PageSpeed
                     </span>
-                    <span className="text-[9px] text-emerald-400 font-semibold">
+                    <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">
                       ⚡ Super Fast Loading
                     </span>
                   </div>
@@ -267,24 +267,24 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 4 Trust Value Badges (Bottom Trust Bar) */}
-        <div className="mt-16 pt-10 border-t border-pink-500/20">
+        {/* 4 Trust Value Badges (Bottom Glass Trust Bar) */}
+        <div className="mt-16 pt-10 border-t border-white/50 dark:border-white/10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {valueBadges.map((badge, idx) => {
               const Icon = badge.icon;
               return (
                 <div
                   key={idx}
-                  className="glass-card p-4 rounded-xl border border-pink-500/20 flex items-center gap-3.5 group hover:border-pink-500/50 transition-all duration-300 shadow-lg"
+                  className="glass-card p-4 rounded-2xl flex items-center gap-3.5 group"
                 >
-                  <div className="w-11 h-11 rounded-lg bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-500/40 flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-500 group-hover:text-white transition-all shrink-0 shadow-md">
+                  <div className="w-11 h-11 rounded-xl glass-icon flex items-center justify-center text-pink-600 dark:text-pink-400 group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:to-rose-500 group-hover:text-white transition-all shrink-0">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="text-left">
                     <h4 className="font-heading font-bold text-sm text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
                       {badge.label}
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 font-normal">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5 font-normal">
                       {badge.desc}
                     </p>
                   </div>

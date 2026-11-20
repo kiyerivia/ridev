@@ -149,9 +149,9 @@ export default function AdminDashboard() {
         {/* Glow backdrop */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-pink-600/20 via-rose-600/15 to-red-600/20 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="max-w-md w-full glass-card rounded-3xl p-8 sm:p-10 border border-pink-500/40 shadow-2xl relative z-10 text-center holo-corners">
+        <div className="max-w-md w-full glass-surface rounded-3xl p-8 sm:p-10 relative z-10 text-center holo-corners">
           
-          <div className="w-16 h-16 rounded-2xl bg-pink-950/60 border border-pink-500/40 flex items-center justify-center mx-auto mb-6 text-pink-400 shadow-[0_0_20px_rgba(255,0,127,0.3)]">
+          <div className="w-16 h-16 rounded-2xl glass-icon flex items-center justify-center mx-auto mb-6 text-pink-400">
             <Lock className="w-8 h-8 text-pink-400" />
           </div>
 
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
 
             <button
               type="submit"
-              className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm bg-gradient-to-r from-[#ff007f] via-[#ff0055] to-[#ff0038] text-white hover:brightness-110 shadow-[0_0_25px_rgba(255,0,127,0.5)] transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 rounded-xl font-heading font-extrabold text-sm glass-btn-primary text-white active:scale-95 flex items-center justify-center gap-2"
             >
               <KeyRound className="w-4 h-4 text-white" />
               <span>Buka Panel Kelola</span>

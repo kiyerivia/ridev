@@ -29,24 +29,29 @@ export function getTimeBasedTheme(): Theme {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
+  const [mode, setModeState] = useState<ThemeMode>("auto");
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme based on local clock time
+  // Initialize theme based on saved preference or local clock time
   useEffect(() => {
     setMounted(true);
-    // Clear any legacy override
+    let savedMode: ThemeMode = "auto";
     try {
-      localStorage.removeItem("ridev_theme_mode");
+      const stored = localStorage.getItem("ridev_theme_mode") as ThemeMode | null;
+      if (stored === "light" || stored === "dark" || stored === "auto") {
+        savedMode = stored;
+      }
     } catch (e) {}
 
-    const effectiveTheme = getTimeBasedTheme();
+    setModeState(savedMode);
+    const effectiveTheme = savedMode === "auto" ? getTimeBasedTheme() : savedMode;
     setTheme(effectiveTheme);
     applyThemeToDOM(effectiveTheme);
   }, []);
 
-  // Periodic check for auto time-based theme (runs every 30 seconds)
+  // Periodic check for auto time-based theme (runs every 30 seconds only when mode === "auto")
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || mode !== "auto") return;
 
     const checkTimeTheme = () => {
       const timeTheme = getTimeBasedTheme();
@@ -56,7 +61,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     const interval = setInterval(checkTimeTheme, 30000);
     return () => clearInterval(interval);
-  }, [mounted]);
+  }, [mounted, mode]);
 
   const applyThemeToDOM = (activeTheme: Theme) => {
     if (typeof document === "undefined") return;
@@ -76,24 +81,27 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (metaThemeColor) {
       metaThemeColor.setAttribute(
         "content",
-        activeTheme === "dark" ? "#07070a" : "#f8f9fd"
+        activeTheme === "dark" ? "#06060b" : "#f3f1fb"
       );
     }
   };
 
-  const setMode = (_newMode: ThemeMode) => {
-    // No-op or update if needed
+  const setMode = (newMode: ThemeMode) => {
+    setModeState(newMode);
+    try {
+      localStorage.setItem("ridev_theme_mode", newMode);
+    } catch (e) {}
+    const effectiveTheme = newMode === "auto" ? getTimeBasedTheme() : newMode;
+    setTheme(effectiveTheme);
+    applyThemeToDOM(effectiveTheme);
   };
 
   const toggleTheme = () => {
-    // Toggle for testing/fallback
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    applyThemeToDOM(nextTheme);
+    setMode(nextTheme);
   };
 
-  const isAuto = true;
-  const mode: ThemeMode = "auto";
+  const isAuto = mode === "auto";
   const activeTimeRange =
     theme === "light" ? "05.00 - 18.00 (Terang)" : "18.00 - 05.00 (Gelap)";
 
